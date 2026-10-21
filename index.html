@@ -1,0 +1,2299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assinatura eletrônica · PT e APR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,700;1,400&family=Carlito:wght@400;700&family=Tinos:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --marinho:#033D60; --grafite:#201E1E; --branco:#FFFFFF; --cinza-azul:#5B6B7A; --cinza-claro:#CDD4DC; --gelo:#F3F5F8;
+  --ambar:#FBAE40; --ambar-esc:#C98A1B; --vermelho:#B43A3A;
+  --bg:var(--gelo); --card:var(--branco); --txt:var(--grafite); --muted:var(--cinza-azul); --linha:var(--cinza-claro); --linha2:#E6EAEF;
+  --pri:var(--marinho); --pri2:#0A4C74; --pri-claro:#E6EEF4; --acento:var(--marinho);
+  --ok:var(--marinho); --ok-bg:#E6EEF4; --warn:var(--ambar-esc); --warn-bg:#FEF3DC; --err:var(--vermelho); --err-bg:#F7E7E7; --mute-bg:#EDF0F3;
+  --whats:var(--marinho); --raio:10px; --sombra:0 1px 2px rgba(3,61,96,.05),0 3px 10px rgba(3,61,96,.05);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.45 Inter,"Segoe UI",Roboto,Arial,sans-serif;-webkit-text-size-adjust:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3{margin:0;line-height:1.25}
+h2{font-size:20px} h3{font-size:15px;margin-bottom:6px}
+code{background:var(--mute-bg);padding:1px 5px;border-radius:4px;font-size:12px}
+.muted{color:var(--muted)} .sm{font-size:12px} .dir{text-align:right} .txt{margin:0 0 6px}
+.mono{font-family:Consolas,"Courier New",monospace}
+.ic{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+.btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--linha);background:#fff;border-radius:8px;padding:8px 13px;cursor:pointer;font-weight:600;font-size:13px;color:var(--txt);text-decoration:none;white-space:nowrap;transition:background .15s,border-color .15s}
+.btn:hover{background:var(--gelo);border-color:#B7C1CC}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-primary{background:var(--pri);border-color:var(--pri);color:#fff}
+.btn-primary:hover{background:var(--pri2);border-color:var(--pri2)}
+.btn-danger{background:var(--err);border-color:var(--err);color:#fff}
+.btn-danger:hover{background:#9a3030}
+.btn-ghost{background:transparent;border-color:transparent}
+.btn-whats{background:var(--whats);border-color:var(--whats);color:#fff}
+.btn-whats:hover{background:var(--pri2)}
+.btn-full{width:100%;justify-content:center}
+.btn-grande{padding:13px;font-size:15px}
+.btn-icon{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid transparent;border-radius:8px;background:transparent;cursor:pointer;color:var(--muted);font-size:18px;line-height:1}
+.btn-icon:hover{background:var(--mute-bg);color:var(--txt)}
+.btn-icon:disabled{opacity:.35;cursor:default;background:transparent}
+.btn-link{background:none;border:0;padding:0;color:var(--pri2);cursor:pointer;font-weight:600;font-size:12px}
+.btn-link:hover{text-decoration:underline}
+.pulsa{box-shadow:0 0 0 0 rgba(251,174,64,.7);animation:pulsa 1.8s infinite}
+@keyframes pulsa{70%{box-shadow:0 0 0 7px rgba(251,174,64,0)}100%{box-shadow:0 0 0 0 rgba(251,174,64,0)}}
+
+.fld{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.fld[hidden]{display:none}
+.fld>span{font-size:12px;font-weight:600;color:var(--muted)}
+input,select,textarea{border:1px solid var(--linha);border-radius:8px;padding:8px 10px;background:#fff;width:100%;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--pri2);box-shadow:0 0 0 3px rgba(3,61,96,.12)}
+textarea{resize:vertical}
+.grade2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px} .grade2 .col2{grid-column:1/-1}
+.grade3{display:grid;grid-template-columns:repeat(3,1fr);gap:0 12px}
+.aceite{display:flex;gap:9px;align-items:flex-start;font-size:13px;margin:10px 0;cursor:pointer}
+.aceite input{width:18px;height:18px;margin-top:1px;flex:none}
+
+.bdg{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.b-ok{background:var(--ok-bg);color:var(--ok)} .b-warn{background:var(--warn-bg);color:var(--warn)} .b-err{background:var(--err-bg);color:var(--err)} .b-mute{background:var(--mute-bg);color:var(--muted)}
+.tag{display:inline-flex;align-items:center;justify-content:center;min-width:38px;padding:2px 7px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:.04em}
+.tag-pt{background:#FEF3DC;color:var(--ambar-esc)} .tag-apr{background:var(--pri-claro);color:var(--marinho)}
+.prog{height:6px;background:var(--linha2);border-radius:99px;overflow:hidden;width:70px;display:inline-block;vertical-align:middle;margin-right:6px}
+.prog i{display:block;height:100%;background:var(--ok);border-radius:99px}
+.prog.grande{width:100%;height:8px;margin:0}
+
+.topo{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:18px;padding:8px 18px;background:#fff;border-bottom:1px solid var(--linha)}
+.marca{display:flex;align-items:center;gap:10px;min-width:0}
+.marca img{height:34px;width:auto}
+.marca b{display:block;font-size:15px} .marca small{display:block;color:var(--muted);font-size:11.5px}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav button{display:flex;align-items:center;gap:7px;border:0;background:none;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;color:var(--muted)}
+.nav button:hover{background:var(--mute-bg);color:var(--txt)}
+.nav button.ativo{background:var(--pri-claro);color:var(--pri)}
+.marca b{color:var(--marinho)}
+.pg-topo h2{color:var(--marinho)}
+.bloco h3{color:var(--marinho)}
+.usuario{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);max-width:220px}
+.usuario span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.pagina{max-width:1180px;margin:0 auto;padding:22px 18px 60px}
+.pagina.estreita{max-width:880px}
+.pg-topo{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.pg-topo p{margin:4px 0 0}
+.acoes{display:flex;gap:8px;flex-wrap:wrap}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chip{border:1px solid var(--linha);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer;font-size:12.5px;font-weight:600;color:var(--muted)}
+.chip b{color:var(--txt);margin-left:3px}
+.chip.ativo{background:var(--pri);border-color:var(--pri);color:#fff} .chip.ativo b{color:var(--ambar)}
+.filtros{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.filtros select{width:auto;min-width:220px}
+.busca{position:relative;flex:1;min-width:220px;display:block}
+.busca .ic{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.busca input{padding-left:36px}
+.tabela-wrap{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);overflow:auto;box-shadow:var(--sombra)}
+.tab{width:100%;border-collapse:collapse;font-size:13px}
+.tab th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:10px 12px;background:var(--gelo);border-bottom:1px solid var(--linha);white-space:nowrap}
+.tab td{padding:10px 12px;border-bottom:1px solid var(--linha2);vertical-align:middle}
+.tab tr:last-child td{border-bottom:0}
+.tab tr.clicavel{cursor:pointer} .tab tr.clicavel:hover td{background:var(--gelo)}
+.vazio{text-align:center;padding:48px 20px;color:var(--muted);background:#fff;border:1px dashed var(--linha);border-radius:var(--raio)}
+.vazio .ic{width:40px;height:40px;opacity:.5}
+
+.cards-mod{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.card-mod{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);padding:14px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--sombra)}
+.card-mod.inativo{opacity:.6}
+.cm-topo{display:flex;align-items:center;gap:8px}
+.cm-tit{font-weight:600;min-height:38px}
+.cm-bts{display:flex;gap:6px;margin-top:auto;padding-top:6px;align-items:center}
+.lista-mod{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;max-height:56vh;overflow:auto}
+.item-mod{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;border:1px solid var(--linha);background:#fff;border-radius:8px;padding:10px 12px;cursor:pointer}
+.item-mod:hover{border-color:var(--pri2);background:var(--pri-claro)}
+.item-mod span{font-size:13px}
+
+.bloco{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);padding:18px;margin-bottom:14px;box-shadow:var(--sombra)}
+.bloco .dir{margin-top:10px;display:flex;justify-content:flex-end;gap:8px}
+.img-cfg{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.img-prev{border:1px solid var(--linha);border-radius:8px;padding:10px;background:#fff}
+.img-prev img{display:block;height:80px;width:auto}
+.img-bts{display:flex;gap:8px;flex-wrap:wrap}
+.grade-ic{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.ic-cfg{border:1px solid var(--linha);border-radius:8px;padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.ic-cfg img{width:70px;height:68px;object-fit:contain}
+
+body.com-editor{overflow:hidden}
+.editor{display:flex;flex-direction:column;height:calc(100vh - 51px);height:calc(100dvh - 51px)}
+.ed-barra{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#fff;border-bottom:1px solid var(--linha);flex-wrap:wrap}
+.ed-titulo{font-weight:700;display:flex;align-items:center;gap:8px;min-width:0;flex:1;flex-wrap:wrap}
+.ed-titulo small{font-weight:500;color:var(--muted);font-size:12.5px}
+.ed-acoes{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.zoom{display:flex;border:1px solid var(--linha);border-radius:8px;margin-right:4px}
+.zoom .btn-icon{width:32px;height:32px}
+.ed-corpo{flex:1;display:flex;min-height:0}
+.ed-area{flex:1;overflow:auto;background:#E3E8ED;min-width:0}
+.ed-painel{width:340px;flex:none;background:#fff;border-left:1px solid var(--linha);display:flex;flex-direction:column;min-height:0}
+.painel-abas{display:flex;gap:2px;padding:8px 8px 0;border-bottom:1px solid var(--linha);align-items:flex-end}
+.painel-abas button[data-aba]{border:0;background:none;padding:8px 12px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer}
+.painel-abas button.ativo{color:var(--pri);border-bottom-color:var(--pri)}
+.fechar-painel{margin-left:auto;display:none!important}
+.painel-corpo{padding:14px;overflow:auto;flex:1}
+.assin-resumo{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;font-size:13px}
+.assin-lista{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.assin-card{border:1px solid var(--linha);border-radius:9px;padding:10px;display:flex;flex-direction:column;gap:6px}
+.assin-card.ok{border-color:var(--linha);border-left:3px solid var(--marinho);background:var(--gelo)}
+.ac-topo{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.ac-ass{display:flex;flex-direction:column;gap:2px}
+.ac-ass img{max-height:42px;max-width:180px;object-fit:contain;align-self:flex-start}
+.ac-bts{display:flex;gap:2px;align-items:center;flex-wrap:wrap}
+.ac-bts .btn{padding:6px 10px;margin-right:4px}
+.aviso-box,.dica-box{border:1px solid var(--linha);border-radius:9px;padding:14px;background:var(--gelo);font-size:13px}
+.aviso-box{text-align:center} .aviso-box .ic{width:30px;height:30px;color:var(--pri)}
+.dica-box ul{margin:6px 0 0;padding-left:18px} .dica-box li{margin-bottom:4px}
+.dica{margin-top:14px}
+.stepper{display:flex;align-items:center;gap:10px}
+.stepper .btn-icon{border:1px solid var(--linha)}
+.grade-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.grade-cols label{display:flex;flex-direction:column;font-size:11px;color:var(--muted)}
+.grade-cols small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.grade-cols input{padding:5px 6px}
+.hist{margin-top:12px;font-size:12px} .hist pre{white-space:pre-wrap;font:inherit;color:var(--muted)}
+.menu{position:relative}
+.menu-lista{position:absolute;right:0;top:38px;background:#fff;border:1px solid var(--linha);border-radius:9px;box-shadow:0 12px 32px rgba(0,0,0,.14);min-width:270px;padding:6px;z-index:40}
+.menu-lista button{display:flex;align-items:center;gap:8px;width:100%;border:0;background:none;padding:9px 10px;border-radius:6px;cursor:pointer;text-align:left}
+.menu-lista button:hover{background:var(--mute-bg)}
+.menu-lista .perigo{color:var(--err)}
+
+.pad-wrap{border:1px solid var(--linha);border-radius:9px;background:#fff;position:relative;margin:4px 0 6px}
+.pad-topo{display:flex;justify-content:space-between;padding:7px 10px 0;font-size:12px;color:var(--muted)}
+.pad{display:block;width:100%;height:170px;touch-action:none;cursor:crosshair}
+.pad-linha{position:absolute;left:8%;right:8%;bottom:34px;border-bottom:1px dashed var(--linha);pointer-events:none}
+.pdf-acoes{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:var(--gelo)}
+.login-card{background:#fff;border:1px solid var(--linha);border-top:4px solid var(--marinho);border-radius:12px;padding:28px;width:100%;max-width:380px;box-shadow:var(--sombra);text-align:center}
+.login-card .fld{text-align:left}
+.login-logo{height:70px;width:auto;margin-bottom:10px}
+.login-card h1{font-size:21px;margin-bottom:4px;color:var(--marinho)}
+.login-card p{margin:0 0 18px;font-size:13px}
+.hint{margin-top:14px!important;font-size:12px!important;color:var(--muted);background:var(--mute-bg);padding:8px;border-radius:8px}
+
+.pub{max-width:860px;margin:0 auto;padding:14px 14px 40px}
+.pub-topo{display:flex;align-items:center;gap:12px;padding:6px 2px 14px}
+.pub-topo img{height:42px} .pub-topo b{display:block;font-size:16px} .pub-topo small{color:var(--muted)}
+.pub-card{background:#fff;border:1px solid var(--linha);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:var(--sombra);display:flex;flex-direction:column;gap:10px}
+.pub-card.ok{flex-direction:row;align-items:center;gap:14px;border-color:var(--linha);border-left:4px solid var(--marinho);background:var(--gelo)}
+.pub-card.ok .ic{width:34px;height:34px;color:var(--ok)} .pub-card.ok h2{font-size:17px} .pub-card.ok p{margin:2px 0 0}
+.pub-card.erro{align-items:center;text-align:center;border-color:#E6C2C2;background:var(--err-bg)}
+.pub-card.erro .ic{width:34px;height:34px;color:var(--err)}
+.pub-doc{display:flex;gap:10px;align-items:flex-start}
+.pub-passo{display:flex;align-items:center;gap:8px;font-weight:700;margin:18px 0 8px}
+.pub-passo b{display:inline-flex;width:24px;height:24px;border-radius:50%;background:var(--pri);color:#fff;align-items:center;justify-content:center;font-size:13px}
+.pub-doc-wrap{background:#E3E8ED;border-radius:12px;max-height:70vh;overflow:auto;border:1px solid var(--linha)}
+.pub-acoes-doc{display:flex;justify-content:flex-end;margin-top:8px}
+.pub-carregando{text-align:center;padding:80px 20px;color:var(--muted)} .pub-carregando .ic{width:40px;height:40px}
+.pub-rodape{font-size:11.5px;color:var(--muted);text-align:center;margin-top:20px}
+
+.modal-bg{position:fixed;inset:0;background:rgba(32,30,30,.45);display:flex;align-items:center;justify-content:center;padding:16px;z-index:100}
+.modal-bg[hidden]{display:none}
+.modal{background:#fff;border-radius:14px;width:100%;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.modal-cab{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--linha)}
+.modal-cab h3{margin:0;font-size:16px}
+.modal-corpo{padding:16px 18px;overflow:auto}
+.modal-pe{display:flex;justify-content:flex-end;gap:8px;padding:12px 18px;border-top:1px solid var(--linha)}
+.modal-pe[hidden]{display:none}
+#toasts{position:fixed;right:16px;bottom:16px;display:flex;flex-direction:column;gap:8px;z-index:200;max-width:min(420px,calc(100vw - 32px))}
+.toast{display:flex;gap:9px;align-items:flex-start;background:var(--grafite);color:#fff;padding:11px 14px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);font-size:13px;transition:opacity .4s,transform .4s}
+.toast.t-erro{background:var(--vermelho)} .toast.t-aviso{background:var(--ambar-esc)}
+.toast.out{opacity:0;transform:translateY(8px)}
+#loading{position:fixed;inset:0;background:rgba(255,255,255,.55);display:none;align-items:center;justify-content:center;z-index:300;flex-direction:column;gap:10px;font-weight:600;color:var(--pri)}
+#loading.on{display:flex}
+.spinner{width:38px;height:38px;border:4px solid var(--linha);border-top-color:var(--pri);border-radius:50%;animation:gira .8s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+
+@media (max-width:1100px){
+  .ed-painel{position:fixed;right:0;top:51px;bottom:0;z-index:35;box-shadow:-10px 0 30px rgba(0,0,0,.15);transform:translateX(105%);transition:transform .2s}
+  body.painel-aberto .ed-painel{transform:none}
+  .fechar-painel{display:inline-flex!important}
+}
+@media (max-width:760px){
+  .topo{gap:8px;padding:8px 10px}
+  .marca div{display:none}
+  .nav button span{display:none}
+  .usuario span{display:none}
+  .ed-acoes .btn span{display:none}
+  .ed-acoes .btn{padding:8px 10px}
+  .ed-painel{width:100%}
+  .grade2,.grade3{grid-template-columns:1fr}
+  .lista-mod{grid-template-columns:1fr}
+  .tab th:nth-child(3),.tab td:nth-child(3),.tab th:nth-child(4),.tab td:nth-child(4){display:none}
+  .filtros select{min-width:0;flex:1}
+}
+
+.papel{display:flex;flex-direction:column;align-items:center;gap:22px;padding:22px 16px;width:max-content;min-width:100%}
+#medidor-doc,.pdf-tmp{position:fixed;left:0;top:0;z-index:-10;padding:0;gap:0;pointer-events:none;width:auto;min-width:0}
+#medidor-doc{visibility:hidden}
+.pg{position:relative;width:595.3pt;height:841.9pt;background:#fff;color:#000;overflow:hidden;flex:none;
+  font-family:Arial,Arimo,"Liberation Sans",Helvetica,sans-serif;font-size:10pt;line-height:1.15;
+  box-shadow:0 1px 3px rgba(0,0,0,.25),0 10px 30px rgba(15,30,45,.18);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pdf-tmp .pg{box-shadow:none}
+.pg *{box-sizing:border-box}
+.pg .abs{position:absolute}
+.pg table.t{border-collapse:collapse;table-layout:fixed;border-spacing:0}
+.pg .t td{border:.75pt solid #000;padding:1pt 3pt;vertical-align:top;overflow:hidden;overflow-wrap:break-word}
+.pg .t+.t,.pg .desc,.pg .desc+.t{margin-top:-.75pt}
+.pg b,.pg .b{font-weight:bold}
+.pg .c{text-align:center} .pg .vm{vertical-align:middle!important} .pg .vb{vertical-align:bottom!important} .pg .vt{vertical-align:top!important}
+.pg .cal10,.pg .cal12,.pg .cal14,.pg .cal16{font-family:Calibri,Carlito,"Segoe UI",sans-serif}
+.pg .cal10{font-size:10pt;line-height:12pt} .pg .cal12{font-size:12pt} .pg .cal14{font-size:14pt} .pg .cal16{font-size:16pt}
+.pg .tnr10{font-family:"Times New Roman",Tinos,"Liberation Serif",serif;font-size:10pt}
+.pg .ar6{font-size:6pt} .pg .ar65{font-size:6.5pt} .pg .ar7{font-size:7pt} .pg .ar8{font-size:7.9pt} .pg .ar9{font-size:9pt}
+.pg .ar10{font-size:10pt} .pg .ar12{font-size:12pt} .pg .ar14{font-size:13.9pt}
+.pg .lh11{line-height:11pt} .pg .lh12{line-height:12pt} .pg .lh13{line-height:12.4pt;padding-top:0!important;padding-bottom:0!important} .pg .lh19{line-height:19pt}
+.pg .cz{background:#d9d9d9} .pg .cz2{background:#e7e6e6} .pg .cz3,.pg .cz3 td{background:#f2f2f2}
+.pg .ln{min-height:1.15em}
+.pg .cinza-txt{color:#555}
+.pg .cab td{padding:0 4pt}
+.pg .cab-logo-apr{padding:0!important;vertical-align:top}
+.pg .logo-apr{display:block;width:71pt;height:36pt;object-fit:contain;margin:5pt 0 0 6pt}
+.pg .emp{line-height:15pt;margin-top:10pt;padding:0 3pt}
+.pg .cab-logo-pt{padding:1pt!important;vertical-align:middle}
+.pg .logo-pt{display:block;width:100%;height:76pt;object-fit:contain}
+.pg .rod td{padding:1pt 5pt;vertical-align:top}
+.pg .pagcel{text-align:center}
+.pg .pg-apr .pagnum,.pg-apr .pagnum{display:block;margin-top:12pt}
+.pg-pt .pagnum{display:block;margin-top:22pt;font-weight:normal}
+.pg .tab-apr td{padding:3pt 4pt}
+.pg .colhdr td{padding:1pt!important}
+.pg .colhdr td:first-child{white-space:nowrap;padding:0!important;letter-spacing:-.2pt}
+.pg .servico{padding:4pt 6pt!important}
+.pg .med{padding:5pt 6pt!important;position:relative}
+.pg .med .ln+.ln{margin-top:7pt}
+.pg .per .ln+.ln{margin-top:6pt}
+.pg .ord{position:relative}
+.pg .cond{white-space:nowrap;padding:2pt 1pt!important}
+.pg .obs{text-align:justify;padding:2pt 3pt!important;line-height:1.05}
+.pg .fecho{padding:0 4pt!important}
+.pg .obsg{padding:3pt 5pt!important}
+.pg .nomeass{line-height:1.1;padding:1pt 3pt!important}
+.pg .celass{padding:1pt!important}
+.pg .ass-img{display:inline-block;max-width:100%;object-fit:contain;vertical-align:middle}
+.pg .ck{white-space:nowrap}
+.pg .ckx{display:inline-block;min-width:.66em;text-align:center;font-weight:bold;line-height:1}
+.pg .val{font-weight:normal}
+.pg .ar12 .val{font-size:11pt}
+.pg .sub{display:inline-block;min-width:76pt;border-bottom:.75pt solid #000;line-height:1.05;margin-left:1pt}
+.pg .ic-cel{padding:2pt!important}
+.pg .ic-pt{display:block;width:56pt;height:55pt;object-fit:contain;margin:0 auto}
+.pg .ativ{padding:1pt 1pt 0!important;line-height:9.2pt;position:relative}
+.pg .ck-canto{position:absolute;right:2pt;bottom:1pt}
+.pg .ativ .ln{min-height:0}
+.pg .desc{position:relative}
+.pg .desc-txt{position:absolute;left:0;top:0;right:0;bottom:0;padding:0 4pt;line-height:14.3pt;overflow:hidden}
+.pg .desc-txt .ln{min-height:14.3pt}
+.pg .desc-txt>.blk{height:100%}
+.pg .obsg>.blk{min-height:84pt}
+.pg .servico>.blk{min-height:44pt}
+.pg .obs>.blk,.pg .med>.blk{min-height:9pt}
+.pg .pt-tit{height:13pt;line-height:13pt;margin-bottom:2pt}
+.pg .lista td{padding:0 2pt;line-height:8.6pt;white-space:nowrap;vertical-align:middle}
+.pg .lista-alta td{white-space:normal;vertical-align:top;padding:.5pt 5pt 0;line-height:8.9pt}
+.pg .sigpt{vertical-align:bottom;padding:2pt 4pt 3pt!important}
+.pg .sig-area{height:31pt;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;overflow:hidden}
+.pg .sig-nome{line-height:8pt;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.pg .sig-linha{border-top:.75pt solid #000;width:80%;margin:1pt auto 2pt}
+.pg .nota-cert{margin-top:9pt;text-align:justify;line-height:9.5pt;color:#222}
+.modo-editar .pg{overflow:visible}
+.modo-editar .pg .t td{overflow:visible}
+.modo-editar .ed{cursor:text;border-radius:1.5pt;outline:1px dashed transparent;outline-offset:1px;transition:background .12s}
+.modo-editar .ed:hover{background:rgba(3,61,96,.06);outline-color:rgba(3,61,96,.4)}
+.modo-editar .ed:focus{outline:1.5px solid #033D60;background:#E6EEF4}
+.modo-editar span.ed:empty{display:inline-block;min-width:28pt;min-height:1em;vertical-align:bottom;background:rgba(3,61,96,.05)}
+.modo-editar .blk.ed{min-height:1.15em}
+.ed.editando{white-space:pre-wrap}
+.ed:empty::before{content:attr(data-ph);color:#8A97A4;font-weight:normal;font-style:italic}
+.modo-editar .ck.clic{cursor:pointer;border-radius:2pt}
+.modo-editar .ck.clic:hover{background:#FDDDA6}
+.pg .tb{position:absolute;right:1pt;top:1pt;display:none;gap:1px;z-index:6}
+.pg .ord .tb{left:0;right:auto;top:0;flex-direction:column}
+.modo-editar .pg tr:hover>td>.tb{display:flex}
+.pg .tb button{font:600 9px/1 Inter,system-ui,sans-serif;border:1px solid #CDD4DC;background:#fff;border-radius:3px;padding:2px 4px;cursor:pointer;color:#201E1E;min-width:15px}
+.pg .tb button:hover{background:#033D60;color:#fff;border-color:#033D60}
+
+#impressao{display:none}
+@page{size:A4;margin:0}
+@media print{
+  html,body{background:#fff!important;margin:0!important;padding:0!important;overflow:visible!important}
+  body>*:not(#impressao){display:none!important}
+  #impressao{display:block!important;padding:0;gap:0;width:auto;min-width:0}
+  #impressao .pg{box-shadow:none;margin:0;height:841pt;break-after:page;page-break-after:always}
+  #impressao .pg:last-child{break-after:auto;page-break-after:auto}
+  .no-print{display:none!important}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="impressao" class="papel"></div>
+
+<div id="modal" class="modal-bg" hidden>
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-cab"><h3 id="modal-titulo"></h3><button class="btn-icon" type="button" onclick="fecharModal()" aria-label="Fechar">✕</button></div>
+    <div class="modal-corpo" id="modal-corpo"></div>
+    <div class="modal-pe" id="modal-pe"></div>
+  </div>
+</div>
+<div id="toasts"></div>
+<div id="loading"><div class="spinner"></div><span id="loading-txt">Carregando…</span></div>
+
+
+<script>
+'use strict';
+// =====================================================================
+// DOCUMENTO — reproduz a PT e as APRs no mesmo layout dos originais
+// (folha A4 medida em pontos: 595,3 × 841,9 pt), permite editar qualquer
+// texto direto no papel e pagina a APR automaticamente.
+// =====================================================================
+
+const CE_MODO = (() => { const d = document.createElement('div'); try { d.contentEditable = 'plaintext-only'; } catch (e) {} return d.contentEditable === 'plaintext-only' ? 'plaintext-only' : 'true'; })();
+const DOCIMG = { imagens: {} };   // logotipo e pictogramas personalizados (aba Imagens); vazio = padrão
+const LOGO_PADRAO = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjgAAAEgCAMAAACOxvmvAAABVlBMVEUAAAAAAACXl5dGRkZmZmaxsbEXFxdpaWm8vLx+fn4bGxubm5siIiJ2dnZeXl4kJCTS0tIBAQEAAADb29vq6urLy8sEBAQKCgre3t4GBgZLS0vl5eXQ0NBHR0eCgoIDAwMTExO/v78yMjK1tbV7e3uenp6srKxRUVGlpaWRkZHh4eEMDAwICAiJiYk6OjpUVFQODg6pqalZWVm5ubnDw8M/Pz8ZGRkvLy9PT09tbW2WlpZCQkLU1NQFBQUdHR2NjY1wcHDIyMhjY2M3NzcmJiYUFBQQEBCFhYXY2Njo6Og9PT2hoaHOzs4fHx9DQ0N0dHTGxsaUlJQsLCw0NDRXV1dgYGApKSlqamoqKio0NDQAAAAvLy8zMzMAAAACAgIEBARCQkKDg4MGBgaysrJVVVUICAg+Pj5GRkYTExOEhISAgIBTU1MiIiIwMDCrq6uHh4fOzs5jY2MY+eZoAAAAXXRSTlMA7lepiT3XhTJx01POd5HKG+vxEwQi6uMQ56IJHqZt7NwvvDlzT0GcSV0M4eZltJnfRZU1K67Uv5+BWa0Z6NFhfSaMt8jZ3WkWBrFMIM+reihawbmXjsaDw7zzzMZFmVpBAAA6i0lEQVR42uyb/W/SQBjHb7VaoAiGqcx3nbJIEJ3zJVt9wdQpGDZdE2EO/T5H0LFEE+P\/\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\/\/8l9Onp6Z52BsnjVvntJurM9O30d67D2qPiY7dawZOnxh++3VvfGzKnt+n1Df7d47eRzEUN2G4AccbeLc7/wDihAGRqIRt9BPLd/fqV+BMFgGRl1/4pNtquT9BAi1Oh9NR6x4iYAXhxzr2HkvW9YUGcrI3/pyujuSq6GOiq+u8WZ1RECdv8UKwRzhv6wfreEAKS7n0jMED/Ij4SceiwGOfOesdoWCTQ4A7rIA8k9/39ztx9uoSH2hYS5GRxpBYnwcFxD2DfeseI2P04L6LM6Pf4qyz3dh26ZOdGa3CfABLkqj7OQv0H6x3v8EGbwo0VQBzrAGDCGgHzqz/1iuXeF98jvqPX05ViN/ITnginYGej0TNbj+ujncEfs+PJXvmgO2YcAXOZjWYlopeGgh/PRaP6/ehcJ3tpqFdjrFIsR35axSmZuDruDNoHmI3j8F252P0QzvreHIzXOb7yT1t2v4x1i5HTz/dve72tn8vFyLRHYPGshqjtHcMeXOpcag8vDhZ40H3e+qg2JGsgin/1VWaiA/lnbWskrBKYXTWJcyQvzJWALLy9zmJKnl/RujO9+9clQkEgUR23FNIMAMiaurAG/IInwQ2VsGMKQApjl3pAL68DpUDIdnXBvWsbR/xSanR7fHhB5KkbdZySgTFgVJ6bZiD8lGeiU/IQfq0/MT6YbyY6F0nigJixTw/zZRunBYLZDUCqnFUjy1WJr/lYs3JtSSzxy8SlzXQNY1zex/apZF/Ke7YREx2VLYUyxvUFayQ0AdquaUhx4qwQmL12ZTgY+o0Q+yoSk9PBcVf1m2dPBHcO50kpqQ721+mvjFd/DCbOfI6Is3qZSBQTDQ9xmCtETIPzk5I45kHzRrcLfAflIYeMktyVuaAUdl3\/\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\/\/+N5ZHWZl+8wm82jiCoG8LQ2rqvUYiBIIPsVtGjgmjVkjcXBeB5w3v/+NJuerQZxTAJRSEEyLc1xiwCBmI3Ew4/Wrk3QIhbcO1m1gJLXHScYT2bhr70CYtGDwkLf/KJahZaJXxK8mmATOrtcf6KEQiw8hDtVE8owJddckzjgBBLnpXWdGJw7uVqJjWRN8nBlrGH6mtKkiJrqdMQo8bsj7LSjW3OE1SPmciSJyxKjor2Iq0JX3WZrXPhjg2Bpx0miM7ocSp99y3c31BBZE2+InRvmmzEhMNaeaS2K6aMeeh4d9zFHjZ6zzXLvCwqBr9Y3P/8H6QAcv+ChTbpaLg5rGBYstxCiYJBiqQxBxONbdbnt1oC9AlhVx8m7RCBiIhPXhp/sRiXPTB0p/QbNHMcsPRnxbzSNeYEa1pkFoakOlCyVfPQgD6AGjn1fKGkV74DiSb0Zo2uohR3pe4nwDjvnhFie52doubF4QEhPlMG4nMDhm4oBXAey+IJJv/OnLUCtMpJmcI7zPth6mYi4ShDQv+Ob5lCsY2y1L5cJd7JlPI5283c0TgOCoICzqZdu1QmszmUqkGHDkvAVAXP+MXh8mT19HIc4ukQb1PqHHaCZMOjQAlV5HDV4mJa0mjIhSt98QtBP7OHFDqWzc0SUnsKZQtmxMA0uLHuLMYOUzLoc5qrbb1erR4M+nMRXjOMJxOMLyjoRsMEAZJIXI8Nl1yeHq+dHtpyrHeXtDL2bko07qjt9qsSOYeZAZcYTUJhx4LMWd8XhXxnoasrimahBxlBrQviz\/\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\/\/6LpVt9AZSqcR2itdj8v4kKrUTlV+fnxKdcHP0nlYz/nhu0XgoNfDlQGqx7tO5S3yZGkgkhRhOvV1lgo1Rer0kaSM72/io0Qdf0NeZKLujEAYGEl8ONFbvI6nU24Uvtahq77oGD0KRTrK2gpso7SiAW/10K9J2PS4jm5sPU+LvYT87tDUl/m1cPGxmI0nx1zFY/eXXX3/5Nvn3LmVuq6MOnAd3bJUnxT/C/tbmZuRS/DM0ku5zNt1FgDPRHiUIP7iZsh4fCDgt/g3Edk7jIYCJaect/YVbdnGGSdfdFo+8kY0grIs+VrXVoeS\/\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\/\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';
+
+// Pictogramas da PT redesenhados em vetor (nítidos em qualquer impressão)
+const ICONES_PT = {
+  altura: '<svg xmlns="http:\/\/www.w3.org/2000/svg" viewBox="0 0 100 96"><rect x="3" y="3" width="94" height="90" rx="9" fill="#e6ebef"/><path d="M8 93V54h9v-9h11v15h9V36h13v20h10V46h12v-8h10v55z" fill="#cdd6dd"/><g fill="none" stroke="#3f454c" stroke-width="5"><path d="M21 6v84M81 6v84M10 77h80M10 20h80"/></g><path d="M56 20c-2 9-4 14-7 18" fill="none" stroke="#1d1d1d" stroke-width="1.6"/><path d="M41 41l-10 12 4 3 9-10zM56 41l9 11-4 3-8-9z" fill="#c96a2f"/><circle cx="32.5" cy="55" r="3.2" fill="#f0c49f"/><circle cx="63.5" cy="54" r="3.2" fill="#f0c49f"/><rect x="40" y="38" width="17" height="22" rx="3" fill="#c96a2f"/><circle cx="48.5" cy="31" r="6.5" fill="#f0c49f"/><path d="M40.5 29.5a8 7.5 0 0 1 16 0z" fill="#f2c20e"/><rect x="39" y="28.5" width="19" height="3" rx="1.5" fill="#d4a400"/><path d="M41 60h7.5l-1 14h-6.5zM49 60h7.5l1 14H50z" fill="#7b4a2a"/><path d="M41 40l7.5 9 7.5-9M41.5 59h14.5" fill="none" stroke="#1d1d1d" stroke-width="2"/><rect x="38.5" y="73" width="10" height="4" rx="1.5" fill="#2a2a2a"/><rect x="49.5" y="73" width="10" height="4" rx="1.5" fill="#2a2a2a"/></svg>',
+  civil: '<svg xmlns="http:\/\/www.w3.org/2000/svg" viewBox="0 0 100 96"><g transform="rotate(42 50 48)"><rect x="47.6" y="6" width="4.8" height="52" fill="#8b9198"/><path d="M47.6 6l2.4-4 2.4 4z" fill="#8b9198"/><rect x="44" y="56" width="12" height="32" rx="5" fill="#2f343a"/><rect x="46.5" y="60" width="2.2" height="24" rx="1" fill="#5a6168"/></g><g transform="rotate(-38 50 48)"><rect x="46.5" y="24" width="7" height="64" rx="3" fill="#4a5057"/><path d="M30 12h28v13H30z" fill="#2f343a"/><path d="M58 12c7 0 13 4 15 10-5-3-10-4-15-3z" fill="#2f343a"/></g><g transform="rotate(-82 50 48)"><rect x="47" y="24" width="6" height="52" rx="3" fill="#5f666d"/><path d="M39 26a11 11 0 1 1 22 0h-5v-8h-12v8z" fill="#5f666d"/><path d="M41 80a9 9 0 1 0 18 0 9 9 0 1 0-18 0zm5 0a4 4 0 1 1 8 0 4 4 0 1 1-8 0z" fill="#5f666d" fill-rule="evenodd"/></g></svg>',
+  eletrica: '<svg xmlns="http:\/\/www.w3.org/2000/svg" viewBox="0 0 100 96"><rect x="3" y="3" width="94" height="90" rx="9" fill="#e9eef1"/><rect x="9" y="9" width="46" height="62" rx="2" fill="#b4bec7" stroke="#6e7a85" stroke-width="2"/><g fill="#4f5b66"><rect x="14" y="15" width="8" height="13" rx="1"/><rect x="25" y="15" width="8" height="13" rx="1"/><rect x="36" y="15" width="8" height="13" rx="1"/><rect x="14" y="32" width="8" height="13" rx="1"/><rect x="25" y="32" width="8" height="13" rx="1"/><rect x="36" y="32" width="8" height="13" rx="1"/></g><g fill="#f3f6f8"><rect x="16" y="17" width="4" height="5"/><rect x="27" y="21" width="4" height="5"/><rect x="38" y="17" width="4" height="5"/><rect x="16" y="38" width="4" height="5"/><rect x="27" y="34" width="4" height="5"/><rect x="38" y="38" width="4" height="5"/></g><path d="M17 50c3 10-5 18 0 30M24 50c-2 12 4 18 0 30" fill="none" stroke="#d63b2f" stroke-width="2.4"/><path d="M31 50c0 12 6 16 2 30" fill="none" stroke="#2f6fd6" stroke-width="2.4"/><path d="M57 93c0-22 6-38 22-38s18 15 18 38z" fill="#3d9a4b"/><path d="M63 64l-15-6 3-6 16 5z" fill="#3d9a4b"/><circle cx="48.5" cy="55" r="4.2" fill="#f0c49f"/><rect x="35" y="53.6" width="12" height="2.6" rx="1" fill="#e0b000"/><circle cx="76" cy="41" r="10" fill="#f0c49f"/><path d="M64 39a12 11 0 0 1 24 0z" fill="#f2c20e"/><rect x="62" y="37" width="27" height="4" rx="2" fill="#d4a400"/></svg>',
+  guincho: '<svg xmlns="http:\/\/www.w3.org/2000/svg" viewBox="0 0 100 96"><rect x="6" y="5" width="88" height="86" rx="10" fill="#fff" stroke="#111" stroke-width="6"/><path d="M50 9v14" stroke="#111" stroke-width="3"/><path d="M50 23c-6 0-8 4-8 7s3 7 8 7 7-3 7-6" fill="none" stroke="#111" stroke-width="3.2" stroke-linecap="round"/><path d="M50 37L27 52M50 37l26 17" stroke="#111" stroke-width="2"/><path d="M63 25l5-4M69 30l5-4M75 35l5-4" stroke="#111" stroke-width="2.2" stroke-linecap="round"/><g stroke="#111" stroke-width="2.6" stroke-linejoin="round"><path d="M33 50l53 15v7L33 57z" fill="#fff"/><path d="M33 72l53 15v-7L33 65z" fill="#fff"/><path d="M14 50h19v7h-6.5v8H33v7H14v-7h6.5v-8H14z" fill="#fff"/></g><path d="M40 60l46 13" stroke="#111" stroke-width="2"/></svg>',
+  demolicao: '<svg xmlns="http:\/\/www.w3.org/2000/svg" viewBox="0 0 100 96"><rect x="3" y="3" width="94" height="90" rx="9" fill="#4c8f95"/><path d="M15 93c0-24 11-40 32-40s31 16 31 40z" fill="#de5a43"/><path d="M73 10L38 84" stroke="#8a5a2b" stroke-width="5" stroke-linecap="round"/><path d="M57 9c11-5 24-1 32 10-10-4-19-5-29-2z" fill="#9aa3ab"/><path d="M28 72c8 2 16 1 24-6" stroke="#de5a43" stroke-width="10" fill="none" stroke-linecap="round"/><circle cx="53" cy="65" r="5.5" fill="#f2a47e"/><circle cx="64" cy="42" r="5.5" fill="#f2a47e"/><circle cx="46" cy="38" r="12" fill="#f2a47e"/><path d="M32 35a14 13 0 0 1 28 0z" fill="#f2c20e"/><rect x="30" y="33" width="32" height="4.4" rx="2" fill="#d4a400"/><circle cx="46" cy="26.5" r="3.2" fill="#fff6c2"/></svg>',
+  quente: '<svg xmlns="http:\/\/www.w3.org/2000/svg" viewBox="0 0 100 96"><rect x="3" y="3" width="94" height="90" rx="9" fill="#4c8f95"/><path d="M12 93c0-22 10-36 30-36s28 14 28 36z" fill="#d5dade"/><path d="M27 21h30a6 6 0 0 1 6 6v26a10 10 0 0 1-10 10H31a10 10 0 0 1-10-10V27a6 6 0 0 1 6-6z" fill="#eef1f3" stroke="#59636c" stroke-width="2"/><rect x="31" y="31" width="22" height="9" rx="2" fill="#2b3238"/><path d="M60 76L80 28" stroke="#59636c" stroke-width="5" stroke-linecap="round"/><circle cx="61" cy="73" r="6.5" fill="#eef1f3" stroke="#59636c" stroke-width="2"/><path d="M82 5l3 8 8-3-6 7 7 5h-9l1 9-5-7-5 7 1-9h-9l7-5-6-7 8 3z" fill="#ffe34d"/><circle cx="82" cy="17" r="3" fill="#fff"/><g fill="#ffe34d"><circle cx="70" cy="12" r="1.5"/><circle cx="92" cy="30" r="1.5"/><circle cx="74" cy="34" r="1.2"/></g></svg>',
+  confinado: '<svg xmlns="http:\/\/www.w3.org/2000/svg" viewBox="0 0 100 96"><rect x="3" y="3" width="94" height="90" rx="9" fill="#34427c"/><path d="M3 28h38a8 8 0 0 0 8-8V3h13v17a21 21 0 0 1-21 21H3z" fill="#b2432f"/><rect x="47" y="3" width="17" height="6" fill="#8e3324"/><rect x="3" y="26" width="6" height="17" fill="#8e3324"/><path d="M48 33c3 5 5 8 5 10a5 5 0 0 1-10 0c0-2 2-5 5-10z" fill="#cfe6ff"/><path d="M18 93c3-22 18-34 38-31l17 9-9 22z" fill="#f3d9b5"/><path d="M52 64L73 41" stroke="#f3d9b5" stroke-width="9" stroke-linecap="round"/><path d="M71 43L88 19" stroke="#9cc3e6" stroke-width="5" stroke-linecap="round"/><circle cx="89" cy="16" r="6" fill="none" stroke="#9cc3e6" stroke-width="4"/><circle cx="34" cy="58" r="9.5" fill="#f3d9b5"/><path d="M23.5 56a10.5 9.5 0 0 1 21 0z" fill="#fff"/></svg>',
+  inflamavel: '<svg xmlns="http:\/\/www.w3.org/2000/svg" viewBox="0 0 100 96"><path d="M50 7L95 86H5z" fill="#f6c400" stroke="#111" stroke-width="6" stroke-linejoin="round"/><path d="M50 30c5 9 13 13 13 26a13 13 0 0 1-26 0c0-7 3-10 6-13 0 5 2 8 4 9-1-9 0-15 3-22z" fill="#111"/><path d="M50 52c2 4 5 6 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z" fill="#f6c400"/><rect x="34" y="74" width="32" height="4" fill="#111"/></svg>'
+};
+const PT_ICONES = ['altura', 'civil', 'eletrica', 'guincho', 'demolicao', 'quente', 'confinado', 'inflamavel'];
+const PT_LISTA_MARGEM = [0, 14, 19, 22];        // espaço (pt) antes de cada lista da página 2, igual ao original
+const PT_ATIV_LARG = [64.5, 65, 65.5, 66.5, 71, 56.5, 67, 67];
+
+const escD = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+// Marcações simples nos textos: **negrito**, __sublinhado__ e *itálico*.
+function fmt(s) {
+  return escD(s).replace(new RegExp('\\*\\*([\\s\\S]+?)\\*\\*', 'g'), '<b>$1</b>').replace(/__([\s\S]+?)__/g, '<u>$1</u>').replace(new RegExp('\\*([^*\\n]+?)\\*', 'g'), '<i>$1</i>');
+}
+function fmtLinhas(s) {
+  return String(s ?? '').split('\n').map(l => `<div class="ln">${fmt(l) || '&#8203;'}</div>`).join('');
+}
+function getP(o, p) { return String(p).split('.').reduce((a, k) => a == null ? a : a[k], o); }
+function setP(o, p, v) { const ks = String(p).split('.'); const u = ks.pop(); const t = ks.reduce((a, k) => a[k], o); t[u] = v; }
+// largura/altura explícitas: sem elas o gerador de PDF (html2canvas) desenha o SVG cortado
+const svgUrl = svg => 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(/<svg[^>]*\swidth=/.test(svg) ? svg : svg.replace('<svg ', '<svg width="300" height="288" '));
+function imgDoc(chave) {
+  const im = DOCIMG.imagens[chave];
+  if (im) return im;
+  return chave === 'logo' ? LOGO_PADRAO : svgUrl(ICONES_PT[chave.replace(/^ic_/, '')] || '');
+}
+const fmtDataHora = v => { if (!v) return ''; const d = new Date(v); return isNaN(d) ? String(v) : d.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' }); };
+
+// Assinantes que aparecem no papel (excluídos e invalidados ficam só no histórico).
+function assinantesAtivos(R) { return (R.assin || []).filter(a => a.status !== 'Excluído' && a.status !== 'Invalidada').sort((a, b) => a.ordem - b.ordem); }
+const nomeAss = a => a ? (a.status === 'Assinado' ? (a.nomeAssinado || a.nome) : a.nome) : '';
+const docAss = a => a ? (a.status === 'Assinado' ? (a.docAssinado || a.documento) : a.documento) : '';
+const imgAss = (a, h) => a && a.status === 'Assinado' && a.img ? `<img class="ass-img" src="${a.img}" style="max-height:${h}pt" alt="">` : '';
+
+// ---------- o que o perfil Emissor pode preencher (o restante do papel é só do Administrador) ----------
+// A mesma regra é conferida no servidor (Code.gs) ao salvar.
+const CAMPOS_LIVRES = {
+  PT: [/^(casa|cidade|data|de|ate|mao|nfunc|restrita|fds|obs|contratante|unidade|contratada|encarregados|local|descricao)$/,
+       /^atividades\.\d+\.x$/, /^outra\.(x|t)$/, /^listas\.\d+\.itens\.\d+\.x$/],
+  APR: [/^(campos|extras)\.\d+\.v$/, /^servico$/, /^grupos\.\d+\.medidas\.\d+\.(cond|obs)$/, /^fecho\.(segura|obs|pode)$/]
+};
+// Itens em branco e "Outros:" das listas da PT são para escrever; ao serem preenchidos ficam marcados como livres.
+const itemLivre = it => !!it && (it.livre === true || !String(it.t || '').trim() || /^outros\b/i.test(String(it.t)));
+function campoLivre(c, p) {
+  if ((CAMPOS_LIVRES[c.tipo] || []).some(re => re.test(p))) return true;
+  const m = /^listas\.(\d+)\.itens\.(\d+)\.(t|livre)$/.exec(p);
+  return !!m && itemLivre((((c.listas || [])[m[1]] || {}).itens || [])[m[2]]);
+}
+
+// ---------- ajudantes de campo (editáveis no modo "editar") ----------
+// R.restrito = true: só os campos de preenchimento ficam editáveis e a estrutura não pode ser alterada.
+function criarRender(R) {
+  const E = R.modo === 'editar';
+  const c = R.c;
+  const pode = p => E && (!R.restrito || campoLivre(c, p));
+  const v = p => { const x = getP(c, p); return x == null ? '' : x; };
+  const ed = (p, o = {}) => pode(p)
+    ? `<span class="ed${o.cls ? ' ' + o.cls : ''}" contenteditable="${CE_MODO}" spellcheck="false" data-b="${p}"${o.sl ? ' data-sl="1"' : ''}${o.ph ? ` data-ph="${escD(o.ph)}"` : ''}>${fmt(v(p))}</span>`
+    : `<span class="${o.cls || ''}">${fmt(v(p))}</span>`;
+  const edb = (p, o = {}) => pode(p)
+    ? `<div class="ed blk${o.cls ? ' ' + o.cls : ''}" contenteditable="${CE_MODO}" spellcheck="false" data-b="${p}" data-ml="1"${o.ph ? ` data-ph="${escD(o.ph)}"` : ''}>${fmtLinhas(v(p))}</div>`
+    : `<div class="blk${o.cls ? ' ' + o.cls : ''}">${fmtLinhas(v(p))}</div>`;
+  const caixa = (on, t) => { const [a, b] = t === '[' ? ['[', ']'] : ['(', ')']; return `${a}<span class="ckx">${on ? 'X' : '&nbsp;'}</span>${b}`; };
+  const ck = (p, t = '(') => `<span class="ck${pode(p) ? ' clic' : ''}"${pode(p) ? ` data-x="${p}"` : ''}>${caixa(!!getP(c, p), t)}</span>`;
+  const op = (p, val, t = '(') => `<span class="ck${pode(p) ? ' clic' : ''}"${pode(p) ? ` data-op="${p}" data-v="${escD(val)}"` : ''}>${caixa(getP(c, p) === val, t)}</span>`;
+  return { E, estrutura: E && !R.restrito, c, v, ed, edb, ck, op, caixa };
+}
+
+const colgroup = ws => '<colgroup>' + ws.map(w => w == null ? '<col>' : `<col style="width:${w}pt">`).join('') + '</colgroup>';
+
+// =============================== APR ===============================
+
+function paginaAPR(r, primeira) {
+  const el = document.createElement('div');
+  el.className = 'pg pg-apr';
+  const topo = primeira ? 125 : 110;
+  el.innerHTML = `
+  <div class="abs" style="left:26pt;top:18pt;width:546pt;height:92pt">${cabecalhoPaginaAPR(r)}</div>
+  <div class="abs corpo" style="left:26pt;top:${topo}pt;width:542pt;height:${770 - topo}pt"></div>
+  <div class="abs" style="left:38pt;top:777pt;width:531pt;height:38pt">${rodapeAPR(r)}</div>`;
+  return el;
+}
+
+function cabecalhoPaginaAPR(r) {
+  return `<table class="t cab" style="width:546pt;height:92pt">${colgroup([142, 241, 163])}
+    <tr style="height:46pt"><td rowspan="2" class="cab-logo-apr"><img class="logo-apr" src="${imgDoc('logo')}" alt=""><div class="cal12 c emp">${r.ed('cab.empresa')}</div></td>
+    <td rowspan="2" class="cal12 b c vm">${r.ed('cab.titulo')}</td>
+    <td class="cal12 c vm lh19">DOCUMENTO<br>NÚMERO: ${r.ed('cab.documento', { sl: 1 })}</td></tr>
+    <tr style="height:46pt"><td class="cal12 c vm lh19">REVISÃO<br>NÍVEL: ${r.ed('cab.revisao', { sl: 1 })}</td></tr></table>`;
+}
+
+function rodapeAPR(r) {
+  return `<table class="t rod cal10" style="width:531pt;height:38pt">${colgroup([239, 207, 85])}
+    <tr style="height:25pt"><td><b>PREPARADO POR</b>: ${r.ed('rod.preparado')}</td><td><b>APROVADO POR: ${r.ed('rod.aprovado')}</b></td>
+    <td rowspan="2" class="pagcel"><b>PAG. NÚMERO:</b><b class="pagnum"></b></td></tr>
+    <tr style="height:13pt"><td><b>DATA ORIGINAL DE LIBERAÇÃO:</b> ${r.ed('rod.liberacao', { sl: 1 })}</td><td><b>DATA ÚLTIMA REVISÃO:</b> ${r.ed('rod.revisao', { sl: 1 })}</td></tr></table>`;
+}
+
+function cabecalhoTabelaAPR(r) {
+  const c = r.c, cs = c.campos || [];
+  let h = `<tr style="height:26pt"><td colspan="6" class="ar14 b c vm">${r.ed('titulo')}</td></tr>`;
+  h += `<tr style="height:20pt"><td colspan="4" class="cz ar12 b c vm">${r.ed('servicoRot')}</td>` +
+    (cs[0] ? `<td class="cz ar12 b vm">${r.ed('campos.0.rot')}</td><td class="ar10 vm">${r.ed('campos.0.v', { sl: 1 })}</td>` : '<td colspan="2"></td>') + '</tr>';
+  const resto = cs.slice(1);
+  if (resto.length) {
+    resto.forEach((f, i) => {
+      h += `<tr style="height:${i === 0 ? 34 : 20}pt">` +
+        (i === 0 ? `<td colspan="4" rowspan="${resto.length}" class="ar10 servico">${r.edb('servico', { ph: 'Descreva o serviço a ser executado' })}</td>` : '') +
+        `<td class="cz ar12 b vm">${r.ed(`campos.${i + 1}.rot`)}</td><td class="ar10 vm">${r.ed(`campos.${i + 1}.v`, { sl: 1 })}</td></tr>`;
+    });
+  } else {
+    h += `<tr style="height:34pt"><td colspan="6" class="ar10 servico">${r.edb('servico', { ph: 'Descreva o serviço a ser executado' })}</td></tr>`;
+  }
+  (c.extras || []).forEach((f, i) => {
+    h += `<tr style="height:20pt"><td colspan="3" class="cz2 ar12 b vm">${r.ed(`extras.${i}.rot`)}</td><td colspan="3" class="ar10 vm">${r.ed(`extras.${i}.v`, { sl: 1 })}</td></tr>`;
+  });
+  h += `<tr class="cz ar9 b c colhdr" style="height:27pt">${(c.colRot || []).map((t, i) => `<td class="vm">${r.ed('colRot.' + i)}</td>`).join('')}</tr>`;
+  return h;
+}
+
+function barraGrupo(gi) {
+  return `<span class="tb no-print"><button type="button" data-act="grp-up" data-g="${gi}" title="Mover grupo para cima">↑</button><button type="button" data-act="grp-down" data-g="${gi}" title="Mover grupo para baixo">↓</button><button type="button" data-act="grp-add" data-g="${gi}" title="Novo grupo (ordem) abaixo">＋G</button><button type="button" data-act="grp-del" data-g="${gi}" title="Excluir grupo">✕</button></span>`;
+}
+function barraMedida(gi, mi) {
+  return `<span class="tb no-print"><button type="button" data-act="med-up" data-g="${gi}" data-m="${mi}" title="Mover para cima">↑</button><button type="button" data-act="med-down" data-g="${gi}" data-m="${mi}" title="Mover para baixo">↓</button><button type="button" data-act="med-add" data-g="${gi}" data-m="${mi}" title="Nova medida abaixo">＋</button><button type="button" data-act="med-del" data-g="${gi}" data-m="${mi}" title="Excluir medida">✕</button></span>`;
+}
+
+function linhaMedida(r, gi, mi, novoSeg, mostra) {
+  const p = `grupos.${gi}`, pm = `${p}.medidas.${mi}`;
+  let h = `<tr data-g="${gi}" data-m="${mi}" style="height:22pt">`;
+  if (novoSeg) {
+    h += mostra
+      ? `<td class="gcel ar8 b c vm ord">${r.ed(p + '.ordem', { sl: 1 })}${r.estrutura ? barraGrupo(gi) : ''}</td><td class="gcel ar8 b vm">${r.edb(p + '.atividade')}</td><td class="gcel ar8 b vm per">${r.edb(p + '.perigos')}</td>`
+      : '<td class="gcel"></td><td class="gcel"></td><td class="gcel"></td>';
+  }
+  h += `<td class="ar8 b med vm">${r.edb(pm + '.texto')}${r.estrutura ? barraMedida(gi, mi) : ''}</td>`;
+  h += `<td class="ar7 b c vm cond">${r.op(pm + '.cond', 'S', '[')} Sim ${r.op(pm + '.cond', 'N', '[')} Não</td>`;
+  h += `<td class="cz ar65 b vm obs">${r.edb(pm + '.obs')}</td></tr>`;
+  return h;
+}
+
+function paginasAPR(R, host) {
+  const r = criarRender(R), c = R.c;
+  const pags = [];
+  let corpo, tb, seg;
+  const nova = () => {
+    const pg = paginaAPR(r, pags.length === 0);
+    host.appendChild(pg); pags.push(pg);
+    corpo = pg.querySelector('.corpo'); tb = null; seg = null;
+  };
+  const tabela = (ws, cls) => {
+    const t = document.createElement('table');
+    t.className = 't ' + cls; t.style.width = '542pt';
+    t.innerHTML = colgroup(ws) + '<tbody></tbody>';
+    corpo.appendChild(t);
+    return t.tBodies[0];
+  };
+  const estoura = () => corpo.scrollHeight > corpo.clientHeight + 1;
+  const sozinha = corpoAlvo => corpo.children.length === 1 && corpoAlvo.rows.length <= 1;
+
+  nova();
+  tb = tabela(c.cols, 'tab-apr');
+  tb.insertAdjacentHTML('beforeend', cabecalhoTabelaAPR(r));
+  const colocado = {};
+  (c.grupos || []).forEach((g, gi) => (g.medidas || []).forEach((m, mi) => {
+    for (let tent = 0; tent < 3; tent++) {
+      if (!tb) tb = tabela(c.cols, 'tab-apr');
+      const novoSeg = !seg || seg.gi !== gi;
+      const mostra = novoSeg && !colocado[gi];
+      tb.insertAdjacentHTML('beforeend', linhaMedida(r, gi, mi, novoSeg, mostra));
+      const row = tb.lastElementChild;
+      if (novoSeg) seg = { gi, cels: [...row.querySelectorAll('.gcel')], n: 1 };
+      else { seg.n++; seg.cels.forEach(td => { td.rowSpan = seg.n; }); }
+      if (!estoura() || sozinha(tb)) { if (mostra) colocado[gi] = true; break; }
+      row.remove();
+      if (novoSeg) seg = null; else { seg.n--; seg.cels.forEach(td => { td.rowSpan = seg.n; }); }
+      nova();
+    }
+  }));
+
+  // Fechamento: área segura, observações, serviço pode ser executado
+  const f = c.fecho || {};
+  const fechos = [
+    `<tr style="height:19pt"><td colspan="6" class="cz ar9 b vm fecho">${r.ed('fecho.seguraRot')} ${r.op('fecho.segura', 'S', '[')} Sim &nbsp; ${r.op('fecho.segura', 'N', '[')} Não</td></tr>`,
+    `<tr style="height:102pt"><td colspan="6" class="obsg"><div class="ar12 b">${r.ed('fecho.obsRot')}</div>${r.edb('fecho.obs', { cls: 'ar10' })}</td></tr>`,
+    `<tr style="height:19pt"><td colspan="6" class="cz ar9 b vm fecho">${r.ed('fecho.podeRot')} ${r.op('fecho.pode', 'S', '[')} Sim &nbsp; ${r.op('fecho.pode', 'N', '[')} Não</td></tr>`
+  ];
+  if (f.seguraRot === undefined) fechos.length = 0;
+  fechos.forEach(h => {
+    for (let tent = 0; tent < 3; tent++) {
+      if (!tb) tb = tabela(c.cols, 'tab-apr');
+      tb.insertAdjacentHTML('beforeend', h);
+      const row = tb.lastElementChild;
+      if (!estoura() || sozinha(tb)) break;
+      row.remove(); nova();
+    }
+  });
+
+  // Quadro de nomes e assinaturas (duas pessoas por linha)
+  const partes = assinantesAtivos(R);
+  const linhas = Math.max(+c.assinLinhas || 0, Math.ceil(partes.length / 2));
+  const larg = [69, 212, 127, 134];
+  const cab = `<tr style="height:20pt" class="ar12 b c">${[0, 1, 0, 1].map(i => `<td class="vm">${r.ed('assinRot.' + i)}</td>`).join('')}</tr>`;
+  const altLin = +c.assinAltura || 20;
+  const cel = a => `<td class="ar7 b vm nomeass">${escD(nomeAss(a))}</td><td class="c vm celass">${imgAss(a, altLin - 2)}</td>`;
+  const linha = i => `<tr style="height:${altLin}pt">${cel(partes[2 * i])}${cel(partes[2 * i + 1])}</tr>`;
+  let st = null;
+  for (let i = 0; i < linhas; i++) {
+    for (let tent = 0; tent < 3; tent++) {
+      const nova_ = !st;
+      if (nova_) st = tabela(larg, 'tab-ass');
+      st.insertAdjacentHTML('beforeend', (nova_ ? cab : '') + linha(i));
+      if (!estoura() || (corpo.children.length === 1 && st.rows.length <= 2)) break;
+      if (nova_) { st.parentNode.remove(); } else st.lastElementChild.remove();
+      nova(); st = null;
+    }
+  }
+  return pags;
+}
+
+// =============================== PT ===============================
+
+function cabecalhoPT(r) {
+  return `<table class="t cab" style="width:523pt;height:79pt">${colgroup([170, 212, 141])}
+    <tr style="height:36pt"><td rowspan="2" class="cab-logo-pt"><img class="logo-pt" src="${imgDoc('logo')}" alt=""></td>
+    <td rowspan="2" class="cal16 b c vm">${r.ed('cab.titulo')}</td>
+    <td class="tnr10 b c vm lh12">DOCUMENTO<br>NÚMERO: ${r.ed('cab.documento', { sl: 1 })}</td></tr>
+    <tr style="height:43pt"><td class="tnr10 b c vm lh12">REVISÃO<br>NÍVEL: ${r.ed('cab.revisao', { sl: 1 })}</td></tr></table>`;
+}
+
+function rodapePT(r) {
+  return `<table class="t rod cal10" style="width:526pt;height:48pt;margin:5pt 0 0 -5pt">${colgroup([241, 204, 81])}
+    <tr style="height:25pt"><td><b>PREPARADO POR</b>: ${r.ed('rod.preparado')}</td><td><b>APROVADO POR: ${r.ed('rod.aprovado')}</b></td>
+    <td rowspan="2" class="pagcel"><b>PAG. NÚMERO:</b><span class="pagnum"></span></td></tr>
+    <tr style="height:23pt"><td><b>DATA ORIGINAL DE LIBERAÇÃO:</b> ${r.ed('rod.liberacao', { sl: 1 })}</td><td><b>DATA ÚLTIMA REVISÃO:</b> ${r.ed('rod.revisao', { sl: 1 })}</td></tr></table>`;
+}
+
+function tabelaColab(r, lista, inicio, qtd, altLinha) {
+  const linha = a => `<tr style="height:${altLinha}pt"><td class="ar9 vm">${escD(nomeAss(a))}</td><td class="ar9 vm">${escD(docAss(a))}</td><td class="c vm celass">${imgAss(a, altLinha - 1.5)}</td></tr>`;
+  let h = `<table class="t" style="width:523pt">${colgroup([177, 120, 226])}
+    <tr class="cz3 ar12" style="height:14.6pt"><td class="vm">${r.ed('rot.colNome')}</td><td class="vm">${r.ed('rot.colDoc')}</td><td class="vm">${r.ed('rot.colAss')}</td></tr>`;
+  for (let i = 0; i < qtd; i++) h += linha(lista[inicio + i]);
+  return h + '</table>';
+}
+
+function paginasPT(R, host) {
+  const r = criarRender(R), c = R.c, ro = 'rot.';
+  const val = (p, ph) => `<span class="val">${r.ed(p, { sl: 1, ph })}</span>`;
+  const ativos = assinantesAtivos(R);
+  const colabs = ativos.filter(a => !/^resp\d$/.test(a.papel));
+  const resp = i => ativos.filter(a => a.papel === 'resp' + (i + 1))[0];
+  const nLinhas = +c.colabLinhas || 13;
+  const nDesc = +c.descLinhas || 13;
+  const ativ = c.atividades || [];
+
+  // ---------- página 1 ----------
+  const p1 = document.createElement('div');
+  p1.className = 'pg pg-pt';
+  p1.innerHTML = `
+  <div class="abs" style="left:37pt;top:36pt;width:523pt;height:79pt">${cabecalhoPT(r)}</div>
+  <div class="abs" style="left:37pt;top:120pt;width:523pt">
+    <table class="t" style="width:523pt"><tr style="height:25pt"><td class="cal14 b c vm">${r.ed('titulo')}</td></tr></table>
+    <table class="t" style="width:523pt">${colgroup([261.5, 261.5])}<tr style="height:20pt">
+      <td class="ar12 b vb">${r.ed(ro + 'casa')} ${val('casa')}</td><td class="ar12 b vb">${r.ed(ro + 'cidade')} ${val('cidade')}</td></tr></table>
+    <table class="t" style="width:523pt">${colgroup([174, 175, 174])}<tr style="height:21pt">
+      <td class="ar12 b vb">${r.ed(ro + 'data')} ${val('data')}</td><td class="ar12 b vb">${r.ed(ro + 'de')} ${val('de')}</td><td class="ar12 b vb">${r.ed(ro + 'ate')} ${val('ate')}</td></tr></table>
+    <table class="t" style="width:523pt">${colgroup(PT_ATIV_LARG)}
+      <tr style="height:63pt">${ativ.map(a => `<td class="c vm ic-cel"><img class="ic-pt" src="${imgDoc('ic_' + a.ic)}" alt=""></td>`).join('')}</tr>
+      <tr style="height:38pt">${ativ.map((a, i) => String(a.t || '').split('\n').length >= 4
+        ? `<td class="ar8 c vt ativ">${r.edb(`atividades.${i}.t`)}<span class="ck-canto">${r.ck(`atividades.${i}.x`)}</span></td>`
+        : `<td class="ar8 c vt ativ">${r.ck(`atividades.${i}.x`)}${r.edb(`atividades.${i}.t`)}</td>`).join('')}</tr></table>
+    <table class="t" style="width:523pt"><tr style="height:24pt"><td class="ar10 vm">${r.ck('outra.x')} ${r.ed(ro + 'outra')} ${val('outra.t')}</td></tr></table>
+    <table class="t cz3" style="width:523pt">${colgroup([197, 135, 191])}<tr style="height:27pt">
+      <td class="ar10 vm lh13"><b>${r.ed(ro + 'mao')}</b>: ${r.op('mao', 'interna')} ${r.ed(ro + 'interna')} &nbsp; ${r.op('mao', 'externa')} ${r.ed(ro + 'externa')}<br>${r.ed(ro + 'nfunc')}<span class="sub">${r.ed('nfunc', { sl: 1 })}</span></td>
+      <td class="ar9 c vm lh13"><b>${r.ed(ro + 'restrita')}</b><br>${r.op('restrita', 'S')} ${r.ed(ro + 'sim')} &nbsp; ${r.op('restrita', 'N')} ${r.ed(ro + 'nao')}</td>
+      <td class="ar9 c vm lh13"><b>${r.ed(ro + 'fds')}</b><br>${r.op('fds', 'S')} ${r.ed(ro + 'sim')} &nbsp; ${r.op('fds', 'N')} ${r.ed(ro + 'nao')}</td></tr></table>
+    <table class="t" style="width:523pt"><tr style="height:14pt"><td class="ar9 vm"><b>${r.ed(ro + 'obs')}</b> ${val('obs')}</td></tr></table>
+    <table class="t" style="width:523pt">${colgroup([261.5, 261.5])}
+      <tr style="height:13pt"><td class="ar9 vm"><b>${r.ed(ro + 'contratante')}</b> ${val('contratante')}</td><td class="ar9 vm"><b>${r.ed(ro + 'unidade')}</b> ${val('unidade')}</td></tr>
+      <tr style="height:15pt"><td class="ar9 vm"><b>${r.ed(ro + 'contratada')}</b> ${val('contratada')}</td><td class="ar9 vm"><b>${r.ed(ro + 'encarregados')}</b> ${val('encarregados')}</td></tr>
+      <tr style="height:14pt"><td class="ar9 vm"><b>${r.ed(ro + 'local')}</b> ${val('local')}</td><td></td></tr></table>
+    <table class="t cz3" style="width:523pt"><tr style="height:14pt"><td class="ar10 b c vm">${r.ed(ro + 'descricao')}</td></tr></table>
+    <div class="desc" style="height:${(14.3 * nDesc).toFixed(1)}pt">
+      <table class="t" style="width:523pt">${'<tr style="height:14.3pt"><td></td></tr>'.repeat(nDesc)}</table>
+      <div class="desc-txt ar10">${r.edb('descricao', { ph: 'Descreva detalhadamente o trabalho' })}</div>
+    </div>
+    ${tabelaColab(r, colabs, 0, nLinhas, 14.54)}
+  </div>`;
+  host.appendChild(p1);
+  const pags = [p1];
+
+  // ---------- página 2 ----------
+  const p2 = document.createElement('div');
+  p2.className = 'pg pg-pt';
+  const listas = (c.listas || []).map((L, li) => {
+    const n = L.itens.length, cols = +L.cols || 4, lin = Math.ceil(n / cols), alto = li === 3 ? 18.93 : 9.6;
+    let h = `<div class="ar10 b c pt-tit" style="margin-top:${PT_LISTA_MARGEM[li] ?? 14}pt">${r.ed(`listas.${li}.titulo`)}</div>
+      <table class="t lista${li === 3 ? ' lista-alta' : ''}" style="width:523pt">${colgroup(L.w || Array(cols).fill(523 / cols))}`;
+    for (let i = 0; i < lin; i++) {
+      h += `<tr style="height:${alto}pt">`;
+      for (let k = 0; k < cols; k++) {
+        const idx = k * lin + i;
+        h += idx < n ? `<td class="ar8">${r.ck(`listas.${li}.itens.${idx}.x`)} ${r.ed(`listas.${li}.itens.${idx}.t`)}</td>` : '<td></td>';
+      }
+      h += '</tr>';
+    }
+    return h + '</table>';
+  }).join('');
+  const caixaAss = i => {
+    const a = resp(i);
+    return `<td class="c sigpt">
+      <div class="sig-area">${imgAss(a, 28)}${a ? `<div class="ar7 sig-nome">${escD(nomeAss(a))}${docAss(a) ? ' · ' + escD(docAss(a)) : ''}</div>` : ''}</div>
+      <div class="sig-linha"></div><div class="ar10 b lh11">${r.ed('assinRot.' + i)}</div></td>`;
+  };
+  p2.innerHTML = `
+  <div class="abs" style="left:36pt;top:46pt;width:523pt">
+    ${listas}
+    <table class="t" style="width:525pt;margin:9pt 0 0 -5pt">${colgroup([181, 180, 164])}<tr style="height:68pt">${[0, 1, 2].map(caixaAss).join('')}</tr></table>
+    ${rodapePT(r)}
+  </div>`;
+  host.appendChild(p2);
+  pags.push(p2);
+
+  // ---------- colaboradores além das linhas da página 1 ----------
+  for (let ini = nLinhas; ini < colabs.length; ini += 48) {
+    const px = document.createElement('div');
+    px.className = 'pg pg-pt';
+    px.innerHTML = `
+    <div class="abs" style="left:37pt;top:36pt;width:523pt;height:79pt">${cabecalhoPT(r)}</div>
+    <div class="abs" style="left:37pt;top:120pt;width:523pt">
+      <table class="t" style="width:523pt"><tr style="height:25pt"><td class="cal14 b c vm">${r.ed('titulo')} — COLABORADORES (CONTINUAÇÃO)</td></tr></table>
+      ${tabelaColab(r, colabs, ini, 48, 14.54)}
+    </div>`;
+    host.appendChild(px);
+    pags.push(px);
+  }
+  return pags;
+}
+
+// ===================== REGISTRO DAS ASSINATURAS =====================
+
+function paginaCertificado(R, host) {
+  const r = criarRender(Object.assign({}, R, { modo: 'ver' }));
+  const assinados = (R.assin || []).filter(a => a.status === 'Assinado').sort((a, b) => String(a.assinadoEm).localeCompare(String(b.assinadoEm)));
+  if (!assinados.length) return [];
+  const m = R.meta || {};
+  const papelRot = a => {
+    if (R.c.tipo === 'PT') { const k = /^resp(\d)$/.exec(a.papel || ''); return k ? (R.c.assinRot || [])[k[1] - 1] || 'Responsável' : 'Colaborador'; }
+    return 'Participante';
+  };
+  const el = document.createElement('div');
+  el.className = 'pg ' + (R.c.tipo === 'PT' ? 'pg-pt' : 'pg-apr');
+  const cab = R.c.tipo === 'PT'
+    ? `<div class="abs" style="left:37pt;top:36pt;width:523pt;height:79pt">${cabecalhoPT(r)}</div>`
+    : `<div class="abs" style="left:26pt;top:18pt;width:546pt;height:92pt">${cabecalhoPaginaAPR(r)}</div>`;
+  const rod = R.c.tipo === 'PT'
+    ? `<div class="abs" style="left:36pt;top:736pt;width:523pt">${rodapePT(r)}</div>`
+    : `<div class="abs" style="left:38pt;top:777pt;width:531pt;height:38pt">${rodapeAPR(r)}</div>`;
+  const linhas = assinados.map((a, i) => `<tr style="height:44pt">
+      <td class="c vm">${i + 1}</td>
+      <td class="vm"><b>${escD(a.nomeAssinado || a.nome)}</b><br>${escD(a.docAssinado || a.documento)}<br><span class="cinza-txt">${escD(papelRot(a))}</span></td>
+      <td class="vm">${escD(fmtDataHora(a.assinadoEm))}<br><span class="cinza-txt">horário de Brasília</span></td>
+      <td class="vm mono">${escD(String(a.hash || '').slice(0, 16).toUpperCase().replace(/(.{4})(?=.)/g, '$1 '))}</td>
+      <td class="c vm celass">${imgAss(a, 38)}</td></tr>`).join('');
+  el.innerHTML = `${cab}
+  <div class="abs" style="left:${R.c.tipo === 'PT' ? 37 : 26}pt;top:${R.c.tipo === 'PT' ? 128 : 125}pt;width:${R.c.tipo === 'PT' ? 523 : 542}pt">
+    <table class="t" style="width:100%"><tr style="height:24pt"><td class="ar12 b c vm">REGISTRO DE ASSINATURAS ELETRÔNICAS</td></tr></table>
+    <table class="t ar8" style="width:100%">${colgroup([110, null])}
+      <tr><td class="b cz3">Documento nº</td><td>${escD(m.id || '')}</td></tr>
+      <tr><td class="b cz3">Título</td><td>${escD(m.titulo || '')} (${escD(m.codigo || '')})</td></tr>
+      <tr><td class="b cz3">Casa de oração</td><td>${escD(m.casa || '')}</td></tr>
+      <tr><td class="b cz3">Data do documento</td><td>${escD(m.data || '')}</td></tr>
+      <tr><td class="b cz3">Versão do conteúdo</td><td class="mono">${escD(String(m.versao || '').slice(0, 32).toUpperCase())}</td></tr>
+      <tr><td class="b cz3">Situação</td><td>${escD(m.status || '')} — ${assinados.length} assinatura(s) registrada(s)</td></tr></table>
+    <table class="t ar8" style="width:100%;margin-top:10pt">${colgroup([22, 170, 92, 112, null])}
+      <tr class="cz b c" style="height:18pt"><td class="vm">#</td><td class="vm">Assinante</td><td class="vm">Data e hora</td><td class="vm">Código de verificação</td><td class="vm">Assinatura</td></tr>
+      ${linhas}</table>
+    <div class="ar7 nota-cert">Assinaturas eletrônicas realizadas por link individual enviado ao assinante (WhatsApp), com identificação por nome e documento,
+    aceite expresso do conteúdo e assinatura desenhada no próprio dispositivo. O código de verificação é derivado (SHA-256) do número do documento,
+    da versão do conteúdo, dos dados do assinante, da data/hora e da imagem da assinatura; qualquer alteração posterior do conteúdo invalida as assinaturas
+    e exige nova coleta (MP 2.200-2/2001, art. 10, § 2º, e Lei 14.063/2020, art. 4º, I).</div>
+  </div>
+  ${rod}`;
+  host.appendChild(el);
+  return [el];
+}
+
+// ====================== MONTAGEM E PAGINAÇÃO ======================
+
+let fontesProntas = null;
+function aguardarFontes() {
+  if (!fontesProntas) {
+    fontesProntas = (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve())
+      .then(() => Promise.all(['Arimo', 'Carlito', 'Tinos'].map(f => document.fonts && document.fonts.load ? document.fonts.load(`bold 10pt "${f}"`).catch(() => {}) : null)))
+      .catch(() => {});
+  }
+  return fontesProntas;
+}
+
+// Monta as páginas do documento dentro de `host`.
+// R = { modo: 'editar' | 'ver', c: conteúdo, assin: assinantes, meta: dados do documento, certificado: bool }
+// A paginação é feita fora da tela (mesmas fontes e medidas) e depois as folhas são movidas para o host.
+async function montarDocumento(host, R) {
+  await aguardarFontes();
+  let medidor = document.getElementById('medidor-doc');
+  if (!medidor) {
+    medidor = document.createElement('div');
+    medidor.id = 'medidor-doc';
+    medidor.className = 'papel';
+    document.body.appendChild(medidor);
+  }
+  medidor.innerHTML = '';
+  const pags = R.c.tipo === 'PT' ? paginasPT(R, medidor) : paginasAPR(R, medidor);
+  if (R.certificado) pags.push(...paginaCertificado(R, medidor));
+  pags.forEach((p, i) => {
+    p.dataset.pag = i + 1;
+    p.querySelectorAll('.pagnum').forEach(e => { e.textContent = R.c.tipo === 'PT' ? `${i + 1}/${pags.length}` : `${i + 1} / ${pags.length}`; });
+  });
+  host.innerHTML = '';
+  pags.forEach(p => host.appendChild(p));
+  medidor.innerHTML = '';
+  return pags;
+}
+
+// ========================== EDIÇÃO NO PAPEL ==========================
+
+function lerEd(el) {
+  let t = (el.innerText || '').replace(/​/g, '').replace(/\r/g, '');
+  if (el.dataset.sl) t = t.replace(/\s*\n\s{0,}/g, ' ');
+  return t.replace(/\n$/, '');
+}
+
+function proximoNumero(txt) {
+  const m = /^(\d+)\.(\d+)\.(\d+)/.exec(String(txt || ''));
+  return m ? `${m[1]}.${m[2]}.${+m[3] + 1} - ` : '';
+}
+
+// Liga a edição de um host montado em modo "editar".
+// aoMudar(layout) é chamado a cada alteração (layout=true quando a altura do texto pode ter mudado);
+// aoEstrutura() quando linhas/grupos foram incluídos, movidos ou excluídos.
+// registrar(antes) recebe o conteúdo (JSON) anterior a cada alteração concluída — base do Desfazer.
+function ligarEdicao(host, R, aoMudar, aoEstrutura, registrar) {
+  let antesDoCampo = null;
+  const reg = antes => { if (registrar && antes !== JSON.stringify(R.c)) registrar(antes); };
+  const atualizarIrmaos = (el, v) => {
+    host.querySelectorAll(`[data-b="${el.dataset.b}"]`).forEach(o => { if (o !== el) o.innerHTML = o.dataset.ml ? fmtLinhas(v) : fmt(v); });
+  };
+  host.addEventListener('focusin', e => {
+    const el = e.target.closest && e.target.closest('.ed');
+    if (!el || el.classList.contains('editando')) return;
+    el.classList.add('editando');
+    antesDoCampo = JSON.stringify(R.c);
+    const v = getP(R.c, el.dataset.b);
+    el.textContent = v == null ? '' : v;
+  });
+  host.addEventListener('focusout', e => {
+    const el = e.target.closest && e.target.closest('.ed');
+    if (!el) return;
+    el.classList.remove('editando');
+    const v = lerEd(el);
+    setP(R.c, el.dataset.b, v);
+    const item = /^(listas\.\d+\.itens\.\d+)\.t$/.exec(el.dataset.b);
+    if (item && R.restrito && v.trim()) getP(R.c, item[1]).livre = true;   // item em branco preenchido continua editável
+    el.innerHTML = el.dataset.ml ? fmtLinhas(v) : fmt(v);
+    atualizarIrmaos(el, v);
+    if (antesDoCampo) { reg(antesDoCampo); antesDoCampo = null; }
+    aoMudar(true);
+  });
+  host.addEventListener('input', e => {
+    const el = e.target.closest && e.target.closest('.ed');
+    if (!el) return;
+    const v = lerEd(el);
+    setP(R.c, el.dataset.b, v);
+    atualizarIrmaos(el, v);
+    aoMudar(false);
+  });
+  host.addEventListener('keydown', e => {
+    const el = e.target.closest && e.target.closest('.ed');
+    if (el && el.dataset.sl && e.key === 'Enter') { e.preventDefault(); el.blur(); }
+  });
+  host.addEventListener('paste', e => {
+    const el = e.target.closest && e.target.closest('.ed');
+    if (!el) return;
+    e.preventDefault();
+    let t = (e.clipboardData || window.clipboardData).getData('text/plain') || '';
+    if (el.dataset.sl) t = t.replace(/\s*\n\s{0,}/g, ' ');
+    document.execCommand('insertText', false, t);
+  });
+  host.addEventListener('click', e => {
+    const x = e.target.closest('[data-x]');
+    if (x) {
+      const antes = JSON.stringify(R.c);
+      const v = !getP(R.c, x.dataset.x);
+      setP(R.c, x.dataset.x, v);
+      host.querySelectorAll(`[data-x="${x.dataset.x}"] .ckx`).forEach(k => { k.innerHTML = v ? 'X' : '&nbsp;'; });
+      reg(antes);
+      aoMudar(false);
+      return;
+    }
+    const o = e.target.closest('[data-op]');
+    if (o) {
+      const antes = JSON.stringify(R.c);
+      const p = o.dataset.op, atual = getP(R.c, p), v = atual === o.dataset.v ? '' : o.dataset.v;
+      setP(R.c, p, v);
+      host.querySelectorAll(`[data-op="${p}"]`).forEach(k => { k.querySelector('.ckx').innerHTML = k.dataset.v === v ? 'X' : '&nbsp;'; });
+      reg(antes);
+      aoMudar(false);
+      return;
+    }
+    const b = e.target.closest('[data-act]');
+    if (!b || R.restrito) return;
+    e.preventDefault();
+    const antes = JSON.stringify(R.c);
+    const gs = R.c.grupos, gi = +b.dataset.g, mi = +b.dataset.m, g = gs[gi];
+    const troca = (arr, i, j) => { if (j < 0 || j >= arr.length) return false; [arr[i], arr[j]] = [arr[j], arr[i]]; return true; };
+    switch (b.dataset.act) {
+      case 'med-add': g.medidas.splice(mi + 1, 0, { texto: proximoNumero(g.medidas[mi].texto), cond: '', obs: '' }); break;
+      case 'med-del':
+        if (g.medidas.length === 1) { if (!confirm('Esta é a única medida do grupo. Excluir o grupo inteiro?')) return; gs.splice(gi, 1); }
+        else { if (!confirm('Excluir esta medida de controle?')) return; g.medidas.splice(mi, 1); }
+        break;
+      case 'med-up': if (!troca(g.medidas, mi, mi - 1)) return; break;
+      case 'med-down': if (!troca(g.medidas, mi, mi + 1)) return; break;
+      case 'grp-add': gs.splice(gi + 1, 0, { ordem: String(gs.length + 1), atividade: '', perigos: '', medidas: [{ texto: `${gs.length + 1}.0.0 - `, cond: '', obs: '' }] }); break;
+      case 'grp-del': if (gs.length === 1 || !confirm('Excluir o grupo inteiro (atividade, perigos e todas as medidas)?')) return; gs.splice(gi, 1); break;
+      case 'grp-up': if (!troca(gs, gi, gi - 1)) return; break;
+      case 'grp-down': if (!troca(gs, gi, gi + 1)) return; break;
+      default: return;
+    }
+    reg(antes);
+    aoEstrutura();
+  });
+}
+</script>
+
+<script>
+'use strict';
+// =====================================================================
+// CONFIGURAÇÃO
+// - Publicado pelo Apps Script (doGet): não precisa alterar nada.
+// - Hospedado fora do Apps Script: cole em API_URL a URL /exec do Web App.
+// - Sem nenhum dos dois: roda em MODO DEMONSTRAÇÃO (dados no navegador).
+// =====================================================================
+const CONFIG = { API_URL: 'https://script.google.com/macros/s/AKfycbw_T4XrRaQwfWv_pV_qFWMcT6USqEtQWR9IByQnECLhOoM-9h_Sce5U0SAexa-7jyb5Pw/exec' };
+const MODO = (typeof google !== 'undefined' && google.script && google.script.run) ? 'gas' : (CONFIG.API_URL ? 'http' : 'demo');
+const SENHA_DEMO = '@Abcd1234';
+const MSG_WHATS_PADRAO = 'Olá, {nome}! Você foi indicado(a) para assinar eletronicamente o documento {tipo} nº {numero} – {titulo} ({casa}, {data}). Abra o link, confira o documento e assine:\n{link}';
+const STATUS = ['Rascunho', 'Em assinatura', 'Assinado', 'Cancelado'];
+const BDG = { 'Rascunho': 'b-mute', 'Em assinatura': 'b-warn', 'Assinado': 'b-ok', 'Cancelado': 'b-err', 'Pendente': 'b-warn', 'Invalidada': 'b-mute', 'Excluído': 'b-mute' };
+const ROT_ICONES = { altura: 'Altura / telhados', civil: 'Manutenção civil', eletrica: 'Eletricidade', guincho: 'Guinchos / plataformas', demolicao: 'Demolição / escavações', quente: 'Trabalho a quente', confinado: 'Local confinado', inflamavel: 'Inflamáveis / explosivos' };
+
+const ICONES = {
+  plus: '<path d="M12 5v14M5 12h14"/>', x: '<path d="M6 6l12 12M18 6 6 18"/>', check: '<path d="M5 12l5 5 9-11"/>',
+  save: '<path d="M5 3h11l3 3v15H5zM8 3v6h8V3M8 21v-7h8v7"/>', print: '<path d="M7 9V3h10v6M7 18H4v-8h16v8h-3M7 14h10v7H7z"/>',
+  pdf: '<path d="M14 3H6v18h12V7zM14 3v4h4M9 13h6M9 17h6"/>', back: '<path d="M15 18l-6-6 6-6"/>', pen: '<path d="M4 20h4L19 9l-4-4L4 16v4z"/>',
+  users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-4 3.2-6 6.5-6s6 2 6.5 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2 .6 3.3 2.6 3.5 6"/>',
+  whats: '<path d="M4 20l1.4-4.2A8 8 0 1 1 8.4 18.7z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.5-2-1-1 .8c-1-.5-2-1.5-2.5-2.5l.8-1-1-2z"/>',
+  link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
+  copy: '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4H4v12h4"/>', trash: '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>',
+  doc: '<path d="M14 3H6v18h12V7zM14 3v4h4"/>', grid: '<rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/>',
+  gear: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/>',
+  out: '<path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"/>', zin: '<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5M8 11h6M11 8v6"/>',
+  zout: '<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5M8 11h6"/>', fit: '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>',
+  drive: '<path d="M8 4h8l5 9-4 7H7l-4-7z"/><path d="M8 4l5 9h8M3 13l4 7M16 4l-9 16"/>', search: '<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>',
+  copy2: '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4H4v12h4"/>', ban: '<circle cx="12" cy="12" r="9"/><path d="m6 6 12 12"/>',
+  up: '<path d="M12 19V5M6 11l6-6 6 6"/>', down: '<path d="M12 5v14M6 13l6 6 6-6"/>', panel: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/>',
+  shield: '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>', refresh: '<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>',
+  undo: '<path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>', redo: '<path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/>',
+  lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>'
+};
+const ic = (n, cls = '') => `<svg class="ic ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONES[n] || ''}</svg>`;
+
+// ============================== ESTADO ==============================
+const S = {
+  token: null, usuario: null, docs: [], modelos: [], imagens: {}, config: {}, url: '',
+  tela: 'docs', f: { busca: '', tipo: '', status: '' }, fm: { busca: '' }, ed: null, pub: null, zoom: 'fit'
+};
+
+// ============================== UTILITÁRIOS ==============================
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = escD;
+const pad2 = n => String(n).padStart(2, '0');
+const hojeBR = () => { const d = new Date(); return `${pad2(d.getDate())}/${pad2(d.getMonth() + 1)}/${d.getFullYear()}`; };
+const clone = o => JSON.parse(JSON.stringify(o));
+const norm = s => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+function fmtDH(v) { if (!v) return '—'; const d = new Date(v); return isNaN(d) ? String(v) : d.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }); }
+function fmtFone(v) { const d = String(v || '').replace(/\D/g, '').replace(/^55(?=\d{10,11}$)/, ''); if (d.length === 11) return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`; if (d.length === 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`; return v || ''; }
+function foneWhats(v) { const d = String(v || '').replace(/\D/g, ''); if (!d) return ''; return (d.length === 10 || d.length === 11) ? '55' + d : d; }
+function mascaraCpf(v) { const d = String(v || '').replace(/\D/g, ''); if (d.length !== 11 || /[a-z]/i.test(v)) return v; return `${d.slice(0, 3)}.${d.slice(3, 6)}.${d.slice(6, 9)}-${d.slice(9)}`; }
+function opcoes(lista, sel, vazio) { return (vazio != null ? `<option value="">${esc(vazio)}</option>` : '') + lista.map(o => { const [v, t] = Array.isArray(o) ? o : [o, o]; return `<option value="${esc(v)}" ${String(v) === String(sel) ? 'selected' : ''}>${esc(t)}</option>`; }).join(''); }
+const bdg = s => `<span class="bdg ${BDG[s] || 'b-mute'}">${esc(s)}</span>`;
+const podeAdmin = () => S.usuario && S.usuario.perfil === 'Administrador';
+const baseUrl = () => (MODO === 'gas' ? S.url : location.href.split(/[?#]/)[0]) || '';
+// links de assinatura: página externa (GitHub Pages) quando configurada; senão o próprio sistema
+const baseAssinatura = () => (S.config && S.config.urlAssinatura) || baseUrl();
+
+function sessao(salvar) {
+  try {
+    if (salvar === undefined) { const s = JSON.parse(sessionStorage.getItem('ptapr_sessao') || 'null'); if (s) { S.token = s.token; S.usuario = s.usuario; } }
+    else if (salvar) sessionStorage.setItem('ptapr_sessao', JSON.stringify({ token: S.token, usuario: S.usuario }));
+    else sessionStorage.removeItem('ptapr_sessao');
+  } catch (e) {}
+}
+
+// ============================== API ==============================
+let ocupado = 0;
+function carregando(on, txt) {
+  ocupado = Math.max(0, ocupado + (on ? 1 : -1));
+  $('#loading').classList.toggle('on', ocupado > 0);
+  if (on && txt) $('#loading-txt').textContent = txt; else if (!ocupado) $('#loading-txt').textContent = 'Carregando…';
+}
+async function api(action, payload = {}, opt = {}) {
+  if (!opt.silencioso) carregando(true, opt.txt);
+  try {
+    let r;
+    if (MODO === 'gas') {
+      r = await new Promise((res, rej) => google.script.run.withSuccessHandler(res).withFailureHandler(rej).api(action, payload, S.token));
+    } else if (MODO === 'http') {
+      const resp = await fetch(CONFIG.API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action, payload, token: S.token }) });
+      r = await resp.json();
+    } else {
+      await new Promise(ok => setTimeout(ok, 150));
+      r = Demo.api(action, clone(payload), S.token);
+    }
+    if (!r || !r.ok) {
+      const msg = (r && r.error) || 'Erro inesperado.';
+      if (/sess[aã]o expirada/i.test(msg) && S.token) { encerrarSessao(); }
+      if (/^TROCAR_SENHA/.test(msg) && S.token) { telaTrocarSenha(); throw new Error('Defina uma nova senha para continuar.'); }
+      throw new Error(msg);
+    }
+    return r.data;
+  } finally { if (!opt.silencioso) carregando(false); }
+}
+
+function toast(msg, tipo = 'ok') {
+  const el = document.createElement('div');
+  el.className = 'toast t-' + tipo;
+  el.innerHTML = `${ic(tipo === 'erro' ? 'x' : 'check')}<span>${esc(msg)}</span>`;
+  $('#toasts').appendChild(el);
+  setTimeout(() => el.classList.add('out'), tipo === 'erro' ? 6500 : 3800);
+  setTimeout(() => el.remove(), tipo === 'erro' ? 7000 : 4300);
+}
+const falha = e => toast((e && e.message) || String(e), 'erro');
+
+// ============================== MODAL ==============================
+function abrirModal({ titulo, corpo, acoes = [], largura = '560px', aoFechar }) {
+  $('#modal-titulo').textContent = titulo;
+  $('#modal-corpo').innerHTML = corpo;
+  const pe = $('#modal-pe'); pe.innerHTML = '';
+  acoes.forEach(a => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'btn ' + (a.cls || 'btn-ghost'); b.innerHTML = a.html || esc(a.label);
+    if (a.id) b.id = a.id;
+    b.onclick = a.onClick || fecharModal;
+    pe.appendChild(b);
+  });
+  pe.hidden = !acoes.length;
+  $('#modal .modal').style.maxWidth = largura;
+  $('#modal').hidden = false;
+  $('#modal')._aoFechar = aoFechar;
+  setTimeout(() => { const f = $('#modal-corpo [autofocus]') || $('#modal-corpo input:not([type=hidden]):not([type=checkbox]):not([readonly]),#modal-corpo textarea'); f && f.focus(); }, 60);
+}
+function fecharModal() { $('#modal').hidden = true; const f = $('#modal')._aoFechar; $('#modal')._aoFechar = null; if (f) f(); }
+function confirmar(titulo, texto, rotulo = 'Confirmar', cls = 'btn-primary') {
+  return new Promise(res => {
+    abrirModal({ titulo, corpo: `<p class="txt">${texto}</p>`, aoFechar: () => res(false),
+      acoes: [{ label: 'Voltar' }, { label: rotulo, cls, onClick: () => { $('#modal')._aoFechar = null; fecharModal(); res(true); } }] });
+  });
+}
+function pedirTexto(titulo, rotulo, rotuloBotao = 'Confirmar') {
+  return new Promise(res => {
+    abrirModal({ titulo, corpo: `<label class="fld"><span>${esc(rotulo)}</span><textarea id="m-txt" rows="3"></textarea></label>`, aoFechar: () => res(null),
+      acoes: [{ label: 'Voltar' }, { label: rotuloBotao, cls: 'btn-danger', onClick: () => { const v = $('#m-txt').value.trim(); if (!v) { toast('Preencha o campo.', 'erro'); return; } $('#modal')._aoFechar = null; fecharModal(); res(v); } }] });
+  });
+}
+
+// ============================== INÍCIO ==============================
+async function lerParametros() {
+  return new Promise(res => {
+    if (MODO === 'gas' && google.script.url) google.script.url.getLocation(l => res((l && l.parameter) || {}));
+    else res(Object.fromEntries(new URLSearchParams(location.search)));
+  });
+}
+
+async function iniciar() {
+  const p = await lerParametros();
+  if (p.p === 'assinar') { telaAssinar(p); return; }
+  sessao();
+  if (S.token) {
+    if (S.usuario && S.usuario.trocar) { telaTrocarSenha(); return; }
+    try { await carregar(); mostrarApp(); return; } catch (e) { if (S.usuario && S.usuario.trocar) return; encerrarSessao(true); }
+  }
+  telaLogin();
+}
+
+async function carregar() {
+  const d = await api('inicio');
+  S.usuario = Object.assign({}, d.usuario || S.usuario, { trocar: false }); S.docs = d.docs || []; S.modelos = d.modelos || [];
+  S.imagens = d.imagens || {}; S.config = d.config || {}; S.url = d.url || '';
+  DOCIMG.imagens = S.imagens;
+  sessao(true);
+}
+
+function encerrarSessao(silencioso) {
+  S.token = null; S.usuario = null; S.senhaLogin = null; sessao(false);
+  if (!silencioso) { S.ed = null; telaLogin(); }
+}
+
+// ============================== LOGIN ==============================
+function telaLogin() {
+  document.body.className = 'tela-login';
+  $('#app').innerHTML = `
+  <div class="login-wrap">
+    <form class="login-card" id="f-login" autocomplete="on">
+      <img class="login-logo" src="${imgDoc('logo')}" alt="Congregação Cristã no Brasil">
+      <h1>PT e APR · SSMA</h1>
+      <p class="muted">Permissão de Trabalho e Análise Preliminar de Risco com assinatura eletrônica.</p>
+      <label class="fld"><span>E-mail</span><input type="email" id="l-email" required autocomplete="username"></label>
+      <label class="fld"><span>Senha</span><input type="password" id="l-senha" required autocomplete="current-password"></label>
+      <button class="btn btn-primary btn-full" type="submit">Entrar</button>
+      ${MODO === 'demo' ? `<p class="hint">Modo demonstração (dados ficam só neste navegador): use qualquer e-mail e a senha <b>${SENHA_DEMO}</b>.</p>` : ''}
+    </form>
+  </div>`;
+  $('#f-login').onsubmit = async e => {
+    e.preventDefault();
+    try {
+      const r = await api('login', { email: $('#l-email').value, senha: $('#l-senha').value });
+      S.token = r.token; S.usuario = { email: r.email, nome: r.nome, perfil: r.perfil, trocar: !!r.trocar };
+      sessao(true);
+      if (r.trocar) { telaTrocarSenha($('#l-senha').value); return; }
+      await carregar();
+      mostrarApp();
+    } catch (err) { falha(err); }
+  };
+  setTimeout(() => $('#l-email') && $('#l-email').focus(), 50);
+}
+
+// ============================== TROCA OBRIGATÓRIA DE SENHA ==============================
+// Primeiro acesso (ou senha redefinida pelo administrador): o servidor bloqueia tudo até a troca.
+function telaTrocarSenha(atual) {
+  if (atual) S.senhaLogin = atual; else atual = S.senhaLogin;   // só em memória, até a troca
+  S.usuario = Object.assign({}, S.usuario, { trocar: true }); sessao(true);
+  document.body.className = 'tela-login';
+  $('#app').innerHTML = `
+  <div class="login-wrap">
+    <form class="login-card" id="f-troca" autocomplete="on">
+      <img class="login-logo" src="${imgDoc('logo')}" alt="">
+      <h1>Defina sua senha</h1>
+      <p class="muted">Olá, ${esc((S.usuario.nome || S.usuario.email || '').split(' ')[0])}. Por segurança, troque a senha inicial antes de usar o sistema.</p>
+      <input type="hidden" autocomplete="username" value="${esc(S.usuario.email || '')}">
+      <label class="fld" ${atual ? 'hidden' : ''}><span>Senha atual</span><input type="password" id="t-atual" autocomplete="current-password" value="${esc(atual || '')}"></label>
+      <label class="fld"><span>Nova senha</span><input type="password" id="t-nova" required autocomplete="new-password" autofocus></label>
+      <label class="fld"><span>Repita a nova senha</span><input type="password" id="t-nova2" required autocomplete="new-password"></label>
+      <p class="hint" style="margin-top:0!important">Mínimo de 8 caracteres, com letras e números. Não pode ser a senha inicial.</p>
+      <button class="btn btn-primary btn-full" type="submit">Salvar e entrar</button>
+      <button class="btn btn-ghost btn-full" type="button" id="t-sair">Sair</button>
+    </form>
+  </div>`;
+  $('#t-sair').onclick = async () => { try { await api('logout', {}, { silencioso: true }); } catch (e) {} encerrarSessao(); };
+  $('#f-troca').onsubmit = async e => {
+    e.preventDefault();
+    const nova = $('#t-nova').value;
+    if (nova !== $('#t-nova2').value) { toast('As novas senhas não conferem.', 'erro'); return; }
+    try {
+      const u = await api('alterarSenha', { atual: $('#t-atual').value, nova });
+      S.usuario = { email: u.email, nome: u.nome, perfil: u.perfil, trocar: false };
+      S.senhaLogin = null;
+      sessao(true);
+      await carregar();
+      mostrarApp();
+      toast('Senha definida. Bem-vindo(a)!');
+    } catch (err) { falha(err); }
+  };
+  setTimeout(() => { const f = $(atual ? '#t-nova' : '#t-atual'); f && f.focus(); }, 50);
+}
+
+// ============================== CASCA DO APP ==============================
+function mostrarApp() {
+  document.body.className = 'tela-app';
+  $('#app').innerHTML = `
+  <header class="topo">
+    <div class="marca"><img src="${imgDoc('logo')}" alt=""><div><b>PT e APR</b><small>SSMA · Assinatura eletrônica</small></div></div>
+    <nav class="nav" id="nav">
+      <button data-tela="docs">${ic('doc')}<span>Documentos</span></button>
+      <button data-tela="modelos">${ic('grid')}<span>Modelos</span></button>
+      <button data-tela="config">${ic('gear')}<span>Configurações</span></button>
+    </nav>
+    <div class="usuario"><span title="${esc(S.usuario.email)}">${esc(S.usuario.nome || S.usuario.email)}</span>
+      <button class="btn-icon" id="b-sair" title="Sair">${ic('out')}</button></div>
+  </header>
+  <main id="conteudo"></main>`;
+  $$('#nav [data-tela]').forEach(b => b.onclick = () => irPara(b.dataset.tela));
+  $('#b-sair').onclick = async () => { try { await api('logout', {}, { silencioso: true }); } catch (e) {} encerrarSessao(); };
+  irPara(S.tela === 'editor' ? 'docs' : S.tela);
+}
+
+function irPara(t) {
+  if (S.ed && S.ed.sujo && !confirm('Há alterações não salvas. Sair do editor mesmo assim?')) return;
+  S.ed = null; S.tela = t;
+  document.body.classList.remove('com-editor');
+  $$('#nav [data-tela]').forEach(b => b.classList.toggle('ativo', b.dataset.tela === t));
+  if (t === 'modelos') telaModelos(); else if (t === 'config') telaConfig(); else telaDocs();
+  window.scrollTo(0, 0);
+}
+
+// ============================== DOCUMENTOS ==============================
+function telaDocs() {
+  const f = S.f;
+  const cont = {}; STATUS.forEach(s => { cont[s] = 0; });
+  S.docs.forEach(d => { cont[d.status] = (cont[d.status] || 0) + 1; });
+  const lista = S.docs.filter(d => (!f.tipo || d.tipo === f.tipo) && (!f.status || d.status === f.status) &&
+    (!f.busca || norm([d.id, d.titulo, d.casa, d.cidade, d.resp, d.codigo].join(' ')).includes(norm(f.busca))))
+    .sort((a, b) => String(b.criado).localeCompare(String(a.criado)));
+  $('#conteudo').innerHTML = `
+  <section class="pagina">
+    <div class="pg-topo">
+      <div><h2>Documentos emitidos</h2><p class="muted">PTs e APRs, situação das assinaturas e impressão.</p></div>
+      <div class="acoes"><button class="btn btn-primary" id="b-nova-pt">${ic('plus')} Nova PT</button><button class="btn btn-primary" id="b-nova-apr">${ic('plus')} Nova APR</button></div>
+    </div>
+    <div class="chips">
+      <button class="chip ${!f.status ? 'ativo' : ''}" data-st="">Todos <b>${S.docs.length}</b></button>
+      ${STATUS.map(s => `<button class="chip ${f.status === s ? 'ativo' : ''}" data-st="${s}">${s} <b>${cont[s] || 0}</b></button>`).join('')}
+    </div>
+    <div class="filtros">
+      <label class="busca">${ic('search')}<input id="f-busca" placeholder="Buscar por número, casa de oração, título, responsável…" value="${esc(f.busca)}"></label>
+      <select id="f-tipo">${opcoes([['PT', 'PT – Permissão de Trabalho'], ['APR', 'APR – Análise Preliminar de Risco']], f.tipo, 'Todos os tipos')}</select>
+    </div>
+    ${lista.length ? `
+    <div class="tabela-wrap"><table class="tab">
+      <thead><tr><th>Número</th><th>Documento</th><th>Casa de oração</th><th>Data</th><th>Assinaturas</th><th>Situação</th><th></th></tr></thead>
+      <tbody>${lista.map(d => `<tr data-id="${esc(d.id)}" class="clicavel">
+        <td><b>${esc(d.id)}</b><div class="muted sm">${esc(d.codigo || '')}</div></td>
+        <td>${esc(d.titulo)}${d.vinculo ? `<div class="muted sm">vinculada a ${esc(d.vinculo)}</div>` : ''}</td>
+        <td>${esc(d.casa || '—')}${d.cidade ? `<div class="muted sm">${esc(d.cidade)}</div>` : ''}</td>
+        <td>${esc(d.data || '—')}</td>
+        <td>${d.total ? `<div class="prog"><i style="width:${Math.round(100 * d.assinados / d.total)}%"></i></div><span class="sm">${d.assinados}/${d.total}</span>` : '<span class="muted sm">—</span>'}</td>
+        <td>${bdg(d.status)}</td>
+        <td class="dir"><button class="btn-icon" data-imp="${esc(d.id)}" title="Imprimir">${ic('print')}</button></td></tr>`).join('')}</tbody>
+    </table></div>` : `<div class="vazio">${ic('doc')}<p>${S.docs.length ? 'Nenhum documento com esses filtros.' : 'Nenhum documento emitido ainda. Comece por <b>Nova PT</b> ou <b>Nova APR</b>.'}</p></div>`}
+  </section>`;
+  $('#b-nova-pt').onclick = () => novaPT().catch(falha);
+  $('#b-nova-apr').onclick = () => escolherModeloAPR();
+  $$('.chip[data-st]').forEach(b => b.onclick = () => { S.f.status = b.dataset.st; telaDocs(); });
+  $('#f-tipo').onchange = e => { S.f.tipo = e.target.value; telaDocs(); };
+  let t; $('#f-busca').oninput = e => { clearTimeout(t); t = setTimeout(() => { S.f.busca = e.target.value; telaDocs(); const i = $('#f-busca'); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }, 250); };
+  $$('tr[data-id]').forEach(tr => tr.onclick = e => { if (e.target.closest('[data-imp]')) return; abrirDoc(tr.dataset.id).catch(falha); });
+  $$('[data-imp]').forEach(b => b.onclick = async () => {
+    try { const d = await api('documento', { id: b.dataset.imp }); await imprimir({ c: d.conteudo, assin: d.assinantes, meta: d.doc }, true); } catch (e) { falha(e); }
+  });
+}
+
+async function abrirDoc(id) {
+  const d = await api('documento', { id });
+  abrirEditor({ tipo: 'doc', id: d.doc.id, c: d.conteudo, assin: d.assinantes, meta: d.doc });
+}
+
+function modelosAtivos(tipo) { return S.modelos.filter(m => m.tipo === tipo && m.ativo).sort((a, b) => a.ordem - b.ordem || String(a.codigo).localeCompare(String(b.codigo))); }
+
+async function novaPT(vinculo) {
+  const ms = modelosAtivos('PT');
+  if (!ms.length) { toast('Nenhum modelo de PT ativo. Verifique a tela Modelos.', 'erro'); return; }
+  const m = await api('modelo', { id: ms[0].id });
+  const c = clone(m.conteudo);
+  if (!c.data) c.data = hojeBR();
+  abrirEditor({ tipo: 'doc', id: null, c, assin: [], meta: { status: 'Rascunho', modeloId: m.id, vinculo: vinculo || '' } });
+}
+
+function escolherModeloAPR(vinculo) {
+  const ms = modelosAtivos('APR');
+  abrirModal({
+    titulo: 'Nova APR — escolha o modelo', largura: '640px',
+    corpo: `<label class="busca">${ic('search')}<input id="m-busca" placeholder="Filtrar modelos…" autofocus></label>
+      <div class="lista-mod" id="m-lista">${ms.map(m => `<button type="button" class="item-mod" data-id="${esc(m.id)}" data-q="${esc(norm(m.codigo + ' ' + m.nome + ' ' + m.titulo))}">
+        <b>${esc(m.codigo)}</b><span>${esc(m.titulo || m.nome)}</span></button>`).join('') || '<p class="muted">Nenhum modelo de APR ativo.</p>'}</div>`
+  });
+  $('#m-busca').oninput = e => { const q = norm(e.target.value); $$('#m-lista .item-mod').forEach(b => { b.hidden = q && !b.dataset.q.includes(q); }); };
+  $$('#m-lista .item-mod').forEach(b => b.onclick = async () => {
+    fecharModal();
+    try {
+      const m = await api('modelo', { id: b.dataset.id });
+      const c = clone(m.conteudo);
+      const campo = k => (c.campos || []).concat(c.extras || []).filter(f => f.k === k)[0];
+      if (campo('data') && !campo('data').v) campo('data').v = hojeBR();
+      if (vinculo) {
+        if (campo('casa')) campo('casa').v = vinculo.casa || '';
+        if (campo('data')) campo('data').v = vinculo.data || campo('data').v;
+        if (campo('resp')) campo('resp').v = vinculo.resp || '';
+        c.servico = vinculo.servico || '';
+      }
+      abrirEditor({ tipo: 'doc', id: null, c, assin: [], meta: { status: 'Rascunho', modeloId: m.id, vinculo: vinculo ? vinculo.id : '' } });
+    } catch (err) { falha(err); }
+  });
+}
+
+// ============================== EDITOR ==============================
+function abrirEditor(ed) {
+  ed.sujo = !ed.id;
+  ed.painel = ed.painel || (ed.tipo === 'doc' ? 'assin' : 'props');
+  ed.hist = []; ed.refazer = [];
+  ed.R = { modo: 'editar', c: ed.c, assin: ed.assin, meta: ed.meta, restrito: !podeAdmin() };
+  S.ed = ed; S.tela = 'editor';
+  document.body.classList.add('com-editor');
+  $$('#nav [data-tela]').forEach(b => b.classList.toggle('ativo', b.dataset.tela === (ed.tipo === 'doc' ? 'docs' : 'modelos')));
+  $('#conteudo').innerHTML = `
+  <section class="editor">
+    <div class="ed-barra" id="ed-barra"></div>
+    <div class="ed-corpo">
+      <div class="ed-area" id="ed-area"><div class="papel modo-editar" id="papel"></div></div>
+      <aside class="ed-painel" id="ed-painel"></aside>
+    </div>
+  </section>`;
+  const host = $('#papel');
+  let tRep = null;
+  const repaginar = () => { clearTimeout(tRep); tRep = setTimeout(() => {
+    const a = document.activeElement;
+    if (a && a.closest && a.closest('#papel .ed')) return;   // ainda editando: repagina quando sair do campo
+    redesenhar();
+  }, 180); };
+  ligarEdicao(host, ed.R, layout => { marcarSujo(); if (layout) repaginar(); }, () => { marcarSujo(); redesenhar(); }, registrarHist);
+  barraEditor();
+  painelEditor();
+  redesenhar().then(() => { if (S.zoom === 'fit') aplicarZoom(); });
+}
+
+function podeEditarDoc(ed) { return ed.tipo === 'modelo' ? podeAdmin() : ed.meta.status !== 'Cancelado'; }
+
+// ---------- desfazer / refazer (histórico do conteúdo em edição) ----------
+function registrarHist(antes) {
+  const ed = S.ed; if (!ed) return;
+  ed.hist.push(antes);
+  if (ed.hist.length > 80) ed.hist.shift();
+  ed.refazer = [];
+  botoesHist();
+}
+function botoesHist() {
+  const ed = S.ed; if (!ed) return;
+  const d = $('#b-desfazer'), r = $('#b-refazer');
+  if (d) { d.disabled = !ed.hist.length; d.title = ed.hist.length ? `Desfazer (Ctrl+Z) — ${ed.hist.length} alteração(ões)` : 'Nada para desfazer'; }
+  if (r) { r.disabled = !ed.refazer.length; r.title = ed.refazer.length ? 'Refazer (Ctrl+Y)' : 'Nada para refazer'; }
+}
+function voltarHist(de, para) {
+  const ed = S.ed; if (!ed) return;
+  const a = document.activeElement; if (a && a.closest && a.closest('#papel .ed')) a.blur();   // grava o campo aberto antes
+  if (!ed[de].length) return;
+  ed[para].push(JSON.stringify(ed.c));
+  ed.c = JSON.parse(ed[de].pop());
+  ed.R.c = ed.c;
+  marcarSujo(); botoesHist();
+  if (ed.painel === 'props') painelEditor();
+  redesenhar();
+}
+const desfazer = () => voltarHist('hist', 'refazer');
+const refazer = () => voltarHist('refazer', 'hist');
+
+async function redesenhar() {
+  const ed = S.ed; if (!ed) return;
+  const area = $('#ed-area'), topo = area.scrollTop;
+  ed.R.modo = podeEditarDoc(ed) ? 'editar' : 'ver';
+  ed.R.c = ed.c; ed.R.assin = ed.assin; ed.R.meta = ed.meta; ed.R.restrito = !podeAdmin();
+  $('#papel').classList.toggle('modo-editar', ed.R.modo === 'editar');
+  await montarDocumento($('#papel'), ed.R);
+  aplicarZoom();
+  area.scrollTop = topo;
+}
+
+function marcarSujo() { if (!S.ed) return; S.ed.sujo = true; const b = $('#b-salvar'); if (b) b.classList.add('pulsa'); }
+
+function tituloEditor(ed) {
+  if (ed.tipo === 'modelo') return `Modelo · ${esc(ed.c.cab.documento || '')} <small>${esc(ed.c.nome || '')}</small>`;
+  return `${ed.id ? esc(ed.id) : 'Novo documento'} <small>${esc(ed.c.titulo || ed.c.cab.titulo)}</small>`;
+}
+
+function barraEditor() {
+  const ed = S.ed;
+  const doc = ed.tipo === 'doc';
+  $('#ed-barra').innerHTML = `
+    <button class="btn-icon" id="b-voltar" title="Voltar">${ic('back')}</button>
+    <div class="ed-titulo">${tituloEditor(ed)} ${doc ? bdg(ed.meta.status || 'Rascunho') : (ed.ativo === false ? bdg('Inativo') : '')}</div>
+    <div class="ed-acoes">
+      <div class="zoom"><button class="btn-icon" id="z-menos" title="Diminuir">${ic('zout')}</button><button class="btn-icon" id="z-fit" title="Ajustar à largura">${ic('fit')}</button><button class="btn-icon" id="z-mais" title="Aumentar">${ic('zin')}</button></div>
+      ${podeEditarDoc(ed) ? `<div class="zoom"><button class="btn-icon" id="b-desfazer">${ic('undo')}</button><button class="btn-icon" id="b-refazer">${ic('redo')}</button></div>
+      <button class="btn btn-primary ${ed.sujo ? 'pulsa' : ''}" id="b-salvar">${ic('save')} <span>Salvar</span></button>` : ''}
+      <button class="btn" id="b-imprimir">${ic('print')} <span>Imprimir</span></button>
+      <button class="btn" id="b-pdf">${ic('pdf')} <span>PDF</span></button>
+      <button class="btn" id="b-painel" title="Painel lateral">${ic('panel')} <span>${doc ? 'Assinaturas' : 'Propriedades'}</span></button>
+      ${doc && ed.id ? `<div class="menu"><button class="btn-icon" id="b-mais" title="Mais ações">⋮</button><div class="menu-lista" id="menu-mais" hidden>
+        ${ed.c.tipo === 'PT' ? `<button data-m="apr">${ic('plus')} Emitir APR vinculada a esta PT</button>` : ''}
+        <button data-m="dup">${ic('copy')} Duplicar documento</button>
+        ${podeAdmin() && ed.meta.status !== 'Cancelado' ? `<button data-m="cancelar" class="perigo">${ic('ban')} Cancelar documento</button>` : ''}
+        ${podeAdmin() ? `<button data-m="excluir" class="perigo">${ic('trash')} Excluir da lista</button>` : ''}</div></div>` : ''}
+      ${!doc && podeAdmin() ? `<div class="menu"><button class="btn-icon" id="b-mais" title="Mais ações">⋮</button><div class="menu-lista" id="menu-mais" hidden>
+        <button data-m="emitir">${ic('plus')} Emitir documento com este modelo</button>
+        ${ed.id && ed.padrao ? `<button data-m="restaurar">${ic('refresh')} Restaurar conteúdo original</button>` : ''}</div></div>` : ''}
+    </div>`;
+  $('#b-voltar').onclick = () => irPara(ed.tipo === 'doc' ? 'docs' : 'modelos');
+  $('#z-menos').onclick = () => mudarZoom(-0.1);
+  $('#z-mais').onclick = () => mudarZoom(0.1);
+  $('#z-fit').onclick = () => { S.zoom = 'fit'; aplicarZoom(); };
+  if ($('#b-salvar')) $('#b-salvar').onclick = () => salvarEditor().catch(falha);
+  if ($('#b-desfazer')) { $('#b-desfazer').onclick = desfazer; $('#b-refazer').onclick = refazer; botoesHist(); }
+  $('#b-imprimir').onclick = () => imprimir({ c: ed.c, assin: ed.assin, meta: Object.assign({}, ed.meta, { id: ed.id }) }).catch(falha);
+  $('#b-pdf').onclick = () => dialogoPdf().catch(falha);
+  $('#b-painel').onclick = () => document.body.classList.toggle('painel-aberto');
+  const mais = $('#b-mais');
+  if (mais) {
+    mais.onclick = e => { e.stopPropagation(); $('#menu-mais').hidden = !$('#menu-mais').hidden; };
+    document.addEventListener('click', () => { const m = $('#menu-mais'); if (m) m.hidden = true; }, { once: true });
+    $$('#menu-mais [data-m]').forEach(b => b.onclick = () => acaoMenu(b.dataset.m).catch(falha));
+  }
+}
+
+async function acaoMenu(m) {
+  const ed = S.ed;
+  $('#menu-mais').hidden = true;
+  if (m === 'apr') {
+    if (ed.sujo) { toast('Salve a PT antes de emitir a APR vinculada.', 'aviso'); return; }
+    const c = ed.c;
+    escolherModeloAPR({ id: ed.id, casa: [c.casa, c.cidade].filter(Boolean).join(' – '), data: c.data, resp: c.encarregados || c.contratada, servico: c.descricao });
+  } else if (m === 'dup') {
+    const c = clone(ed.c);
+    if (ed.c.tipo === 'PT') { (c.atividades || []).forEach(a => { a.x = false; }); }
+    S.ed.sujo = false;
+    abrirEditor({ tipo: 'doc', id: null, c, assin: [], meta: { status: 'Rascunho', modeloId: ed.meta.modeloId, vinculo: '', origem: ed.id } });
+    toast('Cópia criada. Ajuste e salve para gerar um novo número.');
+  } else if (m === 'cancelar' || m === 'excluir') {
+    const motivo = await pedirTexto(m === 'cancelar' ? 'Cancelar documento' : 'Excluir da lista', m === 'cancelar'
+      ? 'Motivo do cancelamento (o documento continua na planilha, marcado como cancelado; os links de assinatura param de funcionar).'
+      : 'Motivo da exclusão (o registro continua na planilha com a situação "Excluído").', m === 'cancelar' ? 'Cancelar documento' : 'Excluir');
+    if (!motivo) return;
+    await api('cancelarDocumento', { id: ed.id, motivo, excluir: m === 'excluir' });
+    await carregar();
+    S.ed.sujo = false;
+    if (m === 'excluir') { irPara('docs'); toast('Documento excluído da lista.'); return; }
+    await abrirDoc(ed.id);
+    toast('Documento cancelado.');
+  } else if (m === 'emitir') {
+    if (ed.sujo) { toast('Salve o modelo antes de emitir.', 'aviso'); return; }
+    const c = clone(ed.c);
+    const campo = k => (c.campos || []).concat(c.extras || []).filter(f => f.k === k)[0];
+    if (c.tipo === 'PT') { if (!c.data) c.data = hojeBR(); } else if (campo('data') && !campo('data').v) campo('data').v = hojeBR();
+    S.ed.sujo = false;
+    abrirEditor({ tipo: 'doc', id: null, c, assin: [], meta: { status: 'Rascunho', modeloId: ed.id, vinculo: '' } });
+  } else if (m === 'restaurar') {
+    if (!await confirmar('Restaurar conteúdo original', 'O modelo volta a ter exatamente o conteúdo do documento original (PDF). Suas alterações neste modelo serão perdidas. Documentos já emitidos não são afetados.', 'Restaurar', 'btn-danger')) return;
+    const r = await api('restaurarModelo', { id: ed.id });
+    ed.c = r.conteudo; ed.sujo = false;
+    await carregar();
+    abrirEditor(Object.assign(ed, { c: r.conteudo }));
+    S.ed.sujo = false; barraEditor();
+    toast('Modelo restaurado.');
+  }
+}
+
+function aplicarZoom() {
+  const area = $('#ed-area'), papel = $('#papel');
+  if (!area || !papel) return;
+  let z = S.zoom;
+  if (z === 'fit') z = Math.min(1.6, Math.max(0.3, (area.clientWidth - 32) / (595.3 * 96 / 72)));
+  papel.style.zoom = z;
+  papel.dataset.z = z;
+}
+function mudarZoom(d) {
+  const atual = +($('#papel').dataset.z || 1);
+  S.zoom = Math.min(2, Math.max(0.3, Math.round((atual + d) * 10) / 10));
+  aplicarZoom();
+}
+window.addEventListener('resize', () => { if (S.zoom === 'fit') aplicarZoom(); if (S.pub) ajustarZoomPub(); });
+
+async function salvarEditor(invalidar) {
+  const ed = S.ed;
+  const ativo = document.activeElement; if (ativo && ativo.blur) ativo.blur();
+  if (ed.tipo === 'modelo') {
+    const r = await api('salvarModelo', { id: ed.id, conteudo: ed.c }, { txt: 'Salvando modelo…' });
+    ed.id = r.id; ed.c = r.conteudo; ed.R.c = ed.c; ed.sujo = false;
+    await carregar();
+    barraEditor(); painelEditor();
+    toast('Modelo salvo.');
+    return;
+  }
+  const r = await api('salvarDocumento', { id: ed.id, conteudo: ed.c, modeloId: ed.meta.modeloId, vinculo: ed.meta.vinculo, origem: ed.meta.origem, invalidar: !!invalidar }, { txt: 'Salvando…' });
+  if (r.precisaConfirmar) {
+    const ok = await confirmar('Documento já assinado', `Este documento já tem <b>${r.assinadas}</b> assinatura(s). Ao salvar a alteração, essas assinaturas ficam registradas como <b>invalidadas</b> e cada pessoa recebe um <b>novo link</b> para assinar a versão nova. Deseja continuar?`, 'Salvar e coletar novamente', 'btn-danger');
+    if (ok) return salvarEditor(true);
+    return;
+  }
+  ed.id = r.doc.id; ed.meta = r.doc; ed.assin = r.assinantes; ed.sujo = false;
+  const i = S.docs.findIndex(d => d.id === r.doc.id);
+  const resumo = Object.assign({}, r.doc, { total: ativosAssin(r.assinantes).length, assinados: ativosAssin(r.assinantes).filter(a => a.status === 'Assinado').length });
+  if (i >= 0) S.docs[i] = resumo; else S.docs.unshift(resumo);
+  barraEditor(); painelEditor();
+  await redesenhar();
+  toast(invalidar ? 'Salvo. Envie os novos links de assinatura.' : 'Documento salvo.');
+}
+const ativosAssin = l => (l || []).filter(a => a.status !== 'Excluído' && a.status !== 'Invalidada');
+
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's' && S.ed && $('#b-salvar')) { e.preventDefault(); salvarEditor().catch(falha); }
+  // Ctrl+Z / Ctrl+Y fora de um campo em edição: desfaz/refaz no documento (dentro do campo vale o desfazer do próprio texto)
+  const emCampo = e.target.closest && e.target.closest('.ed,input,textarea,select');
+  if ((e.ctrlKey || e.metaKey) && S.ed && $('#b-desfazer') && !emCampo) {
+    const k = e.key.toLowerCase();
+    if (k === 'z' && !e.shiftKey) { e.preventDefault(); desfazer(); }
+    else if (k === 'y' || (k === 'z' && e.shiftKey)) { e.preventDefault(); refazer(); }
+  }
+});
+window.addEventListener('beforeunload', e => { if (S.ed && S.ed.sujo) { e.preventDefault(); e.returnValue = ''; } });
+
+// ---------- painel lateral ----------
+function painelEditor() {
+  const ed = S.ed;
+  const abas = ed.tipo === 'doc' ? [['assin', 'Assinaturas'], ['props', 'Estrutura']] : [['props', 'Propriedades']];
+  $('#ed-painel').innerHTML = `
+    <div class="painel-abas">${abas.map(([k, t]) => `<button data-aba="${k}" class="${ed.painel === k ? 'ativo' : ''}">${t}</button>`).join('')}
+      <button class="btn-icon fechar-painel" id="b-fpainel" title="Fechar">${ic('x')}</button></div>
+    <div class="painel-corpo" id="painel-corpo"></div>`;
+  $$('#ed-painel [data-aba]').forEach(b => b.onclick = () => { ed.painel = b.dataset.aba; painelEditor(); });
+  $('#b-fpainel').onclick = () => document.body.classList.remove('painel-aberto');
+  if (ed.painel === 'assin' && ed.tipo === 'doc') painelAssinaturas(); else painelPropriedades();
+}
+
+function papeisDoc(c) {
+  if (c.tipo === 'PT') return [['colab', 'Colaborador']].concat((c.assinRot || []).map((t, i) => ['resp' + (i + 1), t]));
+  return [['part', 'Participante']];
+}
+const rotPapel = (c, p) => (papeisDoc(c).filter(x => x[0] === p)[0] || [p, p || '—'])[1];
+
+function painelAssinaturas() {
+  const ed = S.ed, pc = $('#painel-corpo');
+  if (!ed.id) {
+    pc.innerHTML = `<div class="aviso-box">${ic('shield')}<p>Salve o documento para incluir os assinantes e gerar os links individuais de assinatura.</p>
+      <button class="btn btn-primary btn-full" id="p-salvar">${ic('save')} Salvar documento</button></div>`;
+    $('#p-salvar').onclick = () => salvarEditor().catch(falha);
+    return;
+  }
+  const lista = ativosAssin(ed.assin);
+  const ok = lista.filter(a => a.status === 'Assinado').length;
+  const cancelado = ed.meta.status === 'Cancelado';
+  pc.innerHTML = `
+    <div class="assin-resumo"><div class="prog grande"><i style="width:${lista.length ? Math.round(100 * ok / lista.length) : 0}%"></i></div>
+      <span><b>${ok}</b> de <b>${lista.length}</b> assinatura(s)</span></div>
+    ${!cancelado ? `<button class="btn btn-primary btn-full" id="p-add">${ic('plus')} Adicionar assinante</button>` : ''}
+    <div class="assin-lista">${lista.map(a => cartaoAssinante(a, cancelado)).join('') || '<p class="muted sm">Nenhum assinante. Inclua as pessoas que devem assinar: cada uma recebe um link próprio pelo WhatsApp.</p>'}</div>
+    ${ed.assin.some(a => a.status === 'Invalidada') ? `<details class="hist"><summary>Assinaturas invalidadas (${ed.assin.filter(a => a.status === 'Invalidada').length})</summary>
+      ${ed.assin.filter(a => a.status === 'Invalidada').map(a => `<div class="sm muted">${esc(a.nomeAssinado || a.nome)} · ${fmtDH(a.assinadoEm)}</div>`).join('')}</details>` : ''}
+    <p class="muted sm dica">O link abre o documento completo para leitura; a pessoa confirma nome e documento, aceita o conteúdo e assina com o dedo ou o mouse. A assinatura aparece automaticamente no documento e na página de registro de assinaturas.</p>`;
+  if ($('#p-add')) $('#p-add').onclick = () => formAssinante();
+  $$('#painel-corpo [data-ac]').forEach(b => b.onclick = () => acaoAssinante(b.dataset.ac, b.dataset.id).catch(falha));
+}
+
+function cartaoAssinante(a, cancelado) {
+  const c = S.ed.c;
+  const pend = a.status === 'Pendente';
+  return `<div class="assin-card ${a.status === 'Assinado' ? 'ok' : ''}">
+    <div class="ac-topo"><div><b>${esc(a.status === 'Assinado' ? (a.nomeAssinado || a.nome) : a.nome)}</b>
+      <div class="sm muted">${esc(rotPapel(c, a.papel))}${a.documento ? ' · ' + esc(a.documento) : ''}${a.telefone ? ' · ' + esc(fmtFone(a.telefone)) : ''}</div></div>${bdg(a.status)}</div>
+    ${a.status === 'Assinado' ? `<div class="ac-ass">${a.img ? `<img src="${a.img}" alt="assinatura">` : ''}<span class="sm muted">Assinado em ${fmtDH(a.assinadoEm)} · código ${esc(String(a.hash || '').slice(0, 8).toUpperCase())}</span></div>`
+      : `<div class="sm muted">${a.enviadoEm ? 'Link enviado em ' + fmtDH(a.enviadoEm) : 'Link ainda não enviado'}</div>`}
+    ${pend && !cancelado ? `<div class="ac-bts">
+      <button class="btn btn-whats" data-ac="whats" data-id="${a.id}">${ic('whats')} WhatsApp</button>
+      <button class="btn-icon" data-ac="copiar" data-id="${a.id}" title="Copiar link">${ic('link')}</button>
+      <button class="btn-icon" data-ac="aqui" data-id="${a.id}" title="Assinar neste aparelho">${ic('pen')}</button>
+      <button class="btn-icon" data-ac="editar" data-id="${a.id}" title="Editar">${ic('gear')}</button>
+      <button class="btn-icon" data-ac="remover" data-id="${a.id}" title="Remover">${ic('trash')}</button>
+      <button class="btn-icon" data-ac="subir" data-id="${a.id}" title="Mover para cima">${ic('up')}</button></div>` : ''}
+  </div>`;
+}
+
+function linkAssinatura(a) { return `${baseAssinatura()}?p=assinar&d=${encodeURIComponent(S.ed.id)}&t=${encodeURIComponent(a.token)}`; }
+function mensagemWhats(a) {
+  const ed = S.ed, c = ed.c;
+  const casa = ed.meta.casa || (c.tipo === 'PT' ? c.casa : '') || '';
+  const tpl = (S.config && S.config.msgWhats) || MSG_WHATS_PADRAO;
+  return tpl.replace(/\{nome\}/g, (a.nome || '').split(' ')[0]).replace(/\{tipo\}/g, c.tipo).replace(/\{numero\}/g, ed.id)
+    .replace(/\{titulo\}/g, ed.meta.titulo || c.titulo || c.cab.titulo).replace(/\{casa\}/g, casa || '—').replace(/\{data\}/g, ed.meta.data || '—')
+    .replace(/\{link\}/g, linkAssinatura(a));
+}
+
+async function acaoAssinante(ac, id) {
+  const ed = S.ed, a = ed.assin.filter(x => x.id === id)[0];
+  if (!a) return;
+  if (ed.sujo && (ac === 'whats' || ac === 'copiar' || ac === 'aqui')) {
+    toast('Salve as alterações do documento antes de coletar assinaturas.', 'aviso'); return;
+  }
+  if (!baseAssinatura() && (ac === 'whats' || ac === 'copiar')) { toast('Publique o sistema como App da Web para gerar links (veja o LEIA-ME).', 'erro'); return; }
+  if (baseAssinatura().endsWith('/dev') && (ac === 'whats' || ac === 'copiar')) { toast('O endereço dos links é o de teste (/dev), que não abre para outras pessoas. Informe o endereço público em Configurações › Links.', 'erro'); return; }
+  if (ac === 'whats') {
+    const fone = foneWhats(a.telefone);
+    window.open(`https:\/\/wa.me/${fone}?text=${encodeURIComponent(mensagemWhats(a))}`, '_blank', 'noopener');
+    try { a.enviadoEm = await api('marcarEnviado', { id }, { silencioso: true }); painelAssinaturas(); } catch (e) {}
+  } else if (ac === 'copiar') {
+    const txt = linkAssinatura(a);
+    try { await navigator.clipboard.writeText(txt); toast('Link copiado.'); }
+    catch (e) { abrirModal({ titulo: 'Link de assinatura', corpo: `<textarea class="mono" rows="4" readonly onclick="this.select()">${esc(txt)}</textarea>`, acoes: [{ label: 'Fechar' }] }); }
+  } else if (ac === 'aqui') {
+    assinarNoAparelho(a);
+  } else if (ac === 'editar') {
+    formAssinante(a);
+  } else if (ac === 'remover') {
+    if (!await confirmar('Remover assinante', `Remover <b>${esc(a.nome)}</b> da lista? O link enviado deixa de funcionar.`, 'Remover', 'btn-danger')) return;
+    await gravarAssinantes(ativosAssin(ed.assin).filter(x => x.id !== id));
+  } else if (ac === 'subir') {
+    const l = ativosAssin(ed.assin); const i = l.findIndex(x => x.id === id);
+    if (i > 0) { [l[i - 1], l[i]] = [l[i], l[i - 1]]; await gravarAssinantes(l); }
+  }
+}
+
+async function gravarAssinantes(lista) {
+  const ed = S.ed;
+  const r = await api('salvarAssinantes', { docId: ed.id, lista: lista.map(a => ({ id: a.id, papel: a.papel, nome: a.nome, documento: a.documento, telefone: a.telefone })) });
+  ed.assin = r.assinantes; ed.meta = r.doc;
+  const i = S.docs.findIndex(d => d.id === ed.id);
+  if (i >= 0) S.docs[i] = Object.assign({}, r.doc, { total: ativosAssin(r.assinantes).length, assinados: ativosAssin(r.assinantes).filter(a => a.status === 'Assinado').length });
+  barraEditor(); painelAssinaturas();
+  await redesenhar();
+}
+
+function formAssinante(a) {
+  const ed = S.ed, c = ed.c;
+  const papeis = papeisDoc(c);
+  abrirModal({
+    titulo: a ? 'Editar assinante' : 'Adicionar assinante',
+    corpo: `<div class="grade2">
+      <label class="fld col2"><span>Nome completo</span><input id="a-nome" value="${esc(a ? a.nome : '')}" autofocus></label>
+      <label class="fld"><span>CPF ou RG</span><input id="a-doc" value="${esc(a ? a.documento : '')}" inputmode="numeric"></label>
+      <label class="fld"><span>WhatsApp (com DDD)</span><input id="a-fone" value="${esc(a ? fmtFone(a.telefone) : '')}" inputmode="tel" placeholder="(11) 98765-4321"></label>
+      <label class="fld col2"><span>Assina como</span><select id="a-papel">${opcoes(papeis, a ? a.papel : papeis[0][0])}</select></label></div>
+      ${c.tipo === 'PT' ? '<p class="muted sm">Colaboradores aparecem na tabela "Nome do colaborador / Documento / Assinatura" da página 1; os três responsáveis assinam nos quadros da página 2.</p>' : '<p class="muted sm">Os participantes aparecem no quadro NOME / Assinatura ao final da APR.</p>'}`,
+    acoes: [{ label: 'Cancelar' }, { label: a ? 'Salvar' : 'Adicionar', cls: 'btn-primary', onClick: async () => {
+      const novo = { id: a ? a.id : null, nome: $('#a-nome').value.trim(), documento: mascaraCpf($('#a-doc').value.trim()), telefone: $('#a-fone').value.replace(/\D/g, ''), papel: $('#a-papel').value };
+      if (!novo.nome) { toast('Informe o nome.', 'erro'); return; }
+      if (novo.telefone && novo.telefone.length < 10) { toast('WhatsApp incompleto: informe DDD + número.', 'erro'); return; }
+      if (novo.papel !== 'colab' && novo.papel !== 'part' && ativosAssin(ed.assin).some(x => x.papel === novo.papel && x.id !== novo.id)) {
+        toast('Já existe um assinante para "' + rotPapel(c, novo.papel) + '".', 'erro'); return;
+      }
+      const lista = ativosAssin(ed.assin).map(x => x.id === novo.id ? Object.assign({}, x, novo) : x);
+      if (!a) lista.push(novo);
+      fecharModal();
+      try { await gravarAssinantes(lista); toast(a ? 'Assinante atualizado.' : 'Assinante incluído. Envie o link pelo WhatsApp.'); } catch (e) { falha(e); }
+    } }]
+  });
+  $('#a-fone').oninput = e => { e.target.value = fmtFone(e.target.value.replace(/\D/g, '').slice(0, 11)) || e.target.value; };
+}
+
+function assinarNoAparelho(a) {
+  abrirModal({
+    titulo: 'Assinar neste aparelho', largura: '620px',
+    corpo: formAssinaturaHtml(a, 'm'),
+    acoes: [{ label: 'Cancelar' }, { label: 'Registrar assinatura', cls: 'btn-primary', id: 'm-assinar' }]
+  });
+  const pad = criarPad($('#m-pad'));
+  $('#m-limpar').onclick = () => pad.limpar();
+  $('#m-assinar').onclick = async () => {
+    try {
+      const dados = dadosAssinatura('m', pad);
+      await api('assinar', Object.assign({ d: S.ed.id, t: a.token }, dados), { txt: 'Registrando assinatura…' });
+      fecharModal();
+      const d = await api('documento', { id: S.ed.id });
+      S.ed.assin = d.assinantes; S.ed.meta = d.doc;
+      const i = S.docs.findIndex(x => x.id === d.doc.id);
+      if (i >= 0) S.docs[i] = Object.assign({}, d.doc, { total: ativosAssin(d.assinantes).length, assinados: ativosAssin(d.assinantes).filter(x => x.status === 'Assinado').length });
+      barraEditor(); painelAssinaturas(); await redesenhar();
+      toast('Assinatura registrada.');
+    } catch (e) { falha(e); }
+  };
+}
+
+// ---------- formulário de assinatura (modal e página pública) ----------
+function formAssinaturaHtml(a, px) {
+  return `<div class="grade2">
+    <label class="fld"><span>Nome completo</span><input id="${px}-nome" value="${esc(a.nome || '')}" autocomplete="name"></label>
+    <label class="fld"><span>CPF ou RG</span><input id="${px}-doc" value="${esc(a.documento || '')}" inputmode="numeric"></label></div>
+    <div class="pad-wrap"><div class="pad-topo"><span>Assine no quadro abaixo</span><button type="button" class="btn-link" id="${px}-limpar">Limpar</button></div>
+      <canvas id="${px}-pad" class="pad"></canvas><div class="pad-linha"></div></div>
+    <label class="aceite"><input type="checkbox" id="${px}-aceite"> <span>Declaro que li o documento, estou ciente dos riscos, medidas de controle e orientações descritos e concordo em assiná-lo eletronicamente.</span></label>`;
+}
+function dadosAssinatura(px, pad) {
+  const nome = $(`#${px}-nome`).value.trim(), documento = mascaraCpf($(`#${px}-doc`).value.trim());
+  if (nome.length < 3) throw new Error('Informe o nome completo.');
+  if (!documento) throw new Error('Informe o CPF ou RG.');
+  if (pad.vazio()) throw new Error('Desenhe sua assinatura no quadro.');
+  if (!$(`#${px}-aceite`).checked) throw new Error('Marque a declaração de leitura e concordância.');
+  return { nome, documento, img: pad.png(), aceite: true, ua: navigator.userAgent };
+}
+
+function criarPad(canvas) {
+  const ctx = canvas.getContext('2d');
+  let desenhando = false, vazio = true, ult = null;
+  const ajustar = () => {
+    const r = canvas.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.max(1, r.width * dpr); canvas.height = Math.max(1, r.height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.lineWidth = 2.4; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#033D60'; ctx.fillStyle = '#033D60';
+    vazio = true;
+  };
+  const pos = e => { const r = canvas.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+  canvas.addEventListener('pointerdown', e => {
+    e.preventDefault(); canvas.setPointerCapture(e.pointerId); desenhando = true; ult = pos(e);
+    ctx.beginPath(); ctx.arc(ult.x, ult.y, 1.2, 0, Math.PI * 2); ctx.fill(); vazio = false;
+  });
+  canvas.addEventListener('pointermove', e => {
+    if (!desenhando) return; e.preventDefault();
+    const p = pos(e), m = { x: (ult.x + p.x) / 2, y: (ult.y + p.y) / 2 };
+    ctx.beginPath(); ctx.moveTo(ult.x, ult.y); ctx.quadraticCurveTo(ult.x, ult.y, m.x, m.y); ctx.lineTo(p.x, p.y); ctx.stroke();
+    ult = p; vazio = false;
+  });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(t => canvas.addEventListener(t, () => { desenhando = false; }));
+  setTimeout(ajustar, 30);
+  return {
+    limpar: ajustar,
+    vazio: () => vazio,
+    png() {
+      // recorta a área desenhada e reduz para caber numa célula da planilha
+      const w = canvas.width, h = canvas.height, px = ctx.getImageData(0, 0, w, h).data;
+      let x0 = w, y0 = h, x1 = 0, y1 = 0;
+      for (let y = 0; y < h; y += 2) for (let x = 0; x < w; x += 2) if (px[(y * w + x) * 4 + 3] > 20) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+      if (x1 <= x0 || y1 <= y0) { x0 = 0; y0 = 0; x1 = w; y1 = h; }
+      const m = 8; x0 = Math.max(0, x0 - m); y0 = Math.max(0, y0 - m); x1 = Math.min(w, x1 + m); y1 = Math.min(h, y1 + m);
+      let esc_ = Math.min(1, 520 / (x1 - x0), 180 / (y1 - y0)), url = '';
+      for (let i = 0; i < 6; i++) {
+        const c2 = document.createElement('canvas');
+        c2.width = Math.max(1, Math.round((x1 - x0) * esc_)); c2.height = Math.max(1, Math.round((y1 - y0) * esc_));
+        c2.getContext('2d').drawImage(canvas, x0, y0, x1 - x0, y1 - y0, 0, 0, c2.width, c2.height);
+        url = c2.toDataURL('image/png');
+        if (url.length < 45000) break;
+        esc_ *= 0.75;
+      }
+      return url;
+    }
+  };
+}
+
+// ---------- propriedades / estrutura ----------
+function painelPropriedades() {
+  const ed = S.ed, c = ed.c, pc = $('#painel-corpo');
+  const editavel = podeEditarDoc(ed) && podeAdmin();
+  let h = '';
+  if (!podeAdmin()) h += `<div class="aviso-box">${ic('lock')}<p>Seu perfil (<b>Emissor</b>) preenche os campos do formulário e coleta assinaturas. Textos fixos, medidas, estrutura e modelos só podem ser alterados por um <b>Administrador</b>.</p></div>`;
+  if (ed.tipo === 'modelo') {
+    h += `<label class="fld"><span>Nome do modelo (aparece nas listas)</span><input id="pp-nome" value="${esc(c.nome || '')}"></label>`;
+  }
+  if (c.tipo === 'APR') {
+    const soma = (c.cols || []).reduce((s, x) => s + (+x || 0), 0);
+    h += `<div class="fld"><span>Linhas do quadro NOME / Assinatura</span>
+      <div class="stepper"><button class="btn-icon" id="pp-l-menos">−</button><b id="pp-linhas">${+c.assinLinhas || 0}</b><button class="btn-icon" id="pp-l-mais">＋</button></div>
+      <small class="muted">Cada linha comporta duas pessoas. Se houver mais assinantes, o quadro cresce sozinho.</small></div>
+      <div class="fld"><span>Largura das colunas (pt) — total ${soma.toFixed(0)} de 542</span>
+      <div class="grade-cols">${(c.colRot || []).map((t, i) => `<label><small>${esc(String(t).replace(/\*|_/g, ''))}</small><input type="number" step="1" min="15" data-col="${i}" value="${(+c.cols[i]).toFixed(0)}"></label>`).join('')}</div>
+      <small class="muted">Ao alterar uma coluna, a diferença é compensada na coluna "Medidas de Controle".</small></div>
+      <div class="fld"><span>Grupos de atividades</span><button class="btn btn-full" id="pp-grupo">${ic('plus')} Adicionar grupo (nova ordem)</button>
+      <small class="muted">Passe o mouse sobre uma linha da tabela para mover, incluir ou excluir medidas; na coluna "Ordem", os botões atuam no grupo inteiro.</small></div>`;
+  } else {
+    h += `<div class="fld"><span>Linhas de colaboradores na página 1</span><div class="stepper"><button class="btn-icon" id="pp-c-menos">−</button><b>${+c.colabLinhas || 13}</b><button class="btn-icon" id="pp-c-mais">＋</button></div>
+      <small class="muted">Colaboradores além dessas linhas vão para uma folha de continuação.</small></div>`;
+  }
+  h += `<div class="dica-box"><b>Como editar</b><ul>
+    <li>${podeAdmin() ? 'Clique em qualquer texto do documento para alterá-lo — títulos, rótulos, rodapé e conteúdo.' : 'Clique nos campos de preenchimento (eles se destacam ao passar o mouse).'}</li>
+    <li><b>Desfazer</b> (Ctrl+Z) e <b>Refazer</b> (Ctrl+Y) ficam na barra superior.</li>
+    <li>Clique nos parênteses ou colchetes para marcar <b>( X )</b>.</li>
+    <li>Formatação: <code>**negrito**</code>, <code>__sublinhado__</code>, <code>*itálico*</code>.</li>
+    <li><b>Ctrl+S</b> salva.</li></ul></div>`;
+  if (ed.tipo === 'doc' && ed.meta.historico) h += `<details class="hist"><summary>Histórico</summary><pre>${esc(ed.meta.historico)}</pre></details>`;
+  pc.innerHTML = h;
+  if (!editavel) { $$('#painel-corpo input,#painel-corpo button').forEach(e => { e.disabled = true; }); return; }
+  const mudou = () => { marcarSujo(); redesenhar(); };
+  const reg = () => registrarHist(JSON.stringify(c));
+  if ($('#pp-nome')) { $('#pp-nome').onfocus = reg; $('#pp-nome').oninput = e => { c.nome = e.target.value; marcarSujo(); }; }
+  if ($('#pp-l-menos')) {
+    $('#pp-l-menos').onclick = () => { reg(); c.assinLinhas = Math.max(1, (+c.assinLinhas || 1) - 1); painelPropriedades(); mudou(); };
+    $('#pp-l-mais').onclick = () => { reg(); c.assinLinhas = (+c.assinLinhas || 0) + 1; painelPropriedades(); mudou(); };
+    $$('#painel-corpo [data-col]').forEach(inp => inp.onchange = () => {
+      const i = +inp.dataset.col, novo = Math.max(15, +inp.value || 15), dif = novo - c.cols[i];
+      reg(); c.cols[i] = novo;
+      if (i !== 3) c.cols[3] = Math.max(60, c.cols[3] - dif);
+      painelPropriedades(); mudou();
+    });
+    $('#pp-grupo').onclick = () => { reg(); const n = c.grupos.length + 1; c.grupos.push({ ordem: String(n), atividade: '', perigos: '', medidas: [{ texto: `${n}.0.0 - `, cond: '', obs: '' }] }); mudou(); };
+  }
+  if ($('#pp-c-menos')) {
+    $('#pp-c-menos').onclick = () => { reg(); c.colabLinhas = Math.max(1, (+c.colabLinhas || 13) - 1); painelPropriedades(); mudou(); };
+    $('#pp-c-mais').onclick = () => { reg(); c.colabLinhas = Math.min(13, (+c.colabLinhas || 13) + 1); painelPropriedades(); mudou(); };
+  }
+}
+
+// ============================== IMPRESSÃO E PDF ==============================
+async function imprimir(dados, direto) {
+  const ed = S.ed;
+  if (!direto && ed && ed.sujo) toast('Imprimindo a versão em edição (ainda não salva).', 'aviso');
+  const temAss = (dados.assin || []).some(a => a.status === 'Assinado');
+  const host = $('#impressao');
+  carregando(true, 'Preparando impressão…');
+  try {
+    await montarDocumento(host, { modo: 'ver', c: dados.c, assin: dados.assin, meta: dados.meta, certificado: temAss });
+    await Promise.all($$('#impressao img').map(i => i.complete ? null : new Promise(ok => { i.onload = i.onerror = ok; })));
+  } finally { carregando(false); }
+  setTimeout(() => window.print(), 60);
+}
+window.addEventListener('afterprint', () => { $('#impressao').innerHTML = ''; });
+
+let libsPdf = null;
+function carregarScript(src) { return new Promise((ok, erro) => { const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = () => erro(new Error('Falha ao carregar ' + src)); document.head.appendChild(s); }); }
+function carregarLibsPdf() {
+  if (!libsPdf) libsPdf = Promise.all([
+    carregarScript('https:\/\/cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'),
+    carregarScript('https:\/\/cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js')
+  ]).catch(e => { libsPdf = null; throw e; });
+  return libsPdf;
+}
+
+// Gera o PDF desenhando cada folha (mesmo layout da tela/impressão) em alta resolução.
+async function gerarPdf(R) {
+  await carregarLibsPdf();
+  const tmp = document.createElement('div');
+  tmp.className = 'papel pdf-tmp';
+  document.body.appendChild(tmp);
+  try {
+    const pags = await montarDocumento(tmp, R);
+    await Promise.all($$('img', tmp).map(i => i.complete ? null : new Promise(ok => { i.onload = i.onerror = ok; })));
+    const pdf = new window.jspdf.jsPDF({ unit: 'pt', format: 'a4', compress: true });
+    for (let i = 0; i < pags.length; i++) {
+      $('#loading-txt').textContent = `Gerando PDF… página ${i + 1} de ${pags.length}`;
+      const cv = await window.html2canvas(pags[i], { scale: 3, backgroundColor: '#ffffff', useCORS: true, logging: false, scrollX: 0, scrollY: 0 });
+      if (i) pdf.addPage();
+      pdf.addImage(cv.toDataURL('image/jpeg', 0.9), 'JPEG', 0, 0, 595.28, 841.89, undefined, 'FAST');
+    }
+    return pdf;
+  } finally { tmp.remove(); }
+}
+
+function nomeArquivo(meta, c) {
+  const base = meta && meta.id ? meta.id : (c.tipo + '-rascunho');
+  return (base + ' ' + String((meta && meta.titulo) || c.titulo || '').replace(/^(APR|PT)\s*[-–]\s{0,}/i, '')).trim().replace(new RegExp('[' + String.fromCharCode(92, 92) + '/:*?\x22<>|]+', 'g'), '').replace(/\s+/g, ' ');
+}
+
+async function dialogoPdf() {
+  const ed = S.ed;
+  const meta = Object.assign({}, ed.meta, { id: ed.id });
+  const temAss = (ed.assin || []).some(a => a.status === 'Assinado');
+  carregando(true, 'Gerando PDF…');
+  let pdf;
+  try { pdf = await gerarPdf({ modo: 'ver', c: ed.c, assin: ed.assin, meta, certificado: temAss }); }
+  finally { carregando(false); }
+  const nome = nomeArquivo(meta, ed.c) + '.pdf';
+  const url = pdf.output('bloburl');
+  abrirModal({
+    titulo: 'PDF pronto', largura: '520px',
+    corpo: `<p class="txt">${esc(nome)}${ed.sujo ? '<br><span class="muted sm">Atenção: inclui alterações ainda não salvas.</span>' : ''}</p>
+      <div class="pdf-acoes">
+        <a class="btn btn-primary" href="${url}" target="_blank" rel="noopener">${ic('pdf')} Abrir PDF</a>
+        <a class="btn" href="${url}" download="${esc(nome)}">${ic('down')} Baixar</a>
+        ${ed.tipo === 'doc' && ed.id ? `<button class="btn" id="pdf-drive">${ic('drive')} Salvar no Drive</button>` : ''}
+      </div>
+      <div id="pdf-drive-res">${ed.meta.pdfUrl ? `<p class="sm muted">Último PDF salvo: <a href="${esc(ed.meta.pdfUrl)}" target="_blank" rel="noopener">abrir no Drive</a></p>` : ''}</div>`,
+    acoes: [{ label: 'Fechar' }]
+  });
+  if ($('#pdf-drive')) $('#pdf-drive').onclick = async () => {
+    try {
+      const link = await api('salvarPdf', { docId: ed.id, nome: nome.replace(/\.pdf$/, ''), base64: pdf.output('datauristring') }, { txt: 'Enviando ao Drive…' });
+      ed.meta.pdfUrl = link;
+      const msg = `Segue o documento ${ed.c.tipo} nº ${ed.id} – ${ed.meta.titulo || ''}${temAss ? ' (assinado)' : ''}:\n${link}`;
+      $('#pdf-drive-res').innerHTML = `<p class="sm">Salvo no Drive (qualquer pessoa com o link pode ver).</p>
+        <div class="pdf-acoes"><a class="btn" href="${esc(link)}" target="_blank" rel="noopener">${ic('drive')} Abrir no Drive</a>
+        <a class="btn btn-whats" href="https:\/\/wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">${ic('whats')} Enviar PDF pelo WhatsApp</a></div>`;
+    } catch (e) { falha(e); }
+  };
+}
+
+// ============================== MODELOS ==============================
+function telaModelos() {
+  const q = norm(S.fm.busca);
+  const ms = S.modelos.filter(m => !q || norm([m.codigo, m.nome, m.titulo].join(' ')).includes(q))
+    .sort((a, b) => (a.tipo === b.tipo ? 0 : a.tipo === 'PT' ? -1 : 1) || String(a.codigo).localeCompare(String(b.codigo), 'pt-BR', { numeric: true }));
+  $('#conteudo').innerHTML = `
+  <section class="pagina">
+    <div class="pg-topo">
+      <div><h2>Modelos</h2><p class="muted">Conteúdo-padrão de cada formulário. Tudo é editável: textos, perigos, medidas, colunas, rodapés. Documentos já emitidos não mudam.</p></div>
+      ${podeAdmin() ? `<div class="acoes"><button class="btn btn-primary" id="b-novo-mod">${ic('plus')} Novo modelo de APR</button></div>` : ''}
+    </div>
+    <div class="filtros"><label class="busca">${ic('search')}<input id="fm-busca" placeholder="Buscar modelo…" value="${esc(S.fm.busca)}"></label></div>
+    <div class="cards-mod">${ms.map(m => `
+      <div class="card-mod ${m.ativo ? '' : 'inativo'}">
+        <div class="cm-topo"><span class="tag ${m.tipo === 'PT' ? 'tag-pt' : 'tag-apr'}">${m.tipo}</span><b>${esc(m.codigo)}</b>${m.ativo ? '' : bdg('Inativo')}</div>
+        <div class="cm-tit">${esc(m.titulo || m.nome)}</div>
+        <div class="sm muted">Atualizado ${fmtDH(m.atualizado)}${m.atualizadoPor ? ' · ' + esc(m.atualizadoPor) : ''}</div>
+        <div class="cm-bts">
+          ${podeAdmin() ? `<button class="btn" data-mac="editar" data-id="${esc(m.id)}">${ic('pen')} Editar</button>` : ''}
+          <button class="btn" data-mac="emitir" data-id="${esc(m.id)}" ${m.ativo ? '' : 'disabled'}>${ic('plus')} Emitir</button>
+          ${podeAdmin() ? `<button class="btn-icon" data-mac="duplicar" data-id="${esc(m.id)}" title="Duplicar">${ic('copy')}</button>
+          <button class="btn-icon" data-mac="ativar" data-id="${esc(m.id)}" title="${m.ativo ? 'Desativar' : 'Ativar'}">${ic(m.ativo ? 'ban' : 'check')}</button>` : ''}
+        </div></div>`).join('')}</div>
+  </section>`;
+  let t; $('#fm-busca').oninput = e => { clearTimeout(t); t = setTimeout(() => { S.fm.busca = e.target.value; telaModelos(); const i = $('#fm-busca'); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }, 250); };
+  if ($('#b-novo-mod')) $('#b-novo-mod').onclick = () => novoModeloAPR().catch(falha);
+  $$('[data-mac]').forEach(b => b.onclick = () => acaoModelo(b.dataset.mac, b.dataset.id).catch(falha));
+}
+
+async function acaoModelo(ac, id) {
+  const resumo = S.modelos.filter(m => m.id === id)[0];
+  if (ac === 'ativar') {
+    await api('ativarModelo', { id, ativo: !resumo.ativo });
+    resumo.ativo = !resumo.ativo; telaModelos();
+    toast(resumo.ativo ? 'Modelo ativado.' : 'Modelo desativado (não aparece para emissão).');
+    return;
+  }
+  const m = await api('modelo', { id });
+  if (ac === 'editar') {
+    abrirEditor({ tipo: 'modelo', id: m.id, c: m.conteudo, assin: [], meta: {}, ativo: m.ativo, padrao: resumo && resumo.padrao });
+    S.ed.sujo = false; barraEditor();
+  } else if (ac === 'duplicar') {
+    const c = clone(m.conteudo);
+    c.nome = (c.nome || '') + ' (cópia)';
+    c.cab.documento = (c.cab.documento || '') + ' (cópia)';
+    abrirEditor({ tipo: 'modelo', id: null, c, assin: [], meta: {} });
+    toast('Cópia criada. Ajuste o número do documento e salve.');
+  } else if (ac === 'emitir') {
+    const c = clone(m.conteudo);
+    const campo = k => (c.campos || []).concat(c.extras || []).filter(f => f.k === k)[0];
+    if (c.tipo === 'PT') { if (!c.data) c.data = hojeBR(); } else if (campo('data') && !campo('data').v) campo('data').v = hojeBR();
+    abrirEditor({ tipo: 'doc', id: null, c, assin: [], meta: { status: 'Rascunho', modeloId: m.id, vinculo: '' } });
+  }
+}
+
+async function novoModeloAPR() {
+  const base = modelosAtivos('APR')[0] || S.modelos.filter(m => m.tipo === 'APR')[0];
+  if (!base) { toast('Nenhum modelo de APR para servir de base.', 'erro'); return; }
+  const m = await api('modelo', { id: base.id });
+  const c = clone(m.conteudo);
+  c.nome = 'Nova APR';
+  c.cab.titulo = 'APR - NOVA ATIVIDADE'; c.titulo = 'APR - NOVA ATIVIDADE'; c.cab.documento = 'CCB SSMA 024.';
+  c.campos.forEach(f => { f.v = ''; }); (c.extras || []).forEach(f => { f.v = ''; });
+  c.servico = '';
+  c.grupos = [{ ordem: '1', atividade: 'Descreva a atividade', perigos: '1.0 - Perigo', medidas: [{ texto: '1.0.0 – Deve ser realizado DDS conforme a atividade.', cond: '', obs: '' }, { texto: '1.0.1 – Deve ser realizado exame preventivo.', cond: '', obs: '' }] }];
+  abrirEditor({ tipo: 'modelo', id: null, c, assin: [], meta: {} });
+  toast('Edite título, número, atividades e medidas direto no papel e salve.');
+}
+
+// ============================== CONFIGURAÇÕES ==============================
+function telaConfig() {
+  const adm = podeAdmin();
+  $('#conteudo').innerHTML = `
+  <section class="pagina estreita">
+    <div class="pg-topo"><div><h2>Configurações</h2><p class="muted">Imagens dos documentos, mensagem do WhatsApp, usuários e senha.</p></div></div>
+    ${adm ? `
+    <div class="bloco"><h3>Logotipo</h3><p class="muted sm">Aparece no cabeçalho da PT, das APRs e na tela de assinatura. Prefira PNG com fundo branco ou transparente.</p>
+      <div class="img-cfg"><div class="img-prev"><img src="${imgDoc('logo')}" alt=""></div>
+        <div class="img-bts"><label class="btn">${ic('down')} Enviar imagem<input type="file" hidden data-img="logo" accept="image/png,image/jpeg,image/webp,image/svg+xml"></label>
+        ${S.imagens.logo ? `<button class="btn btn-ghost" data-rest="logo">Usar padrão</button>` : ''}</div></div></div>
+    <div class="bloco"><h3>Pictogramas da PT</h3><p class="muted sm">Os oito ícones das atividades (página 1 da PT). Já vêm redesenhados em vetor; substitua se quiser.</p>
+      <div class="grade-ic">${PT_ICONES.map(k => `<div class="ic-cfg"><img src="${imgDoc('ic_' + k)}" alt=""><small>${esc(ROT_ICONES[k])}</small>
+        <div><label class="btn-link">Trocar<input type="file" hidden data-img="ic_${k}" accept="image/png,image/jpeg,image/webp,image/svg+xml"></label>
+        ${S.imagens['ic_' + k] ? ` · <button class="btn-link" data-rest="ic_${k}">Padrão</button>` : ''}</div></div>`).join('')}</div></div>
+    <div class="bloco"><h3>Mensagem do WhatsApp</h3>
+      <p class="muted sm">Campos disponíveis: <code>{nome}</code> <code>{tipo}</code> <code>{numero}</code> <code>{titulo}</code> <code>{casa}</code> <code>{data}</code> <code>{link}</code></p>
+      <textarea id="c-msg" rows="4">${esc(S.config.msgWhats || MSG_WHATS_PADRAO)}</textarea>
+      <div class="dir"><button class="btn btn-ghost" id="c-msg-pad">Restaurar padrão</button><button class="btn btn-primary" id="c-msg-salvar">Salvar mensagem</button></div></div>
+    <div class="bloco"><h3>Usuários</h3><div id="c-usuarios" class="muted sm">Carregando…</div></div>` : ''}
+    <div class="bloco"><h3>Minha senha</h3>
+      <div class="grade3"><label class="fld"><span>Senha atual</span><input type="password" id="s-atual" autocomplete="current-password"></label>
+      <label class="fld"><span>Nova senha</span><input type="password" id="s-nova" autocomplete="new-password"></label>
+      <label class="fld"><span>Repita a nova</span><input type="password" id="s-nova2" autocomplete="new-password"></label></div>
+      <div class="dir"><button class="btn btn-primary" id="s-salvar">Alterar senha</button></div></div>
+    <div class="bloco"><h3>Links</h3><p class="sm">Endereço usado nos links de assinatura: <code>${esc(baseAssinatura() || '(publique como App da Web)')}</code></p>
+      ${adm && MODO === 'gas' ? `<label class="fld"><span>Página de assinatura (GitHub Pages)</span>
+        <input id="c-url-ass" placeholder="https:\/\/seu-usuario.github.io/assinatura/" value="${esc(S.config.urlAssinatura || '')}"></label>
+      <p class="muted sm">Com a página de assinatura publicada fora do Google, o link abre em qualquer celular, mesmo com várias contas Google conectadas. Em branco, os links usam o endereço do próprio sistema.</p>
+      <details class="hist"><summary>Avançado: endereço público do App da Web</summary>
+        <label class="fld"><span>URL /exec (opcional)</span><input id="c-url" placeholder="https:\/\/script.google.com/macros/s/.../exec" value="${esc(S.config.urlPublica || '')}"></label>
+        <p class="muted sm">Só preencha se o sistema estiver gerando links com o endereço errado.</p></details>
+      <div class="dir"><button class="btn btn-primary" id="c-url-salvar">Salvar endereços</button></div>` : ''}
+      <p class="sm muted">Modo: ${MODO === 'gas' ? 'Google Apps Script + Google Sheets' : MODO === 'http' ? 'API externa' : 'Demonstração (dados apenas neste navegador)'}</p>
+      ${MODO === 'demo' ? `<button class="btn btn-ghost" id="c-reset-demo">Apagar dados da demonstração</button>` : ''}</div>
+  </section>`;
+  $$('[data-img]').forEach(inp => inp.onchange = () => enviarImagem(inp.dataset.img, inp.files[0]).catch(falha));
+  $$('[data-rest]').forEach(b => b.onclick = async () => { try { S.imagens = await api('salvarImagem', { id: b.dataset.rest, img: '' }); DOCIMG.imagens = S.imagens; telaConfig(); toast('Imagem padrão restaurada.'); } catch (e) { falha(e); } });
+  if ($('#c-msg-salvar')) {
+    $('#c-msg-salvar').onclick = async () => { try { S.config = await api('salvarConfig', { msgWhats: $('#c-msg').value }); toast('Mensagem salva.'); } catch (e) { falha(e); } };
+    $('#c-msg-pad').onclick = () => { $('#c-msg').value = MSG_WHATS_PADRAO; };
+    carregarUsuarios();
+  }
+  $('#s-salvar').onclick = async () => {
+    if ($('#s-nova').value !== $('#s-nova2').value) { toast('As novas senhas não conferem.', 'erro'); return; }
+    try { await api('alterarSenha', { atual: $('#s-atual').value, nova: $('#s-nova').value }); toast('Senha alterada.'); ['#s-atual', '#s-nova', '#s-nova2'].forEach(s => { $(s).value = ''; }); } catch (e) { falha(e); }
+  };
+  if ($('#c-url-salvar')) $('#c-url-salvar').onclick = async () => {
+    try {
+      S.config = await api('salvarConfig', { urlAssinatura: $('#c-url-ass').value, urlPublica: $('#c-url').value });
+      await carregar(); telaConfig(); toast('Endereços salvos. Os próximos links já usam este endereço.');
+    } catch (e) { falha(e); }
+  };
+  if ($('#c-reset-demo')) $('#c-reset-demo').onclick = async () => { if (await confirmar('Apagar demonstração', 'Apagar todos os documentos, assinaturas e alterações de modelos desta demonstração?', 'Apagar', 'btn-danger')) { Demo.resetar(); await carregar(); telaConfig(); toast('Demonstração reiniciada.'); } };
+}
+
+// Reduz a imagem no navegador para caber numa célula da planilha (~35 KB).
+async function enviarImagem(chave, arq) {
+  if (!arq) return;
+  let url;
+  if (arq.type === 'image/svg+xml' && arq.size < 30000) {
+    url = await new Promise(ok => { const fr = new FileReader(); fr.onload = () => ok(fr.result); fr.readAsDataURL(arq); });
+  } else {
+    const img = await new Promise((ok, erro) => { const i = new Image(); i.onload = () => ok(i); i.onerror = () => erro(new Error('Imagem inválida.')); i.src = URL.createObjectURL(arq); });
+    let lado = chave === 'logo' ? 700 : 260;
+    for (let k = 0; k < 8; k++) {
+      const f = Math.min(1, lado / Math.max(img.width, img.height));
+      const cv = document.createElement('canvas'); cv.width = Math.round(img.width * f); cv.height = Math.round(img.height * f);
+      const cx = cv.getContext('2d'); cx.drawImage(img, 0, 0, cv.width, cv.height);
+      url = cv.toDataURL('image/png');
+      if (url.length > 45000) url = (cx.globalCompositeOperation = 'destination-over', cx.fillStyle = '#fff', cx.fillRect(0, 0, cv.width, cv.height), cv.toDataURL('image/jpeg', 0.88));
+      if (url.length <= 45000) break;
+      lado = Math.round(lado * 0.8);
+    }
+  }
+  S.imagens = await api('salvarImagem', { id: chave, img: url });
+  DOCIMG.imagens = S.imagens;
+  telaConfig();
+  toast('Imagem atualizada.');
+}
+
+async function carregarUsuarios() {
+  try {
+    const us = await api('usuarios', {}, { silencioso: true });
+    $('#c-usuarios').outerHTML = `<div id="c-usuarios"><div class="tabela-wrap"><table class="tab">
+      <thead><tr><th>E-mail</th><th>Nome</th><th>Perfil</th><th>Situação</th><th></th></tr></thead>
+      <tbody>${us.map(u => `<tr><td>${esc(u.id)}</td><td>${esc(u.nome || '')}</td><td>${esc(u.perfil)}</td><td>${u.ativo ? (u.trocarSenha ? '<span class="bdg b-warn">Aguardando 1º acesso</span>' : bdg('Ativo')) : bdg('Inativo')}</td>
+        <td class="dir"><button class="btn-link" data-ued="${esc(u.id)}">Editar</button> · <button class="btn-link" data-urs="${esc(u.id)}">Senha inicial</button></td></tr>`).join('')}</tbody></table></div>
+      <div class="dir"><button class="btn" id="u-novo">${ic('plus')} Novo usuário</button></div>
+      <p class="muted sm">Novos usuários entram com a senha inicial <b>@Abcd1234</b> e são obrigados a cadastrar uma senha própria no primeiro acesso (o mesmo vale após "Senha inicial"). "Emissor" emite e coleta assinaturas; "Administrador" também gerencia imagens, mensagem e usuários.</p></div>`;
+    const form = u => abrirModal({
+      titulo: u ? 'Editar usuário' : 'Novo usuário',
+      corpo: `<label class="fld"><span>E-mail</span><input id="u-email" value="${esc(u ? u.id : '')}" ${u ? 'readonly' : ''}></label>
+        <label class="fld"><span>Nome</span><input id="u-nome" value="${esc(u ? u.nome : '')}"></label>
+        <label class="fld"><span>Perfil</span><select id="u-perfil">${opcoes(['Emissor', 'Administrador'], u ? u.perfil : 'Emissor')}</select></label>
+        ${u ? `<label class="aceite"><input type="checkbox" id="u-ativo" ${u.ativo ? 'checked' : ''}> <span>Ativo</span></label>` : ''}`,
+      acoes: [{ label: 'Cancelar' }, { label: 'Salvar', cls: 'btn-primary', onClick: async () => {
+        try { await api('salvarUsuario', { id: $('#u-email').value, nome: $('#u-nome').value, perfil: $('#u-perfil').value, ativo: $('#u-ativo') ? $('#u-ativo').checked : true }); fecharModal(); carregarUsuarios(); toast('Usuário salvo.'); } catch (e) { falha(e); }
+      } }]
+    });
+    $('#u-novo').onclick = () => form(null);
+    $$('[data-ued]').forEach(b => b.onclick = () => form(us.filter(u => u.id === b.dataset.ued)[0]));
+    $$('[data-urs]').forEach(b => b.onclick = async () => {
+      if (!await confirmar('Senha inicial', `Voltar a senha de <b>${esc(b.dataset.urs)}</b> para a senha inicial?`)) return;
+      try { await api('redefinirSenha', { id: b.dataset.urs }); toast('Senha voltou para @Abcd1234; a troca será exigida no próximo acesso.'); carregarUsuarios(); } catch (e) { falha(e); }
+    });
+  } catch (e) { $('#c-usuarios').textContent = e.message; }
+}
+
+// ============================== ASSINATURA PÚBLICA ==============================
+async function telaAssinar(p) {
+  document.body.className = 'tela-pub';
+  $('#app').innerHTML = `<div class="pub"><div class="pub-carregando">${ic('shield')}<p>Carregando documento…</p></div></div>`;
+  try {
+    const d = await api('paraAssinar', { d: p.d, t: p.t });
+    S.pub = { p, d };
+    DOCIMG.imagens = d.imagens || {};
+    renderAssinar();
+  } catch (e) {
+    $('#app').innerHTML = `<div class="pub"><div class="pub-card erro">${ic('ban')}<h2>Não foi possível abrir</h2><p>${esc(e.message)}</p></div></div>`;
+  }
+}
+
+function renderAssinar(sucesso) {
+  const { d } = S.pub, eu = d.eu, doc = d.doc, c = d.conteudo;
+  const papel = rotPapelPub(c, eu.papel);
+  const podeAssinar = eu.status === 'Pendente' && doc.status !== 'Cancelado';
+  const ativos = d.assinantes || [];
+  const feitos = ativos.filter(a => a.status === 'Assinado').length;
+  $('#app').innerHTML = `
+  <div class="pub">
+    <header class="pub-topo"><img src="${imgDoc('logo')}" alt=""><div><b>Assinatura eletrônica</b><small>${esc(c.tipo === 'PT' ? 'Permissão de Trabalho' : 'Análise Preliminar de Risco')}</small></div></header>
+    ${sucesso ? `<div class="pub-card ok">${ic('check')}<div><h2>Assinatura registrada!</h2><p>Obrigado, ${esc((eu.nome || '').split(' ')[0])}. Sua assinatura já aparece no documento abaixo.</p></div></div>` : ''}
+    <div class="pub-card info">
+      <div class="pub-doc"><span class="tag ${c.tipo === 'PT' ? 'tag-pt' : 'tag-apr'}">${c.tipo}</span><div><b>${esc(doc.id)} · ${esc(doc.titulo)}</b>
+        <div class="sm muted">${esc(doc.codigo)}${doc.casa ? ' · ' + esc(doc.casa) : ''}${doc.data ? ' · ' + esc(doc.data) : ''}</div></div></div>
+      <div class="sm">Você assina como: <b>${esc(papel)}</b> · Situação: ${bdg(eu.status === 'Assinado' ? 'Assinado' : doc.status === 'Cancelado' ? 'Cancelado' : 'Pendente')}</div>
+      <div class="assin-resumo"><div class="prog grande"><i style="width:${ativos.length ? Math.round(100 * feitos / ativos.length) : 0}%"></i></div><span>${feitos} de ${ativos.length} assinatura(s)</span></div>
+    </div>
+    ${doc.status === 'Cancelado' ? `<div class="pub-card erro">${ic('ban')}<p>Este documento foi cancelado e não pode mais ser assinado.</p></div>` : ''}
+    <div class="pub-passo"><b>1</b> Leia o documento completo</div>
+    <div class="pub-doc-wrap" id="pub-area"><div class="papel" id="papel-pub"></div></div>
+    <div class="pub-acoes-doc"><button class="btn" id="pub-pdf">${ic('pdf')} Baixar PDF</button></div>
+    ${podeAssinar ? `<div class="pub-passo"><b>2</b> Confirme seus dados e assine</div>
+      <div class="pub-card form">${formAssinaturaHtml(eu, 'p')}<button class="btn btn-primary btn-full btn-grande" id="pub-assinar">${ic('pen')} Assinar documento</button></div>` :
+      eu.status === 'Assinado' && !sucesso ? `<div class="pub-card ok">${ic('check')}<div><h2>Você já assinou</h2><p>Assinatura registrada em ${fmtDH(eu.assinadoEm)}.</p></div></div>` : ''}
+    <p class="pub-rodape">Assinatura eletrônica com identificação do assinante, aceite do conteúdo e código de verificação SHA-256 (Lei 14.063/2020). O link é pessoal: não o encaminhe.</p>
+  </div>`;
+  const R = { modo: 'ver', c, assin: ativos, meta: doc, certificado: feitos > 0 };
+  montarDocumento($('#papel-pub'), R).then(ajustarZoomPub);
+  $('#pub-pdf').onclick = async () => {
+    carregando(true, 'Gerando PDF…');
+    try {
+      const pdf = await gerarPdf(R);
+      const url = pdf.output('bloburl');
+      carregando(false);
+      abrirModal({ titulo: 'PDF pronto', corpo: `<div class="pdf-acoes"><a class="btn btn-primary" href="${url}" target="_blank" rel="noopener">${ic('pdf')} Abrir PDF</a><a class="btn" href="${url}" download="${esc(nomeArquivo(doc, c))}.pdf">${ic('down')} Baixar</a></div>`, acoes: [{ label: 'Fechar' }] });
+    } catch (e) { carregando(false); falha(e); }
+  };
+  if (podeAssinar) {
+    const pad = criarPad($('#p-pad'));
+    $('#p-limpar').onclick = () => pad.limpar();
+    $('#pub-assinar').onclick = async () => {
+      try {
+        const dados = dadosAssinatura('p', pad);
+        const r = await api('assinar', Object.assign({ d: S.pub.p.d, t: S.pub.p.t }, dados), { txt: 'Registrando assinatura…' });
+        S.pub.d = r;
+        renderAssinar(true);
+        window.scrollTo(0, 0);
+      } catch (e) { falha(e); }
+    };
+  }
+}
+function rotPapelPub(c, p) { return rotPapel(c, p); }
+function ajustarZoomPub() {
+  const area = $('#pub-area'), papel = $('#papel-pub');
+  if (!area || !papel) return;
+  papel.style.zoom = Math.min(1.2, Math.max(0.3, (area.clientWidth - 16) / (595.3 * 96 / 72)));
+}
+
+// ============================== MODO DEMONSTRAÇÃO ==============================
+// Simula o backend (Code.gs) no navegador, com os mesmos modelos, para testar sem publicar.
+const Demo = (() => {
+  const CHAVE = 'pt_apr_ssma_demo_v1';
+  const semente = () => {
+    const seeds = JSON.parse(document.getElementById('seed-modelos').textContent);
+    return {
+      modelos: seeds.map((c, i) => ({ id: c.id, tipo: c.tipo, nome: c.nome, codigo: c.cab.documento, titulo: c.titulo || c.cab.titulo, ativo: true, ordem: i + 1, atualizado: new Date().toISOString(), atualizadoPor: 'Modelo original', conteudo: c })),
+      docs: [], assin: [], imagens: {}, config: {}, usuarios: [], seq: {}
+    };
+  };
+  let db;
+  const carregar_ = () => { try { const s = localStorage.getItem(CHAVE); if (s) return JSON.parse(s); } catch (e) {} return semente(); };
+  const salvar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(db)); } catch (e) { console.warn(e); } };
+  const sessoes = {};
+  const agora = () => new Date().toISOString();
+  const tok = () => Array.from({ length: 40 }, () => 'abcdef0123456789'[Math.floor(Math.random() * 16)]).join('');
+  const padrao = () => { const m = {}; JSON.parse(document.getElementById('seed-modelos').textContent).forEach(c => { m[c.id] = c; }); return m; };
+  const resumoDoc = c => {
+    if (c.tipo === 'PT') return { codigo: c.cab.documento, titulo: c.cab.titulo, casa: c.casa || '', cidade: c.cidade || '', data: c.data || '', resp: c.encarregados || c.contratada || '' };
+    const campo = k => { const f = (c.campos || []).concat(c.extras || []).filter(x => x.k === k)[0]; return f ? String(f.v || '') : ''; };
+    return { codigo: c.cab.documento, titulo: c.titulo || c.cab.titulo, casa: campo('casa'), cidade: '', data: campo('data'), resp: campo('resp') };
+  };
+  const statusDoc = d => {
+    if (d.status === 'Cancelado' || d.status === 'Excluído') return d.status;
+    const at = db.assin.filter(a => a.docId === d.id && a.status !== 'Invalidada' && a.status !== 'Excluído');
+    if (!at.length) return 'Rascunho';
+    return at.every(a => a.status === 'Assinado') ? 'Assinado' : 'Em assinatura';
+  };
+  const pub = d => { const o = Object.assign({}, d); delete o.conteudo; return o; };
+  const assinDe = (id, comToken) => db.assin.filter(a => a.docId === id).sort((a, b) => a.ordem - b.ordem).map(a => { const o = Object.assign({}, a); if (!comToken) { delete o.token; delete o.telefone; delete o.ua; } return o; });
+  const documento = id => { const d = db.docs.filter(x => x.id === id)[0]; if (!d) throw new Error('Documento não encontrado.'); return { doc: pub(d), conteudo: clone(d.conteudo), assinantes: assinDe(id, true) }; };
+  const user = token => { const u = sessoes[token] || (String(token || '').startsWith('demo:') ? { email: token.slice(5), nome: token.slice(5), perfil: /^emissor/.test(token.slice(5)) ? 'Emissor' : 'Administrador' } : null); if (!u) throw new Error('Sessão expirada. Faça login novamente.'); return u; };
+  const hist = (d, u, t) => { d.historico = ((d.historico || '') + '\n' + new Date().toLocaleString('pt-BR') + ' · ' + u.email + ' · ' + t).trim(); };
+  const novoId = tipo => { const ano = new Date().getFullYear(), k = tipo + ano; db.seq[k] = (db.seq[k] || 0) + 1; return `${tipo}-${ano}-${String(db.seq[k]).padStart(4, '0')}`; };
+  const localizar = p => {
+    const a = db.assin.filter(x => x.docId === p.d && x.token === p.t)[0];
+    if (!a || a.status === 'Excluído') throw new Error('Link de assinatura inválido ou expirado. Solicite um novo link ao responsável.');
+    const d = db.docs.filter(x => x.id === a.docId)[0];
+    if (!d || d.status === 'Excluído') throw new Error('Documento não encontrado.');
+    return { a, d };
+  };
+  const mascara = v => { const s = String(v || ''), g = s.replace(/\D/g, ''); if (g.length === 11) return '***.' + g.slice(3, 6) + '.' + g.slice(6, 9) + '-**'; return s.length > 4 ? s.slice(0, 2) + '*'.repeat(s.length - 4) + s.slice(-2) : s; };
+  const paraAssinar = p => {
+    const { a, d } = localizar(p);
+    return { doc: pub(d), conteudo: clone(d.conteudo), imagens: db.imagens,
+      assinantes: assinDe(d.id, false).filter(x => x.status !== 'Excluído' && x.status !== 'Invalidada').map(x => Object.assign(x, { documento: mascara(x.documento), docAssinado: mascara(x.docAssinado) })),
+      eu: { id: a.id, papel: a.papel, nome: a.nome, documento: a.documento, status: a.status, assinadoEm: a.assinadoEm } };
+  };
+  const A = {
+    login(p) {
+      const email = String(p.email || '').trim().toLowerCase() || 'admin@demo';
+      db.senhas = db.senhas || {};
+      if (String(p.senha) !== (db.senhas[email] || SENHA_DEMO)) throw new Error('E-mail ou senha inválidos. (Demonstração: senha ' + SENHA_DEMO + ')');
+      const token = 'demo:' + email;
+      // na demonstração, e-mails que começam com "emissor" entram com o perfil Emissor
+      // e-mails que começam com "novo" simulam o primeiro acesso (troca obrigatória de senha)
+      sessoes[token] = { email, nome: email.split('@')[0], perfil: /^emissor/.test(email) ? 'Emissor' : 'Administrador', trocar: /^novo/.test(email) && !db.senhas[email] };
+      return Object.assign({ token }, sessoes[token]);
+    },
+    paraAssinar,
+    assinar(p) {
+      const { a, d } = localizar(p);
+      if (d.status === 'Cancelado') throw new Error('Este documento foi cancelado e não pode mais ser assinado.');
+      if (a.status === 'Assinado') throw new Error('Você já assinou este documento.');
+      if (a.status === 'Invalidada') throw new Error('Este link foi substituído. Solicite o novo link ao responsável.');
+      if (!p.aceite) throw new Error('Confirme a declaração de leitura e concordância.');
+      Object.assign(a, { status: 'Assinado', assinadoEm: agora(), nomeAssinado: p.nome, docAssinado: p.documento, img: p.img, ua: p.ua, versaoDoc: d.versao });
+      a.hash = sha256([d.id, d.versao, a.id, p.nome, p.documento, a.assinadoEm, p.img].join('|'));
+      d.status = statusDoc(d); salvar();
+      return paraAssinar(p);
+    },
+    inicio(p, u) {
+      const docs = db.docs.filter(d => d.status !== 'Excluído').map(d => {
+        const at = db.assin.filter(a => a.docId === d.id && a.status !== 'Invalidada' && a.status !== 'Excluído');
+        return Object.assign(pub(d), { total: at.length, assinados: at.filter(a => a.status === 'Assinado').length });
+      });
+      const pm = padrao();
+      return { usuario: u, docs, modelos: db.modelos.map(m => { const o = Object.assign({}, m); delete o.conteudo; o.padrao = !!pm[m.id]; return o; }), imagens: db.imagens, config: Object.assign({ msgWhats: MSG_WHATS_PADRAO }, db.config), url: '' };
+    },
+    logout() { return true; },
+    alterarSenha(p, u) {
+      db.senhas = db.senhas || {};
+      if (String(p.atual) !== (db.senhas[u.email] || SENHA_DEMO)) throw new Error('A senha atual está incorreta.');
+      const nova = String(p.nova || '');
+      if (nova.length < 8 || !/[A-Za-z]/.test(nova) || !/\d/.test(nova)) throw new Error('A nova senha deve ter pelo menos 8 caracteres, com letras e números.');
+      if (nova === SENHA_DEMO) throw new Error('A nova senha não pode ser a senha inicial.');
+      if (nova === String(p.atual)) throw new Error('A nova senha deve ser diferente da atual.');
+      db.senhas[u.email] = nova; u.trocar = false; salvar();
+      return u;
+    },
+    modelo(p) { const m = db.modelos.filter(x => x.id === p.id)[0]; if (!m) throw new Error('Modelo não encontrado.'); return { id: m.id, ativo: m.ativo, conteudo: clone(m.conteudo) }; },
+    salvarModelo(p, u) {
+      const c = p.conteudo; let m = p.id && db.modelos.filter(x => x.id === p.id)[0];
+      if (!m) {
+        let base = (c.tipo + '-' + String(c.cab.documento || 'novo').replace(/^CCB\s*SSMA\s{0,}/i, '').replace(/[^\w.]+/g, '')).slice(0, 30), id = base, i = 2;
+        while (db.modelos.some(x => x.id === id)) id = base + '-' + (i++);
+        c.id = id; m = { id, ordem: db.modelos.length + 1, ativo: true }; db.modelos.push(m);
+      }
+      c.id = m.id;
+      Object.assign(m, { tipo: c.tipo, nome: c.nome, codigo: c.cab.documento, titulo: c.titulo || c.cab.titulo, atualizado: agora(), atualizadoPor: u.email, conteudo: c });
+      salvar(); return { id: m.id, conteudo: c };
+    },
+    ativarModelo(p) { const m = db.modelos.filter(x => x.id === p.id)[0]; m.ativo = !!p.ativo; salvar(); return true; },
+    restaurarModelo(p, u) { const c = padrao()[p.id]; if (!c) throw new Error('Este modelo não tem versão original.'); return A.salvarModelo({ id: p.id, conteudo: clone(c) }, u); },
+    documento(p) { return documento(p.id); },
+    salvarDocumento(p, u) {
+      const c = p.conteudo, versao = sha256(JSON.stringify(c)), admin = u.perfil === 'Administrador';
+      let d;
+      if (!admin) {
+        const base = p.id ? (db.docs.filter(x => x.id === p.id)[0] || {}).conteudo
+          : p.origem ? (db.docs.filter(x => x.id === p.origem)[0] || {}).conteudo
+          : (db.modelos.filter(x => x.id === (p.modeloId || c.id))[0] || {}).conteudo;
+        const proibidos = diferencas(base, c, '', []).filter(x => !campoLivre(base, x));
+        if (proibidos.length) throw new Error('Seu perfil (Emissor) só pode preencher os campos do formulário. Alterações em textos fixos, medidas ou estrutura são feitas por um Administrador. (' + proibidos.slice(0, 3).join(', ') + ')');
+      }
+      if (p.id) {
+        d = db.docs.filter(x => x.id === p.id)[0];
+        if (!d) throw new Error('Documento não encontrado.');
+        if (d.status === 'Cancelado') throw new Error('Documento cancelado não pode ser alterado.');
+        if (d.versao !== versao) {
+          const ass = db.assin.filter(a => a.docId === d.id && a.status === 'Assinado');
+          if (ass.length && !p.invalidar) return { precisaConfirmar: true, assinadas: ass.length };
+          ass.forEach(a => { a.status = 'Invalidada'; db.assin.push({ id: 'AS' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), docId: d.id, ordem: a.ordem, papel: a.papel, nome: a.nome, documento: a.documento, telefone: a.telefone, token: tok(), status: 'Pendente', criado: agora() }); });
+          hist(d, u, 'conteúdo alterado' + (ass.length ? ` (${ass.length} assinatura(s) invalidada(s))` : ''));
+        }
+        Object.assign(d, resumoDoc(c), { versao, atualizado: agora(), atualizadoPor: u.email, conteudo: c });
+        d.status = statusDoc(d);
+      } else {
+        d = Object.assign({ id: novoId(c.tipo), tipo: c.tipo, modeloId: p.modeloId || '', status: 'Rascunho', criado: agora(), criadoPor: u.email, atualizado: agora(), atualizadoPor: u.email, vinculo: p.vinculo || '', versao, conteudo: c }, resumoDoc(c));
+        hist(d, u, 'documento emitido');
+        db.docs.push(d);
+      }
+      salvar(); return documento(d.id);
+    },
+    cancelarDocumento(p, u) { const d = db.docs.filter(x => x.id === p.id)[0]; d.status = p.excluir ? 'Excluído' : 'Cancelado'; d.motivo = p.motivo; hist(d, u, d.status.toLowerCase() + ': ' + p.motivo); salvar(); return true; },
+    salvarAssinantes(p) {
+      const d = db.docs.filter(x => x.id === p.docId)[0];
+      if (!d) throw new Error('Salve o documento antes de incluir assinantes.');
+      const doDoc = db.assin.filter(a => a.docId === d.id), vistos = {};
+      (p.lista || []).forEach((x, i) => {
+        const a = x.id && doDoc.filter(y => y.id === x.id)[0];
+        if (a) { vistos[a.id] = 1; a.ordem = i + 1; if (a.status === 'Pendente') Object.assign(a, { papel: x.papel, nome: x.nome, documento: x.documento, telefone: x.telefone }); }
+        else db.assin.push({ id: 'AS' + Date.now().toString(36) + i + Math.random().toString(36).slice(2, 5), docId: d.id, ordem: i + 1, papel: x.papel, nome: x.nome, documento: x.documento, telefone: x.telefone, token: tok(), status: 'Pendente', criado: agora() });
+      });
+      doDoc.forEach(a => { if (!vistos[a.id] && a.status === 'Pendente') a.status = 'Excluído'; if (!vistos[a.id] && a.status === 'Assinado') throw new Error('Não é possível remover quem já assinou (' + a.nome + ').'); });
+      d.status = statusDoc(d); salvar(); return documento(d.id);
+    },
+    marcarEnviado(p) { const a = db.assin.filter(x => x.id === p.id)[0]; a.enviadoEm = agora(); salvar(); return a.enviadoEm; },
+    salvarPdf() { throw new Error('Salvar no Drive só funciona com o sistema publicado no Google Apps Script.'); },
+    salvarImagem(p) { if (p.img) db.imagens[p.id] = p.img; else delete db.imagens[p.id]; salvar(); return db.imagens; },
+    salvarConfig(p) { Object.assign(db.config, p); salvar(); return Object.assign({ msgWhats: MSG_WHATS_PADRAO }, db.config); },
+    usuarios() { return [{ id: 'admin@demo', nome: 'Administrador (demo)', perfil: 'Administrador', ativo: true }]; },
+    salvarUsuario() { throw new Error('Usuários só podem ser gerenciados no sistema publicado.'); },
+    redefinirSenha() { throw new Error('Usuários só podem ser gerenciados no sistema publicado.'); }
+  };
+  const PUB = { login: 1, paraAssinar: 1, assinar: 1 };
+  const SO_ADMIN = { salvarModelo: 1, ativarModelo: 1, restaurarModelo: 1, cancelarDocumento: 1, salvarImagem: 1, salvarConfig: 1, usuarios: 1 };
+  return {
+    api(action, p, token) {
+      try {
+        if (!db) db = carregar_();
+        if (!A[action]) throw new Error('Ação inválida: ' + action);
+        const u = PUB[action] ? null : user(token);
+        if (u && u.trocar && action !== 'alterarSenha' && action !== 'logout') throw new Error('TROCAR_SENHA: defina uma nova senha para continuar.');
+        if (SO_ADMIN[action] && u.perfil !== 'Administrador') throw new Error('Ação permitida somente para administradores.');
+        return { ok: true, data: clone(A[action](p || {}, u)) };
+      } catch (e) { return { ok: false, error: e.message }; }
+    },
+    resetar() { db = semente(); salvar(); }
+  };
+})();
+
+// Caminhos em que dois conteúdos diferem (mesma lógica do diferencas_ do Code.gs).
+function diferencas(a, b, p, out) {
+  if (a === b) return out;
+  const ta = Object.prototype.toString.call(a), tb = Object.prototype.toString.call(b);
+  const composto = ta === '[object Object]' || ta === '[object Array]';
+  if (ta !== tb || !composto || (ta === '[object Array]' && a.length !== b.length)) {
+    const vazio = x => x == null || x === '' || x === false;
+    if (!(vazio(a) && vazio(b))) out.push(p || '(documento)');
+    return out;
+  }
+  new Set(Object.keys(a).concat(Object.keys(b))).forEach(k => diferencas(a[k], b[k], p ? p + '.' + k : k, out));
+  return out;
+}
+
+// SHA-256 síncrono (usado só no modo demonstração; no servidor é o Utilities.computeDigest).
+function sha256(s) {
+  const K = [0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5, 0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174, 0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da, 0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967, 0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85, 0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070, 0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3, 0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2];
+  const b = new TextEncoder().encode(s), l = b.length, n = ((l + 9 + 63) >> 6) << 6, m = new Uint8Array(n);
+  m.set(b); m[l] = 0x80;
+  const dv = new DataView(m.buffer); dv.setUint32(n - 4, l * 8); dv.setUint32(n - 8, Math.floor(l / 0x20000000));
+  const H = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19], w = new Uint32Array(64);
+  const r = (x, k) => (x >>> k) | (x << (32 - k));
+  for (let o = 0; o < n; o += 64) {
+    for (let i = 0; i < 16; i++) w[i] = dv.getUint32(o + i * 4);
+    for (let i = 16; i < 64; i++) { const s0 = r(w[i - 15], 7) ^ r(w[i - 15], 18) ^ (w[i - 15] >>> 3), s1 = r(w[i - 2], 17) ^ r(w[i - 2], 19) ^ (w[i - 2] >>> 10); w[i] = (w[i - 16] + s0 + w[i - 7] + s1) >>> 0; }
+    let [a, bb, c, d, e, f, g, h] = H;
+    for (let i = 0; i < 64; i++) {
+      const t1 = (h + (r(e, 6) ^ r(e, 11) ^ r(e, 25)) + ((e & f) ^ (~e & g)) + K[i] + w[i]) >>> 0;
+      const t2 = ((r(a, 2) ^ r(a, 13) ^ r(a, 22)) + ((a & bb) ^ (a & c) ^ (bb & c))) >>> 0;
+      h = g; g = f; f = e; e = (d + t1) >>> 0; d = c; c = bb; bb = a; a = (t1 + t2) >>> 0;
+    }
+    H[0] = (H[0] + a) >>> 0; H[1] = (H[1] + bb) >>> 0; H[2] = (H[2] + c) >>> 0; H[3] = (H[3] + d) >>> 0; H[4] = (H[4] + e) >>> 0; H[5] = (H[5] + f) >>> 0; H[6] = (H[6] + g) >>> 0; H[7] = (H[7] + h) >>> 0;
+  }
+  return H.map(x => x.toString(16).padStart(8, '0')).join('');
+}
+
+iniciar();
+</script>
+
+</body>
+</html>

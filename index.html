@@ -237,8 +237,26 @@ body.com-editor{overflow:hidden}
   .ed-painel{width:100%}
   .grade2,.grade3{grid-template-columns:1fr}
   .lista-mod{grid-template-columns:1fr}
-  .tab th:nth-child(3),.tab td:nth-child(3),.tab th:nth-child(4),.tab td:nth-child(4){display:none}
+  .tab:not(.tab-livre) th:nth-child(3),.tab:not(.tab-livre) td:nth-child(3),.tab:not(.tab-livre) th:nth-child(4),.tab:not(.tab-livre) td:nth-child(4){display:none}
   .filtros select{min-width:0;flex:1}
+  /* listas de documentos e de voluntários: cada linha vira um cartão (sem rolagem lateral; botões sempre visíveis) */
+  .tab-cartoes thead{display:none}
+  .tab-cartoes,.tab-cartoes tbody,.tab-cartoes tr,.tab-cartoes td{display:block;width:100%}
+  .tab-cartoes tr{position:relative;padding:12px 52px 12px 14px;border-bottom:1px solid var(--linha2)}
+  .tab-cartoes.tab-docs tr{padding-right:100px}
+  .tab-cartoes tr:last-child{border-bottom:0}
+  .tab-cartoes td{padding:3px 0;border:0}
+  .tab-cartoes td[data-l]{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .tab-cartoes td[data-l]::before{content:attr(data-l);flex:0 0 74px;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+  .tab-cartoes td.dir{position:absolute;top:8px;right:6px;width:auto;padding:0;display:flex;gap:2px}
+  .tab-cartoes td.dir .btn-icon{width:42px;height:42px}
+  .tab-cartoes td .sm{margin:0}
+  .tab-cartoes .prog{width:70px}
+  .pg-topo .acoes{width:100%} .pg-topo .acoes .btn{flex:1 1 auto;justify-content:center}
+  .vol-resumo b{font-size:19px}
+  .modal-bg{padding:8px;align-items:flex-end} .modal{max-height:94vh}
+  .modal-pe .btn{flex:1;justify-content:center}
+  .login-card{padding:22px 18px}
 }
 
 .papel{display:flex;flex-direction:column;align-items:center;gap:22px;padding:22px 16px;width:max-content;min-width:100%}
@@ -981,11 +999,41 @@ const baseAssinatura = () => (S.config && S.config.urlAssinatura) || baseUrl();
 
 function sessao(salvar) {
   try {
-    if (salvar === undefined) { const s = JSON.parse(sessionStorage.getItem('ptapr_sessao') || 'null'); if (s) { S.token = s.token; S.usuario = s.usuario; } }
-    else if (salvar) sessionStorage.setItem('ptapr_sessao', JSON.stringify({ token: S.token, usuario: S.usuario }));
-    else sessionStorage.removeItem('ptapr_sessao');
+    // fica no navegador (PC ou celular) por até 10 minutos de inatividade; cada uso do sistema renova o prazo
+    if (salvar === undefined) {
+      const s = JSON.parse(localStorage.getItem('ptapr_sessao') || 'null');
+      if (s && s.exp > Date.now()) { S.token = s.token; S.usuario = s.usuario; } else if (s) localStorage.removeItem('ptapr_sessao');
+    }
+    else if (salvar) localStorage.setItem('ptapr_sessao', JSON.stringify({ token: S.token, usuario: S.usuario, exp: Date.now() + SESSAO_MS }));
+    else localStorage.removeItem('ptapr_sessao');
   } catch (e) {}
 }
+
+// Sessão: 10 minutos sem uso encerram o login. Toque, tecla, rolagem e chamadas ao servidor renovam o prazo
+// (e um "ping" a cada ~4 min mantém a sessão do servidor viva enquanto a pessoa preenche um formulário longo).
+const SESSAO_MS = 10 * 60 * 1000;
+let ultimaAtiv = Date.now(), ultimoPing = Date.now();
+function sessaoExpirada() {
+  try { const s = JSON.parse(localStorage.getItem('ptapr_sessao') || 'null'); return !s || s.exp <= Date.now(); } catch (e) { return false; }
+}
+function verificarSessao() {
+  if (!S.token || document.body.className === 'tela-login') return;
+  if (sessaoExpirada()) { encerrarSessao(); toast('Sessão encerrada após 10 minutos sem uso. Entre novamente.', 'aviso'); }
+}
+function atividade() {
+  if (!S.token) return;
+  const agora = Date.now();
+  if (agora - ultimaAtiv < 5000) return;
+  ultimaAtiv = agora; sessao(true);
+}
+['pointerdown', 'keydown', 'touchstart', 'scroll', 'input'].forEach(ev => document.addEventListener(ev, atividade, { passive: true, capture: true }));
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') verificarSessao(); });
+setInterval(() => {
+  verificarSessao();
+  if (S.token && Date.now() - ultimoPing > 4 * 60 * 1000 && ultimaAtiv > ultimoPing) {
+    ultimoPing = Date.now(); api('ping', {}, { silencioso: true }).catch(() => {});
+  }
+}, 30000);
 
 // ============================== API ==============================
 let ocupado = 0;
@@ -1013,6 +1061,7 @@ async function api(action, payload = {}, opt = {}) {
       if (/^TROCAR_SENHA/.test(msg) && S.token) { telaTrocarSenha(); throw new Error('Defina uma nova senha para continuar.'); }
       throw new Error(msg);
     }
+    if (S.token && action !== 'logout' && action !== 'login') { sessao(true); ultimaAtiv = Date.now(); }
     return r.data;
   } finally { if (!opt.silencioso) carregando(false); }
 }
@@ -1243,6 +1292,7 @@ function telaDocs() {
   const f = S.f;
   const cont = {}; STATUS.forEach(s => { cont[s] = 0; });
   S.docs.forEach(d => { cont[d.status] = (cont[d.status] || 0) + 1; });
+  const aprsDe = {}; S.docs.forEach(d => { if (d.tipo === 'APR' && d.vinculo && d.status !== 'Cancelado') (aprsDe[d.vinculo] = aprsDe[d.vinculo] || []).push(d.id); });
   const lista = S.docs.filter(d => (!f.tipo || d.tipo === f.tipo) && (!f.status || d.status === f.status) &&
     (!f.busca || norm([d.id, d.titulo, d.casa, d.cidade, d.resp, d.codigo].join(' ')).includes(norm(f.busca))))
     .sort((a, b) => String(b.criado).localeCompare(String(a.criado)));
@@ -1261,15 +1311,15 @@ function telaDocs() {
       <select id="f-tipo">${opcoes([['PT', 'PT – Permissão de Trabalho'], ['APR', 'APR – Análise Preliminar de Risco']], f.tipo, 'Todos os tipos')}</select>
     </div>
     ${lista.length ? `
-    <div class="tabela-wrap"><table class="tab">
+    <div class="tabela-wrap"><table class="tab tab-livre tab-cartoes tab-docs">
       <thead><tr><th>Número</th><th>Documento</th><th>Casa de oração</th><th>Data</th><th>Assinaturas</th><th>Situação</th><th></th></tr></thead>
       <tbody>${lista.map(d => `<tr data-id="${esc(d.id)}" class="clicavel">
         <td><b>${esc(d.id)}</b><div class="muted sm">${esc(d.codigo || '')}</div></td>
-        <td>${esc(d.titulo)}${d.vinculo ? `<div class="muted sm">vinculada a ${esc(d.vinculo)}</div>` : ''}</td>
-        <td>${esc(d.casa || '—')}${d.cidade ? `<div class="muted sm">${esc(d.cidade)}</div>` : ''}</td>
-        <td>${esc(d.data || '—')}</td>
-        <td>${d.total ? `<div class="prog"><i style="width:${Math.round(100 * d.assinados / d.total)}%"></i></div><span class="sm">${d.assinados}/${d.total}</span>` : '<span class="muted sm">—</span>'}</td>
-        <td>${bdg(d.status)}</td>
+        <td>${esc(d.titulo)}${d.vinculo ? `<div class="muted sm">vinculada a ${esc(d.vinculo)}</div>` : ''}${d.tipo === 'PT' && aprsDe[d.id] ? `<div class="muted sm">APR vinculada: ${aprsDe[d.id].map(esc).join(', ')}</div>` : ''}</td>
+        <td data-l="Casa">${esc(d.casa || '—')}${d.cidade ? `<div class="muted sm">${esc(d.cidade)}</div>` : ''}</td>
+        <td data-l="Data">${esc(d.data || '—')}</td>
+        <td data-l="Assinaturas">${d.total ? `<div class="prog"><i style="width:${Math.round(100 * d.assinados / d.total)}%"></i></div><span class="sm">${d.assinados}/${d.total}</span>` : '<span class="muted sm">—</span>'}</td>
+        <td data-l="Situação">${bdg(d.status)}</td>
         <td class="dir"><button class="btn-icon" data-imp="${esc(d.id)}" title="Imprimir">${ic('print')}</button>${podeAdmin() ? `<button class="btn-icon" data-del="${esc(d.id)}" title="Excluir documento" aria-label="Excluir documento ${esc(d.id)}">${ic('trash')}</button>` : ''}</td></tr>`).join('')}</tbody>
     </table></div>` : `<div class="vazio">${ic('doc')}<p>${S.docs.length ? 'Nenhum documento com esses filtros.' : 'Nenhum documento emitido ainda. Comece por <b>Nova PT</b> ou <b>Nova APR</b>.'}</p></div>`}
   </section>`;
@@ -1418,12 +1468,47 @@ function tituloEditor(ed) {
   return `${ed.id ? esc(ed.id) : 'Novo documento'} <small>${esc(ed.c.titulo || ed.c.cab.titulo)}</small>`;
 }
 
+// Resumo do vínculo PT ↔ APR para o cabeçalho do editor.
+function infoVinculo(ed) {
+  if (ed.c.tipo === 'APR') return ed.meta.vinculo ? `<span class="bdg b-mute" title="PT vinculada">${ic('link')} ${esc(ed.meta.vinculo)}</span>` : '';
+  const aprs = S.docs.filter(d => d.tipo === 'APR' && d.vinculo === ed.id && d.status !== 'Cancelado');
+  return aprs.length ? `<span class="bdg b-mute" title="APRs vinculadas">${ic('link')} ${aprs.map(d => esc(d.id)).join(', ')}</span>` : '';
+}
+
+// Escolhe um documento já emitido do tipo oposto e grava o vínculo (APR guarda o número da PT).
+async function vincularExistente(ehPT) {
+  const ed = S.ed;
+  if (ed.sujo) { toast('Salve o documento antes de vincular.', 'aviso'); return; }
+  const tipo = ehPT ? 'APR' : 'PT';
+  const cand = S.docs.filter(d => d.tipo === tipo && d.id !== ed.id && d.status !== 'Cancelado').sort((a, b) => String(b.criado).localeCompare(String(a.criado)));
+  if (!cand.length) { toast(`Não há ${tipo} emitida disponível para vincular.`, 'aviso'); return; }
+  const id = await new Promise(res => {
+    abrirModal({
+      titulo: ehPT ? 'Vincular APR já emitida a esta PT' : 'Vincular esta APR a uma PT já emitida', largura: '640px', aoFechar: () => res(null),
+      corpo: `<label class="busca">${ic('search')}<input id="v-busca-doc" placeholder="Filtrar por número, título, casa de oração…" autofocus></label>
+        <div class="lista-mod" id="v-lista-doc">${cand.map(d => `<button type="button" class="item-mod" data-id="${esc(d.id)}" data-q="${esc(norm([d.id, d.titulo, d.casa, d.data, d.vinculo].join(' ')))}">
+          <b>${esc(d.id)}</b><span>${esc(d.titulo)}${d.casa ? ' · ' + esc(d.casa) : ''}${d.data ? ' · ' + esc(d.data) : ''}${d.vinculo ? ` · já vinculada a ${esc(d.vinculo)}` : ''}</span></button>`).join('')}</div>`,
+      acoes: [{ label: 'Voltar' }]
+    });
+    $('#v-busca-doc').oninput = e => { const q = norm(e.target.value); $$('#v-lista-doc .item-mod').forEach(b => { b.hidden = q && !b.dataset.q.includes(q); }); };
+    $$('#v-lista-doc .item-mod').forEach(b => b.onclick = () => { $('#modal')._aoFechar = null; fecharModal(); res(b.dataset.id); });
+  });
+  if (!id) return;
+  const outro = S.docs.filter(d => d.id === id)[0] || {};
+  const apr = ehPT ? id : ed.id, pt = ehPT ? ed.id : id;
+  const atual = ehPT ? outro.vinculo : ed.meta.vinculo;
+  if (atual && atual !== pt && !(await confirmar('Trocar vínculo', `${apr} já está vinculada à ${atual}. Vincular à ${pt} em vez disso?`, 'Trocar'))) return;
+  await api('vincularDocumento', { apr, pt });
+  await carregar(); await abrirDoc(ed.id);
+  toast(`${apr} vinculada à ${pt}.`);
+}
+
 function barraEditor() {
   const ed = S.ed;
   const doc = ed.tipo === 'doc';
   $('#ed-barra').innerHTML = `
     <button class="btn-icon" id="b-voltar" title="Voltar">${ic('back')}</button>
-    <div class="ed-titulo">${tituloEditor(ed)} ${doc ? bdg(ed.meta.status || 'Rascunho') : (ed.ativo === false ? bdg('Inativo') : '')}</div>
+    <div class="ed-titulo">${tituloEditor(ed)} ${doc ? bdg(ed.meta.status || 'Rascunho') : (ed.ativo === false ? bdg('Inativo') : '')} ${doc && ed.id ? infoVinculo(ed) : ''}</div>
     <div class="ed-acoes">
       <div class="zoom"><button class="btn-icon" id="z-menos" title="Diminuir">${ic('zout')}</button><button class="btn-icon" id="z-fit" title="Ajustar à largura">${ic('fit')}</button><button class="btn-icon" id="z-mais" title="Aumentar">${ic('zin')}</button></div>
       ${podeEditarDoc(ed) ? `<div class="zoom"><button class="btn-icon" id="b-desfazer">${ic('undo')}</button><button class="btn-icon" id="b-refazer">${ic('redo')}</button></div>
@@ -1432,7 +1517,9 @@ function barraEditor() {
       <button class="btn" id="b-pdf">${ic('pdf')} <span>PDF</span></button>
       <button class="btn" id="b-painel" title="Painel lateral">${ic('panel')} <span>${doc ? 'Assinaturas' : 'Propriedades'}</span></button>
       ${doc && ed.id ? `<div class="menu"><button class="btn-icon" id="b-mais" title="Mais ações">⋮</button><div class="menu-lista" id="menu-mais" hidden>
-        ${ed.c.tipo === 'PT' ? `<button data-m="apr">${ic('plus')} Emitir APR vinculada a esta PT</button>` : ''}
+        ${ed.c.tipo === 'PT' ? `<button data-m="apr">${ic('plus')} Emitir APR vinculada a esta PT</button>
+        <button data-m="vincAPR">${ic('link')} Vincular APR já emitida…</button>` : `<button data-m="vincPT">${ic('link')} Vincular a uma PT já emitida…</button>
+        ${ed.meta.vinculo ? `<button data-m="desvincular">${ic('x')} Desvincular da ${esc(ed.meta.vinculo)}</button>` : ''}`}
         <button data-m="dup">${ic('copy')} Duplicar documento</button>
         ${podeAdmin() && ed.meta.status !== 'Cancelado' ? `<button data-m="cancelar" class="perigo">${ic('ban')} Cancelar documento</button>` : ''}
         ${podeAdmin() ? `<button data-m="excluir" class="perigo">${ic('trash')} Excluir da lista</button>` : ''}</div></div>` : ''}
@@ -1464,6 +1551,14 @@ async function acaoMenu(m) {
     if (ed.sujo) { toast('Salve a PT antes de emitir a APR vinculada.', 'aviso'); return; }
     const c = ed.c;
     escolherModeloAPR({ id: ed.id, casa: [c.casa, c.cidade].filter(Boolean).join(' – '), data: c.data, resp: c.encarregados || c.contratada, servico: c.descricao });
+  } else if (m === 'vincAPR' || m === 'vincPT') {
+    await vincularExistente(m === 'vincAPR');
+  } else if (m === 'desvincular') {
+    if (ed.sujo) { toast('Salve o documento antes de desvincular.', 'aviso'); return; }
+    if (!(await confirmar('Desvincular', `Remover o vínculo desta APR com a ${esc(ed.meta.vinculo)}?`, 'Desvincular'))) return;
+    await api('vincularDocumento', { apr: ed.id, pt: '' });
+    await carregar(); await abrirDoc(ed.id);
+    toast('Vínculo removido.');
   } else if (m === 'dup') {
     const c = clone(ed.c);
     if (ed.c.tipo === 'PT') { (c.atividades || []).forEach(a => { a.x = false; }); }
@@ -2022,15 +2117,15 @@ async function telaVoluntarios() {
       <label class="busca">${ic('search')}<input id="v-busca" placeholder="Buscar por nome, código ou casa de oração…" value="${esc(f.busca)}"></label>
       <select id="v-casa">${opcoes(casas, f.casa, 'Todas as casas de oração')}</select>
     </div>
-    ${lista.length ? `<div class="tabela-wrap"><table class="tab">
+    ${lista.length ? `<div class="tabela-wrap"><table class="tab tab-livre tab-cartoes">
       <thead><tr><th>Voluntário</th><th>Casa de oração</th><th>ASO</th><th>Altura</th><th>NR 35</th><th>Situação</th>${adm ? '<th></th>' : ''}</tr></thead>
       <tbody>${lista.map(v => `<tr>
         <td><b>${esc(v.nome)}</b><div class="muted sm">${v.codigo ? 'Cód. ' + esc(v.codigo) : 'Sem código'}${v.restricoes ? ' · ' + esc(v.restricoes) : ''}</div></td>
-        <td>${esc(v.casa || '—')}</td>
-        <td>${v.s.aso ? '<span class="bdg b-ok">Ativo</span>' : '<span class="bdg b-err">Vencido</span>'}<div class="muted sm">até ${esc(v.validade || '—')}</div></td>
-        <td>${bdg2(v.s.altura, v.altura)}</td>
-        <td>${v.s.nr ? `${v.s.nrOk ? '<span class="bdg b-ok">Em dia</span>' : '<span class="bdg b-err">Vencida</span>'}<div class="muted sm">até ${fmtBR(v.s.nr)}</div>` : '<span class="bdg b-mute">Não informado</span>'}</td>
-        <td><span class="bdg ${ROT_SIT[v.s.sit][1]}">${ROT_SIT[v.s.sit][0]}</span></td>
+        <td data-l="Casa">${esc(v.casa || '—')}</td>
+        <td data-l="ASO">${v.s.aso ? '<span class="bdg b-ok">Ativo</span>' : '<span class="bdg b-err">Vencido</span>'}<div class="muted sm">até ${esc(v.validade || '—')}</div></td>
+        <td data-l="Altura">${bdg2(v.s.altura, v.altura)}</td>
+        <td data-l="NR 35">${v.s.nr ? `${v.s.nrOk ? '<span class="bdg b-ok">Em dia</span>' : '<span class="bdg b-err">Vencida</span>'}<div class="muted sm">até ${fmtBR(v.s.nr)}</div>` : '<span class="bdg b-mute">Não informado</span>'}</td>
+        <td data-l="Situação"><span class="bdg ${ROT_SIT[v.s.sit][1]}">${ROT_SIT[v.s.sit][0]}</span></td>
         ${adm ? `<td class="dir"><button class="btn-icon" data-edit="${esc(v.id)}" title="Editar">${ic('pen')}</button></td>` : ''}</tr>`).join('')}</tbody>
     </table></div>` : `<div class="vazio">${ic('users')}<p>Nenhum voluntário com esses filtros.</p></div>`}
     <p class="muted sm" style="margin-top:10px">Lista base: exames de 28/03/2026 (ASO). A data de conclusão do NR 35 não veio na lista; ${adm ? 'informe-a pelo lápis de cada voluntário.' : 'peça a um administrador para informá-la.'}</p>
@@ -2295,7 +2390,7 @@ function importarVoluntarios() {
         .concat(m.atualizados.map(x => `<tr><td>${esc(x.nome)}</td><td><span class="bdg b-warn">Atualiza</span></td><td class="sm">${esc(x.mudou.join(', '))}</td></tr>`));
       $('#imp-prev').innerHTML = `${r.avisos.map(a => `<p class="hint" style="margin:0 0 8px!important">${esc(a)}</p>`).join('')}
         <p class="txt"><b>${r.lista.length}</b> linha(s) lida(s): <b>${m.novos.length}</b> nova(s), <b>${m.atualizados.length}</b> com alteração, ${m.iguais} sem mudança.</p>
-        ${linhas.length ? `<div class="tabela-wrap" style="max-height:280px;overflow:auto"><table class="tab"><thead><tr><th>Voluntário</th><th>Ação</th><th>Campos alterados</th></tr></thead><tbody>${linhas.join('')}</tbody></table></div>` : ''}`;
+        ${linhas.length ? `<div class="tabela-wrap" style="max-height:280px;overflow:auto"><table class="tab tab-livre"><thead><tr><th>Voluntário</th><th>Ação</th><th>Campos alterados</th></tr></thead><tbody>${linhas.join('')}</tbody></table></div>` : ''}`;
       $('#imp-ok').disabled = !(m.novos.length || m.atualizados.length);
       if ($('#imp-ok').disabled) $('#imp-prev').insertAdjacentHTML('beforeend', '<p class="muted sm">Nada para importar: a lista já está igual ao arquivo.</p>');
     } catch (err) { $('#imp-prev').innerHTML = ''; falha(err); }
@@ -2564,6 +2659,7 @@ const Demo = (() => {
       return { usuario: u, docs, modelos: db.modelos.map(m => { const o = Object.assign({}, m); delete o.conteudo; o.padrao = !!pm[m.id]; return o; }), imagens: db.imagens, config: Object.assign({ msgWhats: MSG_WHATS_PADRAO }, db.config), url: '' };
     },
     logout() { return true; },
+    ping() { return true; },
     alterarSenha(p, u) {
       db.senhas = db.senhas || {};
       if (String(p.atual) !== (db.senhas[u.email] || SENHA_DEMO)) throw new Error('A senha atual está incorreta.');
@@ -2619,6 +2715,20 @@ const Demo = (() => {
       salvar(); return documento(d.id);
     },
     cancelarDocumento(p, u) { const d = db.docs.filter(x => x.id === p.id)[0]; d.status = p.excluir ? 'Excluído' : 'Cancelado'; d.motivo = p.motivo; hist(d, u, d.status.toLowerCase() + ': ' + p.motivo); salvar(); return true; },
+    vincularDocumento(p, u) {
+      const apr = db.docs.filter(x => x.id === p.apr)[0];
+      if (!apr || apr.tipo !== 'APR' || apr.status === 'Excluído') throw new Error('APR não encontrada.');
+      if (apr.status === 'Cancelado') throw new Error('APR cancelada não pode ser vinculada.');
+      const ptId = String(p.pt || '').trim();
+      if (ptId) {
+        const pt = db.docs.filter(x => x.id === ptId)[0];
+        if (!pt || pt.tipo !== 'PT' || pt.status === 'Excluído') throw new Error('PT não encontrada.');
+        if (pt.status === 'Cancelado') throw new Error('PT cancelada não pode receber vínculo.');
+      }
+      if ((apr.vinculo || '') === ptId) return true;
+      hist(apr, u, ptId ? 'vinculada à ' + ptId : 'vínculo removido');
+      apr.vinculo = ptId; apr.atualizado = agora(); salvar(); return true;
+    },
     salvarAssinantes(p) {
       const d = db.docs.filter(x => x.id === p.docId)[0];
       if (!d) throw new Error('Salve o documento antes de incluir assinantes.');

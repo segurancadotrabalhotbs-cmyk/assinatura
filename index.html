@@ -178,6 +178,15 @@ body.com-editor{overflow:hidden}
 .login-logo{height:70px;width:auto;margin-bottom:10px}
 .login-card h1{font-size:21px;margin-bottom:4px;color:var(--marinho)}
 .login-card p{margin:0 0 18px;font-size:13px}
+.pw{position:relative;display:flex}
+.pw input{flex:1;padding-right:42px}
+.pw .olho{position:absolute;right:3px;top:50%;transform:translateY(-50%);width:34px;height:34px;border:0;border-radius:8px;background:transparent;cursor:pointer;color:var(--muted);display:inline-flex;align-items:center;justify-content:center}
+.pw .olho:hover{background:var(--mute-bg);color:var(--txt)}
+.pw .olho .ic{width:19px;height:19px}
+.login-links{margin-top:12px;font-size:13px}
+.vol-resumo{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+.vol-resumo>div{background:#fff;border:1px solid var(--linha);border-radius:10px;padding:10px 14px}
+.vol-resumo b{display:block;font-size:22px;color:var(--marinho)} .vol-resumo span{font-size:12px;color:var(--muted)}
 .hint{margin-top:14px!important;font-size:12px!important;color:var(--muted);background:var(--mute-bg);padding:8px;border-radius:8px}
 
 .pub{max-width:860px;margin:0 auto;padding:14px 14px 40px}
@@ -348,6 +357,9 @@ body.com-editor{overflow:hidden}
 <div id="toasts"></div>
 <div id="loading"><div class="spinner"></div><span id="loading-txt">Carregando…</span></div>
 
+<script id="seed-modelos" type="application/json">[{"v":1,"tipo":"PT","id":"PT-023","nome":"Permissão de Trabalho","cab":{"titulo":"PT – Permissão de Trabalho","documento":"CCB SSMA 023","revisao":"00"},"titulo":"FORMULÁRIO 2.6.0 – PT – PERMISSÃO PARA TRABALHO","rot":{"casa":"Casa de Oração:","cidade":"Cidade – UF:","data":"Data:","de":"De (horário):","ate":"Até (horário):","outra":"Outra(s) atividade(s):","mao":"Mão-de-obra","interna":"interna","externa":"externa","nfunc":"N.º de funcionários","restrita":"Área restrita","fds":"Fim de semana ou feriado","sim":"Sim","nao":"Não","obs":"Obs:","contratante":"Contratante:","unidade":"Unidade:","contratada":"Contratada:","encarregados":"Nome(s) do(s) encarregado(s):","local":"Local de trabalho:","descricao":"DESCRIÇÃO DETALHADA DO TRABALHO","colNome":"Nome do colaborador","colDoc":"Documento \/ CPF","colAss":"Assinatura"},"casa":"","cidade":"","data":"","de":"","ate":"","atividades":[{"t":"Altura e\/ou\ntelhados,\nníveis elevados","ic":"altura","x":false},{"t":"Manutenção civil","ic":"civil","x":false},{"t":"Trabalho com\neletricidade","ic":"eletrica","x":false},{"t":"Movimentação\ncom uso de\nguinchos,\nplataformas","ic":"guincho","x":false},{"t":"Demolição e\/ou\nescavações","ic":"demolicao","x":false},{"t":"Trabalho\na quente","ic":"quente","x":false},{"t":"Local confinado\n**Preencher**\n**PET**","ic":"confinado","x":false},{"t":"Gases, líquidos\ninflamáveis ou\nexplosivos","ic":"inflamavel","x":false}],"outra":{"x":false,"t":""},"mao":"","nfunc":"","restrita":"","fds":"","obs":"","contratante":"","unidade":"","contratada":"","encarregados":"","local":"","descricao":"","descLinhas":13,"colabLinhas":13,"listas":[{"titulo":"PERIGOS POTENCIAIS","cols":4,"w":[135,134,142,112],"itens":[{"t":"Animais peçonhentos","x":false},{"t":"Atropelamento","x":false},{"t":"Choque elétrico","x":false},{"t":"Concentração de vapores","x":false},{"t":"Contato com produto químico","x":false},{"t":"Demolição","x":false},{"t":"Desmoronamento","x":false},{"t":"Desnível de solo\/piso","x":false},{"t":"Outros:","x":false},{"t":"Detonação","x":false},{"t":"Escavação","x":false},{"t":"Explosão","x":false},{"t":"Exposição a gases e vapores","x":false},{"t":"Exposição a poeira","x":false},{"t":"Exposição a fumo metálico","x":false},{"t":"Exposição a micro-organismos","x":false},{"t":"Incêndio","x":false},{"t":"","x":false},{"t":"Levanta\/o e transporte de peso","x":false},{"t":"Manuseio equipa\/o de guindar","x":false},{"t":"Movimentação de máquina","x":false},{"t":"Peças com canto vivo\/rebarba","x":false},{"t":"Piso escorregadio","x":false},{"t":"Produtos inflamáveis","x":false},{"t":"Projeção de faísca","x":false},{"t":"Projeção de partículas","x":false},{"t":"","x":false},{"t":"Queda de andaime","x":false},{"t":"Queda de escada","x":false},{"t":"Queda de objetos","x":false},{"t":"Queda de PTA","x":false},{"t":"Queda diferença nível","x":false},{"t":"Radiação ionizante","x":false},{"t":"Radiação não ionizante","x":false},{"t":"Ruído excessivo","x":false},{"t":"","x":false}]},{"titulo":"EPI - EQUIPAMENTOS DE PROTEÇÃO INDIVIDUAL","cols":4,"w":[127,135,134,126],"itens":[{"t":"Avental de PVC","x":false},{"t":"Avental de raspa","x":false},{"t":"Bota com biqueira","x":false},{"t":"Bota eletricista","x":false},{"t":"Capacete com jugular","x":false},{"t":"Capacete para eletricista","x":false},{"t":"Capacete com jugular","x":false},{"t":"Cinto tipo paraquedista","x":false},{"t":"Cjto. de ferramentas isoladas","x":false},{"t":"Escudo proteção arco elétrico","x":false},{"t":"Luva isolante Classe 0","x":false},{"t":"Luva isolante Classe 2","x":false},{"t":"Luva de látex","x":false},{"t":"Luva de malha de aço","x":false},{"t":"Luva nitrílica","x":false},{"t":"Luva de PVC","x":false},{"t":"Luva de raspa","x":false},{"t":"Luva de vaqueta","x":false},{"t":"Macacão de *tyvec*","x":false},{"t":"Máscara c\/filtros combinados","x":false},{"t":"Máscara de soldador","x":false},{"t":"Máscara para gases ácidos","x":false},{"t":"Máscara poeira\/névoas\/fumos","x":false},{"t":"Máscara vapores orgânicos","x":false},{"t":"Óculos de segurança incolor","x":false},{"t":"Óculos segurança lente escura","x":false},{"t":"Perneira","x":false},{"t":"Protetor auricular - concha","x":false},{"t":"Protetor auricular - plugue","x":false},{"t":"Protetor facial\/escudo rosto","x":false},{"t":"Talabarte Y ou 2 talabartes","x":false},{"t":"Touca árabe","x":false},{"t":"Outros:","x":false},{"t":"","x":false},{"t":"","x":false},{"t":"","x":false}]},{"titulo":"EPC - EQUIPAMENTOS DE PROTEÇÃO COLETIVA","cols":4,"w":[131,130,131,131],"itens":[{"t":"Andaime com guarda corpo","x":false},{"t":"Coberturas isolantes","x":false},{"t":"Cones de sinalização","x":false},{"t":"Outros:","x":false},{"t":"Escoramento","x":false},{"t":"Fita Zebrada","x":false},{"t":"Isolamento de área","x":false},{"t":"","x":false},{"t":"Linha de vida fixa","x":false},{"t":"Linha de vida móvel","x":false},{"t":"Placas de sinalização","x":false},{"t":"","x":false},{"t":"Tapete Isolante","x":false},{"t":"Tapume para solda","x":false},{"t":"Tela Tapume","x":false},{"t":"","x":false}]},{"titulo":"MEDIDAS PREVENTIVAS","cols":3,"w":[175,175,174],"itens":[{"t":"Analisar o ambiente antes do trabalho","x":false},{"t":"Preencher APR","x":false},{"t":"Manter áreas sinalizadas e\/ou isoladas","x":false},{"t":"Informar pessoal da área e arredores","x":false},{"t":"Colocar anteparos \/ tapumes","x":false},{"t":"Escorar escavação","x":false},{"t":"Verificar desligamento e isolamento de tubulações e redes","x":false},{"t":"Não passar ou permanecer sob carga suspensa ou durante trabalho em altura","x":false},{"t":"Trabalhador habilitado conforme NR 35","x":false},{"t":"Verificar se há condições climáticas favoráveis para o trabalho em altura","x":false},{"t":"Utilizar linha de vida adequadamente","x":false},{"t":"Usar escadas portáteis em bom estado","x":false},{"t":"Usar escadas de madeira","x":false},{"t":"Usar escadas de fibra.","x":false},{"t":"Usar escadas de alumínio","x":false},{"t":"Ancorar escada extensível","x":false},{"t":"Usar andaimes com forração completa","x":false},{"t":"Colocar diagonais no andaime p\/ evitar a torção","x":false},{"t":"Colocar escada de acesso ao andaime","x":false},{"t":"Andaimes com rodas travadas","x":false},{"t":"Verificar se andaime possui guarda-corpo, rodapé e sapata","x":false},{"t":"Ancorar andaime","x":false},{"t":"Não movimentar andaime com pessoas em cima","x":false},{"t":"Transportar ferramentas com segurança","x":false},{"t":"Afastar as mãos de equipamentos e ferramentas","x":false},{"t":"Embalar\/amarrar peças para transporte","x":false},{"t":"Armazenar materiais\/equipamentos adequadamente","x":false},{"t":"Armazenar inflamável em local adequado","x":false},{"t":"Utilizar iluminação à prova de explosão","x":false},{"t":"Usar de maçarico com óculos escuros","x":false},{"t":"Equipa\/o de solda com válvula de retrocesso de chama","x":false},{"t":"Acender somente com acendedor de maçarico","x":false},{"t":"Manter chama e faíscas afastados de inflamáveis","x":false},{"t":"Manter cilindros de gás na vertical, amarrados e em local seguro","x":false},{"t":"Trabalhador habilitado conforme NR 10","x":false},{"t":"Desenergizar a rede elétrica","x":false},{"t":"Sinalizar equipamentos\/circuitos elétricos","x":false},{"t":"Realizar bloqueios de dispositivos elétricos","x":false},{"t":"Não utilizar PTA para instalações energizadas","x":false},{"t":"Cuidados com instalações, cabos e extensões elétricas","x":false},{"t":"Operador capacitado e treinado (certificado)","x":false},{"t":"Condutor de veículo devidamente habilitado","x":false},{"t":"Dirigir em velocidade adequada","x":false},{"t":"Outros:","x":false},{"t":"","x":false}]}],"assinRot":["Responsável pelo Serviço ou da Contratada","Engenheiro ou Técnico de Segurança do Trabalho","Responsável Manutenção"],"rod":{"preparado":"Departamento de Saúde, Segurança e Meio Ambiente (SSMA) - Brás","aprovado":"Coordenação SSMA","liberacao":"27\/02\/2025","revisao":"28\/02\/2025"}},{"v":1,"tipo":"APR","id":"APR-024.01","nome":"Trabalho em altura","cab":{"empresa":"CCB – Congregação Cristã no Brasil","titulo":"APR - TRABALHO EM ALTURA","documento":"CCB SSMA 024.01","revisao":"00"},"titulo":"APR - TRABALHO EM ALTURA","servicoRot":"SERVIÇO A SER EXECUTADO","servico":"","campos":[{"rot":"DATA:","v":"","k":"data"},{"rot":"Casa de oração:","v":"","k":"casa"},{"rot":"RESP.:","v":"","k":"resp"}],"extras":[],"cols":[29.9,79.9,77.9,202.6,56.9,94.8],"colRot":["Ordem","Detalhamento da atividade","Perigo e Risco","Medidas de Controle","Condição","Observação"],"grupos":[{"ordem":"1","atividade":"Montagem de torre para execução de andaimes.","perigos":"1.0 - Tontura, Náusea e Vertigens\n1.1 - Queda de pessoas com diferença de nível\n1.2 - Queda de materiais\n1.3 - Tombamento da torre\n1.4 - Ferimento, contusão, prensagem dos membros","medidas":[{"texto":"1.0.0 - Deve ser realizado DDS conforme a atividade.","cond":"","obs":""},{"texto":"1.0.1 – Deve ser realizado exame preventivo.","cond":"","obs":""},{"texto":"1.0.2 - O colaborador deve está capacitado na NR-35 Trabalho em Altura","cond":"","obs":"Na inconformidade os trabalhos deverão ser suspensos e retomados quando de acordo com a NR- 35."},{"texto":"1.0.3 – Deve ser verificado as condições atmosféricas favoráveis à execução do trabalho.","cond":"","obs":""},{"texto":"1.0.4 - Toda montagem de torre para execução de andaimes deve ter acompanhamento do responsável.","cond":"","obs":""},{"texto":"1.0.5 - O encarregado deve orientar sempre a equipe sobre o serviço a ser executado.","cond":"","obs":""},{"texto":"1.1.0 – Deve se manter a área de trabalho isolada, sinalizada, limpa, organizada e desimpedida de entulhos e outros.","cond":"","obs":""},{"texto":"1.1.2 –Deve ser verificada a estabilidade do solo e do equipamento de trabalho.","cond":"","obs":""},{"texto":"1.1.3 – Deve ser utilizar plataforma de madeira de acordo com a norma até providência das aquisições de plataformas metálicas.","cond":"","obs":""},{"texto":"1.1.4 – Deve ser utilizada tábuas resistentes e de boa qualidade nas estruturas da torre para apoio dos pés e movimentação segura do corpo.","cond":"","obs":""},{"texto":"1.1.5 - As tábuas deve possuir encaixe duplo para travamento.","cond":"","obs":""},{"texto":"1.2.0 – Deve ser verificada as condições dos módulos, eliminando os que apresentarem desgastes, trincas, empenamentos, etc.","cond":"","obs":""},{"texto":"1.2.1 - Após a montagem do segundo módulo, trabalhar na parte interna da estrutura fazendo uso constante do cinto de segurança tipo pára-quedista atracado em local seguro.","cond":"","obs":""},{"texto":"1.2.2 – Deve ser utilizadas cordas novas e de boa qualidade para içamento dos módulos.","cond":"","obs":""},{"texto":"1.2.3 – Deve ser procedido o içamento de 01 (um) módulo de cada vez.","cond":"","obs":""},{"texto":"1.2.4 - Amarrar adequadamente os módulos.","cond":"","obs":""},{"texto":"1.2.5 –Deve ser afastado do local enquanto estiver subindo e montando os módulos.","cond":"","obs":""},{"texto":"1.3.0 - Para andaimes móveis somente utilizá-los sobre superfície plana e os rodízios deverão ser providos de travas, de modo a evitar deslocamentos acidentais","cond":"","obs":""},{"texto":"1.3.1 - Toda torre deve possuir uma sapata (chapa de ferro) 20x20 cm com encaixe para a colocação dos pés do primeiro módulo, a fim de facilitar o nivelamento da torre caso necessite.","cond":"","obs":""},{"texto":"1.3.2 - Deve ser efetuado o primeiro travamento quando os módulos atingirem 03 metros (três metros) de altura, e só continuar a montagem da torre depois deste travamento realizado, colocar o travamento a cada 03 metros de módulos montados.","cond":"","obs":""},{"texto":"1.3.3 – Deve ser efetuado o travamento utilizando tubo Rohr ou similar fazendo a amarração nas torres.","cond":"","obs":""},{"texto":"1.4.0 - Deve ser utilizado E.P.I's básicos necessários: capacete com jugular, óculos de segurança, luvas de raspa, botina com biqueira de aço, cinto de segurança tipo pára-quedista atracado em local seguro, a um nível mais elevado que a cabeça.","cond":"","obs":""},{"texto":"1.1.1 - No final da atividade limpar, recolher, guardar, armazenar os materiais cada um em sua classe de uso e\/ou de descarte.","cond":"","obs":""}]},{"ordem":"2","atividade":"Condição do Andaime","perigos":"2.1 - Queda de pessoas com diferença de nível\n2.2 - Queda de materiais\n2.3 - Tombamento do andaime\n2.4 - Prensagem dos membros","medidas":[{"texto":"2.1.0 - Os andaimes devem ser dimensionados e construídos de forma a suportar com segurança as cargas de trabalhos a que estarão sujeitos.","cond":"","obs":""},{"texto":"2.1.1 - Devem ser providos de passarela, plataforma de trabalho resistente, sem vãos livres, travado nas extremidades do tablado.","cond":"","obs":""},{"texto":"2.1.2 - Os andaimes devem ser providos de escadas de acesso, construída de material resistente, o espaçamento entre os degraus deve ser uniforme, não exceder a 30 centímetros e corrimão dos dois lados sem apresentar farpas ou saliências.","cond":"","obs":""},{"texto":"2.1.3 - Os andaimes devem dispor de guarda corpo de 0,90 a 1,20 metros, confeccionado de material resistente e rodapé de 0,20 metros.","cond":"","obs":""},{"texto":"2.1.4 - Nos trabalhos em altura superior a dois metros, fazer uso constante do cinto de segurança tipo pára-quedista atracado em local seguro e a um nível de altura mais elevado que a cabeça.","cond":"","obs":""},{"texto":"2.2.0 - Não permitir o uso de passagem ou acesso improvisado quando os andaimes forem instalados em área com movimentação.","cond":"","obs":""},{"texto":"2.2.1 –Deve ser providenciado o isolamento no perímetro da estrutura do andaime","cond":"","obs":""},{"texto":"2.3.0 - Os andaimes devem ser travados para evitar seu tombamento.","cond":"","obs":""},{"texto":"2.3.1 - Os montantes dos andaimes devem ser apoiados sobre calços ou sapatas capazes de resistir aos esforços e as cargas transmitidas e ser compatível com a resistência do solo.","cond":"","obs":""},{"texto":"2.3.2 - Não acumular materiais nas passarelas ou plataformas de trabalhos dos andaimes afim de não comprometer sua estabilidade.","cond":"","obs":""},{"texto":"2.4.0 – Realizar montagem com acompanhamento e atenção aos encaixes, utilizando luvas de raspa.","cond":"","obs":""}]},{"ordem":"3","atividade":"Desmontagem das torres","perigos":"3.1 - Queda de materiais\n3.2 - Queda de pessoas com diferença de nível\n3.3 - Tombamento da torre","medidas":[{"texto":"3.1.1 - Utilização dos E.P.I's básicos necessários: capacete com jugular, óculos de segurança, luvas de raspa, botina com biqueira de aço, cinto de segurança tipo pára-quedista atracado em local seguro, a um nível mais elevado que a cabeça.","cond":"","obs":""},{"texto":"3.1.2 - deve ser utilizado corda resistente e de boa qualidade para a descida dos módulos. Descer um de cada vez.","cond":"","obs":""},{"texto":"3.1.3 - Retirar os travamentos de cima para baixo, na medida em que desformando os módulos.","cond":"","obs":""},{"texto":"3.1.4 - Fazer o remanejamento das tábuas utilizadas para apoio dos pés, a cada módulo desformado.","cond":"","obs":""},{"texto":"3.2.0 - Manter todos os módulos da estrutura empilhados adequadamente em local que não interfira com movimentação de veículos, equipamentos ou pessoas.","cond":"","obs":""},{"texto":"3.3.0 – Deve ser afastado todos os funcionários quando da descida dos módulos.","cond":"","obs":""}]}],"fecho":{"seguraRot":"Após o término do trabalho a área se encontrará segura ?","segura":"","obsRot":"OBSERVAÇÕES:","obs":"","podeRot":"Serviço pode ser executado ?","pode":""},"assinRot":["NOME","Assinatura"],"assinLinhas":4,"assinAltura":37,"rod":{"preparado":"Departamento Saúde Segurança e Meio Ambiente (SSMA) - Brás","aprovado":"Coordenação SSMA","liberacao":"20\/03\/2023","revisao":"25\/03\/2023"}},{"v":1,"tipo":"APR","id":"APR-024.02","nome":"Trabalho em forros","cab":{"empresa":"CCB – Congregação Cristã no Brasil","titulo":"APR - TRABALHO EM FORROS","documento":"CCB SSMA 024.02","revisao":"00"},"titulo":"APR - TRABALHO EM FORROS","servicoRot":"SERVIÇO A SER EXECUTADO","servico":"","campos":[{"rot":"DATA:","v":"","k":"data"},{"rot":"Casa de oração","v":"","k":"casa"},{"rot":"RESP.:","v":"","k":"resp"}],"extras":[],"cols":[29.0,78.0,74.0,198.0,62.0,101.0],"colRot":["Ordem","Detalhamento da atividade","Perigo e Risco","Medidas de Controle","Condição","Observação"],"grupos":[{"ordem":"1","atividade":"Trabalho em Forros","perigos":"1.0 – Tonturas, Náuseas e Vertigens\n1.1 - Cortes\n1.2 - Quedas\n1.3 - Choque elétrico\n1.4 - Contato com poeira de gesso e madeira","medidas":[{"texto":"1.0.0 – Deve ser realizado DDS conforme a atividade","cond":"","obs":""},{"texto":"1.0.1 – Deve ser realizado exame preventivo.","cond":"","obs":""},{"texto":"1.1.1 - Ao manusear madeiras e metais deve-se antes inspecionar verificando a presença de pregos, farpas ou outro material cortante.","cond":"","obs":""},{"texto":"1.2.0 - Atividades acima de 2,00 metros, deve ser utilizado andaime; e utilizar cinto de segurança tipo paraquedista com trava quedas, talabarte, e mosquetão engatado a cabo auxiliar de segurança, ancorado em estrutura independente a um nível mais elevado que a cabeça.\n__Nota__: Aplicar Form. Seg. 3.1 - Trabalho em Altura","cond":"","obs":"Nota: Na inconformidade os trabalhos deverão ser suspensos e retomados quando de acordo com a NR-35."},{"texto":"1.2.1 - Atividades acima do solo atentar para as condições do andaime e no caso da utilização de escadas e plataformas estas deverão estar travadas e ancoradas em ponto fixo.","cond":"","obs":""},{"texto":"1.2.2 – A atividade deve ser realizada sempre acompanhada de um ajudante","cond":"","obs":""},{"texto":"1.2.3 - Para prevenção de queda de ferramentas deve ser utilizado um recipiente para colocar as ferramentas de forma adequada e segura","cond":"","obs":""},{"texto":"1.2.4 – Deve se manter a área de trabalho isolada, sinalizada, limpa, organizada e desimpedida de entulhos e outros.","cond":"","obs":""},{"texto":"1.3.0 – Deve ser verificado o estado do cabo de alimentação (não deve haver fios de cobre descascados; não conectar os cabos diretamente nas tomadas (sem plugues, não usar de improvisos); e não transportar as ferramentas segurando-as pelo cabo de alimentação.","cond":"","obs":""},{"texto":"1.4.1 – deve ser utilizado respirador facial descartável para proteção respiratória.","cond":"","obs":""}]}],"fecho":{"seguraRot":"Após o término do trabalho a área se encontrará segura ?","segura":"","obsRot":"OBSERVAÇÕES:","obs":"","podeRot":"Serviço pode ser executado ?","pode":""},"assinRot":["NOME","Assinatura"],"assinLinhas":7,"assinAltura":20,"rod":{"preparado":"Departamento Saúde Segurança e Meio Ambiente (SSMA) - Brás","aprovado":"Coordenação SSMA","liberacao":"20\/03\/2023","revisao":"25\/03\/2023"}},{"v":1,"tipo":"APR","id":"APR-024.03","nome":"Trabalho em pintura","cab":{"empresa":"CCB – Congregação Cristã no Brasil","titulo":"APR - TRABALHO EM PINTURA","documento":"CCB SSMA 024.03","revisao":"00"},"titulo":"APR - TRABALHO EM PINTURA","servicoRot":"SERVIÇO A SER EXECUTADO","servico":"","campos":[{"rot":"DATA:","v":"","k":"data"},{"rot":"Casa de oração","v":"","k":"casa"},{"rot":"RESP.:","v":"","k":"resp"}],"extras":[],"cols":[36.2,78.4,74.4,202.1,52.3,98.5],"colRot":["Ordem","Detalhamento da atividade","Perigo e Risco","Medidas de Controle","Condição","Observação"],"grupos":[{"ordem":"1","atividade":"Trabalho com Pinturas","perigos":"1.0 - Tontura, Náuseas e Vertigens\n1.1 - Cortes\n1.2 - Quedas\n1.3 - Choque elétrico\n1.4 - Contato com poeira de gesso e madeira","medidas":[{"texto":"1.0.0 –Deve ser realizado DDS conforme a atividade.","cond":"","obs":""},{"texto":"1.0.1 – Deve ser realizado exame preventivo.","cond":"","obs":""},{"texto":"1.1.1 - Ao manusear madeiras e metais deve-se antes inspecionar verificando a presença de pregos, farpas ou outro material cortante.","cond":"","obs":""},{"texto":"1.2.0 - Atividades acima de 2,00 metros, utilizar andaime; e utilizar cinto de segurança tipo paraquedista com trava quedas, talabarte, e mosquetão engatado a cabo auxiliar de segurança, ancorado em estrutura independente a um nível mais elevado que a cabeça.\n__Nota__: Aplicar CCB SEG APR - 001 Trabalho em Altura","cond":"","obs":"Nota: Na inconformidade os trabalhos deverão ser suspensos e retomados quando de acordo com a NR- 35."},{"texto":"1.2.1 - Atividades acima do solo atentar para as condições do andaime e no caso da utilização de escadas e plataformas estas deverão estar travadas e ancoradas em ponto fixo.","cond":"","obs":""},{"texto":"1.2.2 – A atividade deve ser realizada sempre acompanhada de um ajudante.","cond":"","obs":""},{"texto":"1.2.3 - Para prevenção de queda de ferramentas utilizar recipientes adequados para içar e baixar.","cond":"","obs":""},{"texto":"1.2.4 – Deve ser manter a área de trabalho isolada, sinalizada, limpa, organizada e desimpedida de entulhos e outros.","cond":"","obs":""},{"texto":"1.2.5 – Deve sempre ser conectado à linha de vida, com os EPIs adequados.","cond":"","obs":""},{"texto":"1.2.6 – No final da atividade limpar, recolher, guardar, armazenar os materiais cada um em sua classe de uso e\/ou de descarte.","cond":"","obs":""},{"texto":"1.3.0 – Não trabalhar nas proximidades de rede elétricas, somente com Permissão de Trabalho.","cond":"","obs":""},{"texto":"1.4.0 –Deve ser utilizado respirador facial descartável para proteção respiratória, luvas de látex e óculos de segurança.","cond":"","obs":""}]}],"fecho":{"seguraRot":"Após o término do trabalho a área se encontrará segura ?","segura":"","obsRot":"OBSERVAÇÕES:","obs":"","podeRot":"Serviço pode ser executado ?","pode":""},"assinRot":["NOME","Assinatura"],"assinLinhas":7,"assinAltura":20,"rod":{"preparado":"Departamento Saúde Segurança e Meio Ambiente (SSMA) - Brás","aprovado":"Coordenação SSMA","liberacao":"20\/03\/2023","revisao":"25\/03\/2023"}},{"v":1,"tipo":"APR","id":"APR-024.04","nome":"Limpeza de caixa d'água","cab":{"empresa":"CCB – Congregação Cristã no Brasil","titulo":"APR – LIMPEZA DE CAIXA D’ÁGUA","documento":"CCB SSMA 024.04","revisao":"00"},"titulo":"APR – LIMPEZA DE CAIXA D’ÁGUA","servicoRot":"SERVIÇO A SER EXECUTADO","servico":"","campos":[{"rot":"DATA:","v":"","k":"data"},{"rot":"Casa de oração","v":"","k":"casa"},{"rot":"RESP.:","v":"","k":"resp"}],"extras":[],"cols":[35.2,77.4,71.4,195.1,57.3,105.6],"colRot":["Ordem","Detalhamento da atividade","Perigo e Risco","Medidas de Controle","Condição","Observação"],"grupos":[{"ordem":"1","atividade":"Limpeza de Caixa d'água","perigos":"1.0 - Tontura, Náuseas e Vertigens\n1.1 - Radiação Solar\n1.2 - Cortes\n1.3 - Quedas\n1.4 - Choque elétrico\n1.5 - Poeira, Umidade, Fungos e insetos","medidas":[{"texto":"1.0.0 – Deve ser realizado DDS conforme a atividade.","cond":"","obs":""},{"texto":"1.0.1 – Deve ser realizado exame preventivo","cond":"","obs":""},{"texto":"1.1.0 - Havendo exposição à radiação solar disponibilizar creme protetor com filtro solar.","cond":"","obs":""},{"texto":"1.1.1 – Deve ser disponibilizado meios para proteção à incidência dos raios solares aos trabalhadores.","cond":"","obs":""},{"texto":"1.2.0 - Ao manusear madeiras e metais deve-se antes inspecionar verificando a presença de pregos, farpas ou outro material cortante.","cond":"","obs":""},{"texto":"1.3.0 - Atividades acima de 2,00 metros, deve ser utilizado andaime; e utilizar cinto de segurança tipo paraquedista com trava quedas, talabarte, e mosquetão engatado a cabo auxiliar de segurança, ancorado em estrutura independente a um nível mais elevado que a cabeça.\n__Nota__: Aplicar CCB SEG APR - 001 Trabalho em Altura","cond":"","obs":"Nota: Na inconformidade os trabalhos deverão ser suspensos e retomados quando de acordo com a NR- 35."},{"texto":"1.3.1 - Atividades acima do solo atentar para as condições do andaime e no caso da utilização de escadas e plataformas estas deverão estar travadas e ancoradas em ponto fixo.","cond":"","obs":""},{"texto":"1.3.2 – A atividade deve ser realizada sempre acompanhada de um ajudante.","cond":"","obs":""},{"texto":"1.3.3 - Para prevenção de queda de ferramentas deve ser utilizada recipiente para colocar as ferramentas de forma adequada e segura.","cond":"","obs":""},{"texto":"1.3.4 – Deve se manter a área de trabalho isolada, sinalizada, limpa, organizada e desimpedida de entulhos e outros.","cond":"","obs":""},{"texto":"1.3.5 - No final da atividade limpar, recolher, guardar, armazenar os materiais cada um em sua classe de uso e\/ou de descarte.","cond":"","obs":""},{"texto":"1.4.0 - Ferramentas elétricas e extensões, deve ser conectadas por conjunto plugue tomada.","cond":"","obs":""},{"texto":"1.4.1 - Verificar o estado do cabo de alimentação (não deve haver fios de cobre descascados, nem emendas com fita isolante). Não ligar cabos diretamente em adaptadores. Não transportar as ferramentas segurando-as pelo cabo de alimentação.","cond":"","obs":""},{"texto":"1.4.2 - Observar a altura e a proximidade entre a caixa d’água e a rede elétrica.","cond":"","obs":""},{"texto":"1.5.0 –Deve ser umidificado o ambiente e ventilar o local.","cond":"","obs":""},{"texto":"1.5.1 – Deve ser utilizado saco para descarte do material recolhido.","cond":"","obs":""},{"texto":"1.5.2 – Deve ser utilizado respirador facial descartável para proteção respiratória e luvas.","cond":"","obs":""}]}],"fecho":{"seguraRot":"Após o término do trabalho a área se encontrará segura ?","segura":"","obsRot":"OBSERVAÇÕES:","obs":"","podeRot":"Serviço pode ser executado ?","pode":""},"assinRot":["NOME","Assinatura"],"assinLinhas":6,"assinAltura":20,"rod":{"preparado":"Departamento Saúde Segurança e Meio Ambiente (SSMA) - Brás","aprovado":"Coordenação SSMA","liberacao":"20\/03\/2023","revisao":"25\/03\/2023"}},{"v":1,"tipo":"APR","id":"APR-024.05","nome":"Limpeza de calhas","cab":{"empresa":"CCB – Congregação Cristã no Brasil","titulo":"APR – LIMPEZA DE CALHAS","documento":"CCB SSMA 024.05","revisao":"00"},"titulo":"APR – LIMPEZA DE CALHAS","servicoRot":"SERVIÇO A SER EXECUTADO","servico":"","campos":[{"rot":"DATA:","v":"","k":"data"},{"rot":"Casa de oração","v":"","k":"casa"},{"rot":"RESP.:","v":"","k":"resp"}],"extras":[],"cols":[36.2,77.4,71.4,203.1,58.3,95.5],"colRot":["Ordem","Detalhamento da atividade","Perigo e Risco","Medidas de Controle","Condição","Observação"],"grupos":[{"ordem":"1","atividade":"Limpeza de Calhas","perigos":"1.0 - Tontura, Náuseas e Vertigens\n1.1 - Radiação Solar\n1.2 - Cortes\n1.3 - Quedas\n1.4 - Choque elétrico\n1.5 - Poeira, Umidade, Fungos E insetos","medidas":[{"texto":"1.0.0 – Deve ser realizado DDS conforme a atividade","cond":"","obs":""},{"texto":"1.0.1 –Deve ser realizado exame preventivo.","cond":"","obs":""},{"texto":"1.1.0 - Havendo exposição à radiação solar disponibilizar creme protetor com filtro solar.","cond":"","obs":""},{"texto":"1.1.1 – Deve ser disponibilizado meios de proteção à incidência dos raios solares aos trabalhadores.","cond":"","obs":""},{"texto":"1.2.0 - Ao manusear madeiras e metais deve-se antes inspecionar verificando a presença de pregos, farpas ou outro material cortante.","cond":"","obs":""},{"texto":"1.3.0 - Atividades acima de 2,00 metros, utilizar andaime; e deve ser utilizado cinto de segurança tipo paraquedista com trava quedas, talabarte, e mosquetão engatado a cabo auxiliar de segurança, ancorado em estrutura independente a um nível mais elevado que a cabeça.\n__Nota__: Aplicar CCB SEG APR - 001 Trabalho em Altura","cond":"","obs":"Nota: Na inconformidade os trabalhos deverão ser suspensos e retomados quando de acordo com a NR-35."},{"texto":"1.3.1 - Atividades acima do solo atentar para as condições do andaime e no caso da utilização de escadas e plataformas estas devem estar travadas e ancoradas em ponto fixo.","cond":"","obs":""},{"texto":"1.3.2 – A atividade devem ser realizada sempre acompanhada de um ajudante.","cond":"","obs":""},{"texto":"1.3.3 - Para prevenção de queda de ferramentas deve ser utilizada um recipiente para colocar as ferramentas de forma adequada e segura.","cond":"","obs":""},{"texto":"1.3.4 - Manter a área de trabalho isolada, sinalizada, limpa, organizada e desimpedida de entulhos e outros.","cond":"","obs":""},{"texto":"1.3.5 - No final da atividade limpar, recolher, guardar, armazenar os materiais cada um em sua classe de uso e\/ou de descarte.","cond":"","obs":""},{"texto":"1.4.0 - Ferramentas elétricas e extensões, devem ser conectadas por conjunto plugue tomada.","cond":"","obs":""},{"texto":"1.4.1 – Deve ser verificado o estado do cabo de alimentação (não deve haver fios de cobre descascados, nem emendas com fita isolante) e da ficha de ligação (não ligar os cabos diretamente). Não transportar as ferramentas segurando-as pelo cabo de alimentação.","cond":"","obs":""},{"texto":"1.4.2 – Deve ser observada a altura e a proximidade entre a calha e a rede elétrica.","cond":"","obs":""},{"texto":"1.5.0 – Deve ser umidificado o ambiente e ventilar o local.","cond":"","obs":""},{"texto":"1.5.1 –deve ser utilizado saco para descarte do material recolhido.","cond":"","obs":""},{"texto":"1.5.2 – Deve ser utilizado respirador facial descartável para proteção respiratória e luvas.","cond":"","obs":""}]}],"fecho":{"seguraRot":"Após o término do trabalho a área se encontrará segura ?","segura":"","obsRot":"OBSERVAÇÕES:","obs":"","podeRot":"Serviço pode ser executado ?","pode":""},"assinRot":["NOME","Assinatura"],"assinLinhas":7,"assinAltura":20,"rod":{"preparado":"Departamento Saúde Segurança e Meio Ambiente (SSMA) - Brás","aprovado":"Coordenação SSMA","liberacao":"20\/03\/2023","revisao":"25\/03\/2023"}},{"v":1,"tipo":"APR","id":"APR-024.06","nome":"Troca de lâmpadas","cab":{"empresa":"CCB – Congregação Cristã no Brasil","titulo":"APR – Troca de Lâmpadas","documento":"CCB SSMA 024.06","revisao":"00"},"titulo":"APR – TROCA DE LÂMPADAS","servicoRot":"SERVIÇO A SER EXECUTADO","servico":"","campos":[{"rot":"DATA:","v":"","k":"data"},{"rot":"Casa de oração","v":"","k":"casa"},{"rot":"RESP.:","v":"","k":"resp"}],"extras":[],"cols":[36.2,78.4,73.4,199.1,58.3,96.5],"colRot":["Ordem","Detalhamento da atividade","Perigo e Risco","Medidas de Controle","Condição","Observação"],"grupos":[{"ordem":"1","atividade":"Troca de Lâmpadas","perigos":"1.0 - Tontura, Náuseas e Vertigens\n1.1 - Corte\n1.2 - Queda de pessoas\n1.3 - Queda de materiais\n1.4 - Choque elétrico\n1.5 - Queimadura\n1.6 - Substâncias tóxicas, poeira e insetos","medidas":[{"texto":"1.0.0 – Deve ser realizado DDS conforme a atividade.","cond":"","obs":""},{"texto":"1.0.1 - Deve ser realizado exame preventivo.","cond":"","obs":""},{"texto":"1.1.0 – Deve ser realizado a troca de lâmpadas acompanhado de ajudantes tanto para suporte na troca quanto para os testes no quadro de energia.","cond":"","obs":""},{"texto":"1.1.1 - Certificar a condição de manuseio das lâmpadas a serem substituídas.","cond":"","obs":""},{"texto":"1.1.2 –Deve ser verificado as condições do equipamentos e ferramentas.","cond":"","obs":""},{"texto":"1.2.0 - Atividades acima de 2,00 metros, utilizar andaime; e utilizar cinto de segurança tipo paraquedista com trava quedas, talabarte, e mosquetão engatado a cabo auxiliar de segurança, ancorado em estrutura independente a um nível mais elevado que a cabeça.\n__Nota__: Aplicar CCB SEG APR - 001 Trabalho em Altura.","cond":"","obs":"Nota: Na inconformidade os trabalhos deverão ser suspensos e retomados quando de acordo com a NR-35."},{"texto":"1.2.1 - Atividades acima do solo atentar para as condições do andaime e no caso da utilização de escadas e plataformas estas devem estar travadas e ancoradas em ponto fixo.","cond":"","obs":""},{"texto":"1.2.2 – O encarregado deve garantir que o trabalho em altura será realizado por pessoal treinado na NR-35.","cond":"","obs":""},{"texto":"1.2.3 – Deve se manter a área de trabalho isolada, sinalizada, limpa, organizada e desimpedida de entulhos e outros.","cond":"","obs":""},{"texto":"1.3.0 - Para prevenção de queda de ferramentas deve ser utilizada recipiente para colocar as ferramentas de forma adequada e segura.","cond":"","obs":""},{"texto":"1.3.1- No final da atividade limpar, recolher, guardar, armazenar os materiais cada um em sua classe de uso e\/ou de descarte.","cond":"","obs":""},{"texto":"1.4.0 - deve ser desligados disjuntores do quadro de energia.","cond":"","obs":""},{"texto":"1.4.1 - Ferramentas elétricas e extensões, devem estar em condições de uso e conectadas por conjunto plugue tomada.","cond":"","obs":""},{"texto":"1.4.2 –deve ser verificado o estado do cabo de alimentação (não deve haver fios de cobre descascados; não conectar os cabos diretamente nas tomadas (sem plugues, não usar de improvisos); e não transportar as ferramentas segurando-as pelo cabo de alimentação.","cond":"","obs":""},{"texto":"1.5.0 - Certificar que as lâmpadas estão frias.","cond":"","obs":""},{"texto":"1.5.1 –Deve ser utilizada luvas e respirador facial descartável para proteção respiratória.","cond":"","obs":""}]}],"fecho":{"seguraRot":"Após o término do trabalho a área se encontrará segura ?","segura":"","obsRot":"OBSERVAÇÕES:","obs":"","podeRot":"Serviço pode ser executado ?","pode":""},"assinRot":["NOME","Assinatura"],"assinLinhas":7,"assinAltura":20,"rod":{"preparado":"Departamento Saúde Segurança e Meio Ambiente (SSMA) - Brás","aprovado":"Coordenação SSMA","liberacao":"20\/03\/2023","revisao":"25\/03\/2023"}},{"v":1,"tipo":"APR","id":"APR-024.07","nome":"Trabalho com ferramentas elétricas","cab":{"empresa":"CCB – Congregação Cristã no Brasil","titulo":"APR – FERRAMENTAS ELÉTRICAS","documento":"CCB SSMA 024.07","revisao":"00"},"titulo":"APR – FERRAMENTAS ELÉTRICAS","servicoRot":"SERVIÇO A SER EXECUTADO","servico":"","campos":[{"rot":"DATA:","v":"","k":"data"},{"rot":"Casa de oração","v":"","k":"casa"},{"rot":"RESP.:","v":"","k":"resp"}],"extras":[],"cols":[36.2,82.5,82.5,233.3,54.3,53.3],"colRot":["Ordem","Detalhamento da atividade","Perigo e Risco","Medidas de Controle","Condição","Observação"],"grupos":[{"ordem":"1","atividade":"Trabalho com Ferramentas Manuais","perigos":"1.0 - Edemas e cortes nas mãos\/outras partes do corpo\n1.1 - Quedas\n1.2- Lesões oculares por projeção de partículas\n1.3 – Poeiras\n1.4 - Ruído\n1.5 - Entorses por movimentos ou esforços violentos\n1.6 - Choques elétricos\n1.7- Incêndio","medidas":[{"texto":"1.0.0 – Deve ser realizado DDS conforme a atividade.","cond":"","obs":""},{"texto":"1.0.1 – Deve ser utilizado ferramentas de qualidade, adequadas ao tipo de trabalho.","cond":"","obs":""},{"texto":"1.0.2 - Os trabalhadores devem estar autorizados para utilização das ferramentas.","cond":"","obs":""},{"texto":"1.0.3 - Os operadores devem ser treinados\/especializados para a utilização de cada tipo de ferramenta.","cond":"","obs":""},{"texto":"1.0.4 – deve ser utilizada luvas apropriadas à atividade.","cond":"","obs":""},{"texto":"1.1.0 – deve se manter a área de trabalho isolada, sinalizada, limpa, organizada e desimpedida de entulhos e outros.","cond":"","obs":""},{"texto":"1.1.1 - No final da atividade limpar, recolher, guardar, armazenar os materiais cada um em sua classe de uso e\/ou de descarte.","cond":"","obs":""},{"texto":"1.2.0 – deve ser verificado se as ferramentas apresentam bom estado de conservação.","cond":"","obs":""},{"texto":"1.2.1 - Segregar ferramentas não apropriadas.","cond":"","obs":""},{"texto":"1.2.2 – deve ser utilizado Óculos de Proteção ou Protetor Facial.","cond":"","obs":""},{"texto":"1.2.3 - Fixar os materiais adequadamente, evitar escapa de peças.","cond":"","obs":""},{"texto":"1.3.0 – deve ser utilizado respirador facial descartável para proteção respiratória.","cond":"","obs":""},{"texto":"1.4.0 – Deve ser utilizado protetor auricular, se trabalho contínuo acima de 2h.","cond":"","obs":""},{"texto":"1.5.0 - Transportar ferramentas em caixas, bolsas porta-ferramentas ou painéis adequados.","cond":"","obs":""},{"texto":"1.5.1 - Utilizar a chave apropriada para trocar o acessório.","cond":"","obs":""},{"texto":"1.5.2 - Segurar as ferramentas com as duas mãos. Não adotar posturas inadequada.","cond":"","obs":""},{"texto":"1.6.0 - Não trabalhar próximo à redes energizada sem a proteção devida e sem Permissão de Trabalho.","cond":"","obs":""},{"texto":"1.6.1 - Verificar o estado do cabo de alimentação (não deve haver fios de cobre descascados; não conectar os cabos diretamente nas tomadas (sem plugues, não usar de improvisos); e não transportar as ferramentas segurando-as pelo cabo de alimentação.","cond":"","obs":""},{"texto":"1.7.0 - Não trabalhar próximos a elementos combustíveis.","cond":"","obs":""}]}],"fecho":{"seguraRot":"Após o término do trabalho a área se encontrará segura ?","segura":"","obsRot":"OBSERVAÇÕES:","obs":"","podeRot":"Serviço pode ser executado ?","pode":""},"assinRot":["NOME","Assinatura"],"assinLinhas":7,"assinAltura":20,"rod":{"preparado":"Departamento Saúde Segurança e Meio Ambiente (SSMA) - Brás","aprovado":"Coordenação SSMA","liberacao":"20\/03\/2023","revisao":"25\/03\/2023"}},{"v":1,"tipo":"APR","id":"APR-024.08","nome":"Trabalho com ferramentas manuais","cab":{"empresa":"CCB – Congregação Cristã no Brasil","titulo":"APR – Ferramentas Manuais","documento":"CCB SSMA 024.08","revisao":"00"},"titulo":"APR – FERRAMENTAS MANUAIS","servicoRot":"SERVIÇO A SER EXECUTADO","servico":"","campos":[{"rot":"DATA:","v":"","k":"data"},{"rot":"Casa de oração","v":"","k":"casa"},{"rot":"RESP.:","v":"","k":"resp"}],"extras":[],"cols":[36.2,82.5,82.5,233.3,54.3,53.3],"colRot":["Ordem","Detalhamento da atividade","Perigo e Risco","Medidas de Controle","Condição","Observação"],"grupos":[{"ordem":"1","atividade":"Trabalho com Ferramentas Manuais","perigos":"1.0 - Edemas e cortes nas mãos\/outras partes do corpo\n1.1 - Quedas\n1.2- Lesões oculares por projeção de partículas\n1.3 – Poeiras\n1.4 - Ruído\n1.5 - Entorses por movimentos ou esforços violentos\n1.6 - Choques elétricos\n1.7- Incêndio","medidas":[{"texto":"1.0.0 – Deve ser realizado DDS conforme a atividade.","cond":"","obs":""},{"texto":"1.0.1 – Deve ser utilizado ferramentas de qualidade, adequadas ao tipo de trabalho.","cond":"","obs":""},{"texto":"1.0.2 - Os trabalhadores devem estar autorizados para utilização das ferramentas.","cond":"","obs":""},{"texto":"1.0.3 - Os operadores devem ser treinados\/especializados para a utilização de cada tipo de ferramenta.","cond":"","obs":""},{"texto":"1.0.4 – deve ser utilizada luvas apropriadas à atividade.","cond":"","obs":""},{"texto":"1.1.0 – deve se manter a área de trabalho isolada, sinalizada, limpa, organizada e desimpedida de entulhos e outros.","cond":"","obs":""},{"texto":"1.1.1 - No final da atividade limpar, recolher, guardar, armazenar os materiais cada um em sua classe de uso e\/ou de descarte.","cond":"","obs":""},{"texto":"1.2.0 – deve ser verificado se as ferramentas apresentam bom estado de conservação.","cond":"","obs":""},{"texto":"1.2.1 - Segregar ferramentas não apropriadas.","cond":"","obs":""},{"texto":"1.2.2 – deve ser utilizado Óculos de Proteção ou Protetor Facial.","cond":"","obs":""},{"texto":"1.2.3 - Fixar os materiais adequadamente, evitar escapa de peças.","cond":"","obs":""},{"texto":"1.3.0 – deve ser utilizado respirador facial descartável para proteção respiratória.","cond":"","obs":""},{"texto":"1.4.0 – Deve ser utilizado protetor auricular, se trabalho contínuo acima de 2h.","cond":"","obs":""},{"texto":"1.5.0 - Transportar ferramentas em caixas, bolsas porta-ferramentas ou painéis adequados.","cond":"","obs":""},{"texto":"1.5.1 - Utilizar a chave apropriada para trocar o acessório.","cond":"","obs":""},{"texto":"1.5.2 - Segurar as ferramentas com as duas mãos. Não adotar posturas inadequada.","cond":"","obs":""},{"texto":"1.6.0 - Não trabalhar próximo à redes energizada sem a proteção devida e sem Permissão de Trabalho.","cond":"","obs":""},{"texto":"1.6.1 - Verificar o estado do cabo de alimentação (não deve haver fios de cobre descascados; não conectar os cabos diretamente nas tomadas (sem plugues, não usar de improvisos); e não transportar as ferramentas segurando-as pelo cabo de alimentação.","cond":"","obs":""},{"texto":"1.7.0 - Não trabalhar próximos a elementos combustíveis.","cond":"","obs":""}]}],"fecho":{"seguraRot":"Após o término do trabalho a área se encontrará segura ?","segura":"","obsRot":"OBSERVAÇÕES:","obs":"","podeRot":"Serviço pode ser executado ?","pode":""},"assinRot":["NOME","Assinatura"],"assinLinhas":7,"assinAltura":20,"rod":{"preparado":"Departamento Saúde Segurança e Meio Ambiente (SSMA) - Brás","aprovado":"Coordenação SSMA","liberacao":"20\/03\/2023","revisao":"25\/03\/2023"}},{"v":1,"tipo":"APR","id":"APR-024.09","nome":"Limpeza de ar-condicionado","cab":{"empresa":"CCB – Congregação Cristã no Brasil","titulo":"APR – LIMPEZA DE AR CONDICIONADO","documento":"CCB SSMA 024.09","revisao":"00"},"titulo":"APR – LIMPEZA DE AR CONDICIONADO","servicoRot":"SERVIÇO A SER EXECUTADO","servico":"","campos":[{"rot":"DATA:","v":"","k":"data"},{"rot":"Casa de oração","v":"","k":"casa"},{"rot":"RESP.:","v":"","k":"resp"}],"extras":[],"cols":[29.9,77.9,69.9,199.6,58.9,105.8],"colRot":["Ordem","Detalhamento da atividade","Perigo e Risco","Medidas de Controle","Condição","Observação"],"grupos":[{"ordem":"1","atividade":"Limpeza de Ar Condicionado","perigos":"1.0 - Tontura, Náuseas e Vertigens\n1.1 - Quedas\n1.2 - Cortes\n1.3 - Choque elétrico\n1.4 - Poeira, Fungos E insetos","medidas":[{"texto":"1.0.0 – Deve ser realizado DDS conforme a atividade.","cond":"","obs":""},{"texto":"1.0.1 – deve ser realizado exame preventivo.","cond":"","obs":""},{"texto":"1.1.0 - Atividades acima de 2,00 metros, deve ser utilizado andaime; e utilizar cinto de segurança tipo paraquedista com trava quedas, talabarte, e mosquetão engatado a cabo auxiliar de segurança, ancorado em estrutura independente a um nível mais elevado que a cabeça.\n__Nota__: Aplicar SEG APR - 001 Trabalho em Altura.","cond":"","obs":"Nota: Na inconformidade os trabalhos deverão ser suspensos e retomados quando de acordo com a NR-35."},{"texto":"1.1.1 - Atividades acima do solo atentar para as condições do andaime e no caso da utilização de escadas e plataformas estas deverão estar travadas e ancoradas em ponto fixo.","cond":"","obs":""},{"texto":"1.1.2 – A atividade devem ser realizada sempre acompanhada de um ajudante.","cond":"","obs":""},{"texto":"1.1.3 - Para prevenção de queda de ferramentas deve ser utilizado recipiente para colocar as ferramentas de forma adequada e segura.","cond":"","obs":""},{"texto":"1.1.4 - deve ser manter r a área de trabalho isolada, sinalizada, limpa, organizada e desimpedida de entulhos e outros.","cond":"","obs":""},{"texto":"1.1.5 - No final da atividade limpar, recolher, guardar, armazenar os materiais cada um em sua classe de uso e\/ou de descarte.","cond":"","obs":""},{"texto":"1.2.0 – Deve ser utilizado luvas multitato (pano e borracha) para proteção das mãos.","cond":"","obs":""},{"texto":"1.3.0 – Deve ser desligado todas as fontes de energia elétrica.","cond":"","obs":""},{"texto":"1.4.0 - Deve ser seguido o procedimento para limpeza determinado pelo fabricante.","cond":"","obs":""}]}],"fecho":{"seguraRot":"Após o término do trabalho a área se encontrará segura ?","segura":"","obsRot":"OBSERVAÇÕES:","obs":"","podeRot":"Serviço pode ser executado ?","pode":""},"assinRot":["NOME","Assinatura"],"assinLinhas":7,"assinAltura":20,"rod":{"preparado":"Departamento Saúde Segurança e Meio Ambiente (SSMA) - Brás","aprovado":"Coordenação SSMA","liberacao":"20\/03\/2023","revisao":"25\/03\/2023"}},{"v":1,"tipo":"APR","id":"APR-024.10","nome":"Limpeza de ventiladores","cab":{"empresa":"CCB – Congregação Cristã no Brasil","titulo":"APR – LIMPEZA DE VENTILADORES","documento":"CCB SSMA 024.10","revisao":"00"},"titulo":"APR – LIMPEZA DE VENTILADORES","servicoRot":"SERVIÇO A SER EXECUTADO","servico":"","campos":[{"rot":"DATA:","v":"","k":"data"},{"rot":"Casa de oração","v":"","k":"casa"},{"rot":"RESP.:","v":"","k":"resp"}],"extras":[],"cols":[29.9,84.8,69.9,206.6,57.9,92.8],"colRot":["Ordem","Detalhamento da atividade","Perigo e Risco","Medidas de Controle","Condição","Observação"],"grupos":[{"ordem":"1","atividade":"Limpeza de Ventiladores","perigos":"1.0 - Tontura, Náuseas e Vertigens\n1.1 - Quedas\n1.2 - Cortes\n1.3 - Choque elétrico\n1.4 - Poeira, Fungos E insetos","medidas":[{"texto":"1.0.0 – deve ser realizado DDS conforme a atividade.","cond":"","obs":""},{"texto":"1.0.1 – deve ser realizado exame preventivo.","cond":"","obs":""},{"texto":"1.1.0 - Atividades acima de 2,00 metros, deve ser utilizado andaime; e utilizar cinto de segurança tipo paraquedista com trava quedas, talabarte, e mosquetão engatado a cabo auxiliar de segurança, ancorado em estrutura independente a um nível mais elevado que a cabeça.\n__Nota__: Aplicar SEG APR - 001 Trabalho em Altura.","cond":"","obs":"Nota: Na inconformidade os trabalhos devem ser suspensos e retomados quando de acordo com a NR- 35."},{"texto":"1.1.1 - Atividades acima do solo atentar para as condições do andaime e no caso da utilização de escadas e plataformas estas deverão estar travadas e ancoradas em ponto fixo.","cond":"","obs":""},{"texto":"1.1.2 – A atividade devem ser realizada sempre acompanhada de um ajudante.","cond":"","obs":""},{"texto":"1.1.3 - Para prevenção de queda de ferramentas deve ser utilizada recipiente para colocar as ferramentas de forma adequada e segura.","cond":"","obs":""},{"texto":"1.1.4 - Deve ser manter a área de trabalho isolada, sinalizada, limpa, organizada e desimpedida de entulhos e outros.","cond":"","obs":""},{"texto":"1.1.5 - No final da atividade limpar, recolher, guardar, armazenar os materiais cada um em sua classe de uso e\/ou de descarte.","cond":"","obs":""},{"texto":"1.2.0 – deve ser utilizada luvas multitato (pano e borracha) para proteção das mãos.","cond":"","obs":""},{"texto":"1.3.0 – Deve ser desligado as fontes de energia elétrica.","cond":"","obs":""},{"texto":"1.4.0 - deve ser seguido o procedimento para limpeza determinado pelo fabricante.","cond":"","obs":""}]}],"fecho":{"seguraRot":"Após o término do trabalho a área se encontrará segura ?","segura":"","obsRot":"OBSERVAÇÕES:","obs":"","podeRot":"Serviço pode ser executado ?","pode":""},"assinRot":["NOME","Assinatura"],"assinLinhas":7,"assinAltura":20,"rod":{"preparado":"Departamento Saúde Segurança e Meio Ambiente (SSMA) - Brás","aprovado":"Coordenação SSMA","liberacao":"20\/03\/2023","revisao":"25\/03\/2023"}},{"v":1,"tipo":"APR","id":"APR-024.11","nome":"Limpeza geral","cab":{"empresa":"CCB – Congregação Cristã no Brasil","titulo":"APR – LIMPEZA GERAL","documento":"CCB SSMA 024.11","revisao":"00"},"titulo":"APR – LIMPEZA GERAL","servicoRot":"SERVIÇO A SER EXECUTADO","servico":"","campos":[{"rot":"DATA:","v":"","k":"data"},{"rot":"Casa de oração","v":"","k":"casa"},{"rot":"RESP.:","v":"","k":"resp"}],"extras":[],"cols":[30.4,80.2,71.0,209.1,58.9,92.4],"colRot":["Ordem","Detalhamento da atividade","Perigo e Risco","Medidas de Controle","Condição","Observação"],"grupos":[{"ordem":"1","atividade":"Limpeza de Ventiladores","perigos":"1.0 - Tontura, Náuseas e Vertigens\n1.1 - Quedas\n1.2 - Cortes\n1.3 - Choque elétrico\n1.4 - Poeira, Fungos E insetos","medidas":[{"texto":"1.0.0 – deve ser realizado DDS conforme a atividade.","cond":"","obs":""},{"texto":"1.0.1 – deve ser realizado exame preventivo.","cond":"","obs":""},{"texto":"1.1.0 - Atividades acima de 2,00 metros, deve ser utilizado andaime; e utilizar cinto de segurança tipo paraquedista com trava quedas, talabarte, e mosquetão engatado a cabo auxiliar de segurança, ancorado em estrutura independente a um nível mais elevado que a cabeça.\n__Nota__: Aplicar SEG APR - 001 Trabalho em Altura.","cond":"","obs":"Nota: Na inconformidade os trabalhos devem ser suspensos e retomados quando de acordo com a NR- 35."},{"texto":"1.1.1 - Atividades acima do solo atentar para as condições do andaime e no caso da utilização de escadas e plataformas estas deverão estar travadas e ancoradas em ponto fixo.","cond":"","obs":""},{"texto":"1.1.2 – A atividade devem ser realizada sempre acompanhada de um ajudante.","cond":"","obs":""},{"texto":"1.1.3 - Para prevenção de queda de ferramentas deve ser utilizada recipiente para colocar as ferramentas de forma adequada e segura.","cond":"","obs":""},{"texto":"1.1.4 - Deve ser manter a área de trabalho isolada, sinalizada, limpa, organizada e desimpedida de entulhos e outros.","cond":"","obs":""},{"texto":"1.1.5 - No final da atividade limpar, recolher, guardar, armazenar os materiais cada um em sua classe de uso e\/ou de descarte.","cond":"","obs":""},{"texto":"1.2.0 – deve ser utilizada luvas multitato (pano e borracha) para proteção das mãos.","cond":"","obs":""},{"texto":"1.3.0 – Deve ser desligado as fontes de energia elétrica.","cond":"","obs":""},{"texto":"1.4.0 - deve ser seguido o procedimento para limpeza determinado pelo fabricante.","cond":"","obs":""}]}],"fecho":{"seguraRot":"Após o término do trabalho a área se encontrará segura ?","segura":"","obsRot":"OBSERVAÇÕES:","obs":"","podeRot":"Serviço pode ser executado ?","pode":""},"assinRot":["NOME","Assinatura"],"assinLinhas":7,"assinAltura":20,"rod":{"preparado":"Departamento Saúde Segurança e Meio Ambiente (SSMA) - Brás","aprovado":"Coordenação SSMA","liberacao":"20\/03\/2023","revisao":"25\/03\/2023"}},{"v":1,"tipo":"APR","id":"APR-024.12","nome":"Trabalho em cozinhas","cab":{"empresa":"CCB – Congregação Cristã no Brasil","titulo":"APR – TRABALHO EM COZINHAS","documento":"CCB SSMA 024.12","revisao":"00"},"titulo":"APR – TRABALHO EM COZINHAS","servicoRot":"SERVIÇO A SER EXECUTADO","servico":"","campos":[{"rot":"DATA:","v":"","k":"data"},{"rot":"Casa de oração","v":"","k":"casa"}],"extras":[{"rot":"EXECUTANTE:","v":"","k":"resp"},{"rot":"ÁREA DE SEGURANÇA:","v":""}],"cols":[44.7,136.3,85.4,170.8,55.9,48.8],"colRot":["Ordem","Detalhamento da atividade","Perigo e Risco","Medidas de Controle","Condição","Observação"],"grupos":[{"ordem":"1","atividade":"Trabalho em Cozinhas","perigos":"1.0 - Tontura, Náuseas e Vertigens\n1.1 - Quedas\n1.2 - Cortes\n1.3 - Queimaduras\n1.4 - Choque elétrico\n1.5 - Temperaturas elevadas\n1.6 - Ergonômicos","medidas":[{"texto":"1.0.0 – Deve ser realizado DDS conforme a atividade.","cond":"","obs":""},{"texto":"1.0.1 – deve ser realizado exame preventivo","cond":"","obs":""},{"texto":"1.1.0 – deve ser utilizado calçado de borracha (EPI) com solado antiderrapante.","cond":"","obs":""},{"texto":"1.1.2 - A atividade deve ser realizada sempre acompanhada de um ajudante.","cond":"","obs":""},{"texto":"1.1.3 - O piso da cozinha deve ser de material antiderrapante e lavável.","cond":"","obs":""},{"texto":"1.1.4 – Deve se manter o ambiente devidamente iluminado.","cond":"","obs":""},{"texto":"1.1.5 – deve se manter a área de trabalho isolada, sinalizada, limpa, organizada e desimpedida de entulhos e outros (piso sujo de óleo, piso molhado, cadeiras espalhadas, gavetas abertas, etc...).","cond":"","obs":""},{"texto":"1.1.6 – Deve ser organizado o fluxo dentro da cozinha (espaço para movimentação)","cond":"","obs":""},{"texto":"1.1.7 - Comunicar (falar) o que está levando em mão objeto cortante","cond":"","obs":""},{"texto":"1.2.0 – Deve ser utilizado luvas multitato (pano e borracha) para proteção das mãos. Para o corte de carnes utilizar luvas com malha de aço.","cond":"","obs":""},{"texto":"1.2.1 - Deve ser mantido ou guardas os talheres (facas, garfos, colheres, etc...) com cabos voltados para o usuário.","cond":"","obs":""},{"texto":"1.3.0 - Comunicar (falar) o que está levando em mão recipiente ou outro objeto quente.","cond":"","obs":""},{"texto":"1.3.1 – Deve ser aceso as bocas do fogão e fornos com acendedor elétrico ou palitos de fósforos longos.","cond":"","obs":""},{"texto":"1.3.2 – Deve ser utilizado Mangotes (EPI) ao usar fritadeiras e Luvas Térmicas de Silicone para manuseio de panelas quentes.","cond":"","obs":""},{"texto":"1.3.3 – deve ser mantido colaborador treinado em Brigada de Incêndio","cond":"","obs":""},{"texto":"1.3.4 – Deve ser disponibilizado e manter equipamentos de combate a incêndio (carregados, visíveis, sinalizados e desimpedidos)","cond":"","obs":""},{"texto":"1.4.0 – Deve ser verificado o estado do cabo de alimentação (não deve haver fios de cobre descascados; não conectar os cabos diretamente nas tomadas (sem plugues, não usar de improvisos); e não transportar as ferramentas segurando-as pelo cabo de alimentação","cond":"","obs":""},{"texto":"1.5.0 – Prover sistemas de ventilação e exaustão adequados para a execução dos trabalhos, bem como a manutenção e higienização periódica dos mesmos.","cond":"","obs":""},{"texto":"1.6.0 – Deve ser evitado levantamento e transporte de peso excessivo","cond":"","obs":""},{"texto":"1.6.1 – Deve ser evitado permanência em pé ou outra postura desconfortável por longo período de tempo","cond":"","obs":""}]}],"fecho":{"seguraRot":"Após o término do trabalho a área se encontrará segura ?","segura":"","obsRot":"OBSERVAÇÕES:","obs":"","podeRot":"Serviço pode ser executado ?","pode":""},"assinRot":["NOME","Assinatura"],"assinLinhas":4,"assinAltura":32,"rod":{"preparado":"Departamento Saúde Segurança e Meio Ambiente (SSMA) - Brás","aprovado":"Coordenação SSMA","liberacao":"20\/03\/2023","revisao":"25\/03\/2023"}},{"v":1,"tipo":"APR","id":"APR-024.13","nome":"Trabalho em jardinagem","cab":{"empresa":"CCB – Congregação Cristã no Brasil","titulo":"APR – TRABALHO EM JARDINAGEM","documento":"CCB SSMA 024.13","revisao":"00"},"titulo":"APR – TRABALHO EM JARDINAGEM","servicoRot":"SERVIÇO A SER EXECUTADO","servico":"","campos":[{"rot":"DATA:","v":"","k":"data"},{"rot":"Casa de oração","v":"","k":"casa"},{"rot":"RESP.:","v":"","k":"resp"}],"extras":[],"cols":[30.5,75.2,89.5,178.0,55.9,112.9],"colRot":["Ordem","Detalhamento da atividade","Perigo e Risco","Medidas de Controle","Condição","Observação"],"grupos":[{"ordem":"1","atividade":"Trabalho em Jardinagem","perigos":"1.0 - Tonturas, Náuseas e Vertigens\n1.1 - Radiação Solar\n1.2 - Cortes\n1.3 - Quedas\n1.4 - Choque elétrico\n1.5 - Exposição à ruído\n1.6 - Exposição a vibrações\n1.7 - Contato com poeira, umidade, fungos, insetos, produtos agroquímicos, combustível e lubrificantes","medidas":[{"texto":"1.0.0 – Deve ser realizado DDS conforme a atividade","cond":"","obs":""},{"texto":"1.0.1 – Deve ser realizado exame preventivo","cond":"","obs":""},{"texto":"1.0.2- Deve ser observado conformidade: SEG APR-007 Trabalho com Ferramentas Elétricas e SEG APR-008 Trabalho com Ferramentas Manuais","cond":"","obs":""},{"texto":"1.1.0 - Havendo exposição à radiação solar disponibilizar creme protetor com filtro solar.\n__Nota__: Analisar o trabalho e efetuar em função das condições climáticas","cond":"","obs":""},{"texto":"1.2.0 - Ao manusear madeiras e metais deve-se antes inspecionar verificando a presença de pregos, farpas ou outro material cortante.","cond":"","obs":""},{"texto":"1.3.0 - A atividade deverá ser realizada sempre acompanhada de um ajudante","cond":"","obs":""},{"texto":"1.3.1 - Para prevenção de queda de ferramentas utilizar um recipiente para colocar as ferramentas de forma adequada e segura","cond":"","obs":""},{"texto":"1.3.2 - Manter a área de trabalho isolada, sinalizada, limpa, organizada e desimpedida de entulhos e outros.\n__Obs.__: Adotar cuidados quanto a projeção de partículas","cond":"","obs":""},{"texto":"1.3.3 – No final da atividade limpar, recolher, guardar, armazenar os materiais cada um em sua classe de uso e\/ou de descarte","cond":"","obs":""},{"texto":"1.4.0 - Ferramentas elétricas e extensões, devem ser conectadas por conjunto plugue tomada","cond":"","obs":""},{"texto":"1.4.1 - Verificar o estado do cabo de alimentação (não deve haver fios de cobre descascados; não conectar os cabos diretamente nas tomadas (sem plugues, não usar de improvisos); e não transportar as ferramentas segurando-as pelo cabo de alimentação","cond":"","obs":""},{"texto":"1.4.2 - Verificar existência de rede elétrica (inclusive enterrada) tais como postes, cercas e instalações de tensão","cond":"","obs":""},{"texto":"1.5.0 - Utilizar protetor auricular","cond":"","obs":""},{"texto":"1.6.0 - Adotar tempo de descanso para execução do trabalho","cond":"","obs":""},{"texto":"1.7.0 - Utilizar respirador facial descartável para proteção respiratória, luvas de látex e óculos de segurança, avental e botas","cond":"","obs":""}]}],"fecho":{"seguraRot":"Após o término do trabalho a área se encontrará segura ?","segura":"","obsRot":"OBSERVAÇÕES:","obs":"","podeRot":"Serviço pode ser executado ?","pode":""},"assinRot":["NOME","Assinatura"],"assinLinhas":7,"assinAltura":20,"rod":{"preparado":"Departamento Saúde Segurança e Meio Ambiente (SSMA) - Brás","aprovado":"Coordenação SSMA","liberacao":"20\/03\/2023","revisao":"25\/03\/2023"}}]</script>
+
+<script id="seed-voluntarios" type="application/json">[{"id":"1","nome":"ABRAHÃO RODRIGUES ALBERNAZ","codigo":"1","casa":"PARQUE MARABÁ","controle":"1","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Apto","restricoes":"","nr35Data":""},{"id":"2","nome":"ADENILTON GONÇALVES QUARESMA","codigo":"8","casa":"VILA IASI","controle":"2","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Apto","restricoes":"","nr35Data":""},{"id":"6","nome":"ALEXSANDER OLIVEIRA ZANOTTO MACHADO","codigo":"55","casa":"VILA IASI","controle":"6","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Apto","restricoes":"","nr35Data":""},{"id":"7","nome":"ÁLVARO GOMES PACHECO","codigo":"62","casa":"VILA IASI","controle":"7","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Apto","restricoes":"","nr35Data":""},{"id":"14","nome":"ARLINDO DOS SANTOS","codigo":"156","casa":"CIDADE INTERCAP","controle":"14","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Não apto","confinado":"Não apto","restricoes":"Restrições: Inapto p/ altura","nr35Data":""},{"id":"21","nome":"CLÉCIO PEREIRA DA SILVA","codigo":"249","casa":"VILA IASI","controle":"21","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Não apto","confinado":"Não apto","restricoes":"","nr35Data":""},{"id":"23","nome":"COSME DA SILVA TEIXEIRA","codigo":"259","casa":"VILA PAZZINI","controle":"23","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Apto","restricoes":"","nr35Data":""},{"id":"25","nome":"DANIEL LUIS TIMÓTEO","codigo":"272","casa":"PARQUE LAGUNA","controle":"25","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Apto","restricoes":"","nr35Data":""},{"id":"27","nome":"DANILO ALVES NOVAIS","codigo":"286","casa":"JARDIM SAINT MORITZ","controle":"27","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Não apto","restricoes":"","nr35Data":""},{"id":"30","nome":"DAVI RODRIGUES PEREIRA","codigo":"291","casa":"PARQUE MARABÁ","controle":"30","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Apto","restricoes":"","nr35Data":""},{"id":"33","nome":"DOUGLAS DA SILVA PASCHOA","codigo":"322","casa":"JARDIM MARIA ROSA","controle":"33","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Apto","restricoes":"","nr35Data":""},{"id":"45","nome":"ELTON DE SOUSA VIEIRA","codigo":"","casa":"JARDIM OURO PRETO","controle":"45","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Não apto","restricoes":"","nr35Data":""},{"id":"56","nome":"FRANCISCO DOS SANTOS CHAGAS","codigo":"482","casa":"PARQUE MARABÁ","controle":"56","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Não apto","restricoes":"","nr35Data":""},{"id":"65","nome":"HENOQUE SOARES DOS SANTOS","codigo":"546","casa":"PARQUE MARABÁ","controle":"65","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Não apto","restricoes":"","nr35Data":""},{"id":"68","nome":"ISAQUE DA SILVA FRANÇA","codigo":"584","casa":"PARQUE MARABÁ","controle":"68","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Não apto","restricoes":"","nr35Data":""},{"id":"69","nome":"ISMAEL AMÉRICO DA SILVA RESENDE","codigo":"587","casa":"JARDIM SAINT MORITZ","controle":"69","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Apto","restricoes":"","nr35Data":""},{"id":"72","nome":"JACKSON RUIZ MESSIAS","codigo":"613","casa":"PARQUE LAGUNA","controle":"72","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Apto","restricoes":"","nr35Data":""},{"id":"79","nome":"JORGE LUIS SANTOS OLIVEIRA","codigo":"683","casa":"PARQUE LAGUNA","controle":"79","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Apto","restricoes":"","nr35Data":""},{"id":"82","nome":"JOSÉ LUCIANO LINO DE SOUZA","codigo":"","casa":"VILA IASI","controle":"82","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Não apto","restricoes":"","nr35Data":""},{"id":"84","nome":"JOSÉ OLIVEIRA DE ARAÚJO","codigo":"717","casa":"JARDIM SAINT MORITZ","controle":"84","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Não apto","restricoes":"","nr35Data":""},{"id":"95","nome":"LUIZ ROBERTO RODRIGUES","codigo":"872","casa":"JARDIM OURO PRETO","controle":"95","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Não apto","restricoes":"","nr35Data":""},{"id":"100","nome":"MÁRCIO REIS DA SILVA","codigo":"920","casa":"VILA PAZZINI","controle":"100","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Não apto","restricoes":"","nr35Data":""},{"id":"103","nome":"MATHEUS ALLAN AGUIAR DO NASCIMENTO","codigo":"1042","casa":"VILA PAZZINI","controle":"103","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Não apto","restricoes":"","nr35Data":""},{"id":"104","nome":"MAURÍLIO CÍCERO CRISPIM DE FARIAS","codigo":"1050","casa":"VILA IASI","controle":"104","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Não apto","restricoes":"","nr35Data":""},{"id":"125","nome":"ROGÉRIO TEIXEIRA DE OLIVEIRA","codigo":"1223","casa":"JARDIM SAINT MORITZ","controle":"125","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Não apto","restricoes":"","nr35Data":""},{"id":"131","nome":"SAULO DANIEL SOARES DE LIRA","codigo":"1286","casa":"PARQUE LAGUNA","controle":"131","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Não apto","restricoes":"","nr35Data":""},{"id":"142","nome":"VALTERRONE ANTÔNIO DE OLIVEIRA","codigo":"1389","casa":"PARQUE LAGUNA","controle":"142","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Apto","restricoes":"","nr35Data":""},{"id":"149","nome":"WESLEY RODRIGUES DO NASCIMENTO","codigo":"1434","casa":"PARQUE LAGUNA","controle":"149","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Não apto","restricoes":"","nr35Data":""},{"id":"150","nome":"WILLIAN ANSELMO DE FREITAS","codigo":"","casa":"PIRAJUSSARA","controle":"150","dataExame":"28/03/2026","validade":"28/03/2027","altura":"Apto","confinado":"Não apto","restricoes":"","nr35Data":""}]</script>
 
 <script>
 'use strict';
@@ -935,14 +947,17 @@ const ICONES = {
   up: '<path d="M12 19V5M6 11l6-6 6 6"/>', down: '<path d="M12 5v14M6 13l6 6 6-6"/>', panel: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/>',
   shield: '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>', refresh: '<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>',
   undo: '<path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>', redo: '<path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/>',
-  lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>'
+  lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+  eye: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  eyeoff: '<path d="M3 3l18 18M10.6 5.1A10 10 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4M6.5 6.6C3.8 8.4 2 12 2 12s3.6 7 10 7c1.7 0 3.2-.4 4.5-1M9.9 9.9a3 3 0 0 0 4.2 4.2"/>',
+  alt: '<path d="M12 3l9 17H3z"/><path d="M12 10v4M12 17v.5"/>'
 };
 const ic = (n, cls = '') => `<svg class="ic ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONES[n] || ''}</svg>`;
 
 // ============================== ESTADO ==============================
 const S = {
   token: null, usuario: null, docs: [], modelos: [], imagens: {}, config: {}, url: '',
-  tela: 'docs', f: { busca: '', tipo: '', status: '' }, fm: { busca: '' }, ed: null, pub: null, zoom: 'fit'
+  tela: 'docs', f: { busca: '', tipo: '', status: '' }, fm: { busca: '' }, vol: null, fv: { busca: '', casa: '', sit: 'todos' }, ed: null, pub: null, zoom: 'fit'
 };
 
 // ============================== UTILITÁRIOS ==============================
@@ -1012,6 +1027,24 @@ function toast(msg, tipo = 'ok') {
 }
 const falha = e => toast((e && e.message) || String(e), 'erro');
 
+// Acrescenta o botão "olho" (mostrar/ocultar) a todo campo de senha dentro de `raiz`.
+function olhos(raiz = document) {
+  $$('input[type=password]', raiz).forEach(inp => {
+    if (inp.parentElement.classList.contains('pw')) return;
+    const w = document.createElement('div'); w.className = 'pw';
+    inp.parentNode.insertBefore(w, inp); w.appendChild(inp);
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'olho'; b.title = 'Mostrar senha'; b.setAttribute('aria-label', 'Mostrar senha'); b.innerHTML = ic('eye');
+    b.onclick = () => {
+      const ver = inp.type === 'password';
+      inp.type = ver ? 'text' : 'password';
+      b.innerHTML = ic(ver ? 'eyeoff' : 'eye'); b.title = ver ? 'Ocultar senha' : 'Mostrar senha'; b.setAttribute('aria-label', b.title);
+      inp.focus();
+    };
+    w.appendChild(b);
+  });
+}
+
 // ============================== MODAL ==============================
 function abrirModal({ titulo, corpo, acoes = [], largura = '560px', aoFechar }) {
   $('#modal-titulo').textContent = titulo;
@@ -1072,7 +1105,7 @@ async function carregar() {
 }
 
 function encerrarSessao(silencioso) {
-  S.token = null; S.usuario = null; S.senhaLogin = null; sessao(false);
+  S.token = null; S.usuario = null; S.senhaLogin = null; S.vol = null; sessao(false);
   if (!silencioso) { S.ed = null; telaLogin(); }
 }
 
@@ -1088,6 +1121,7 @@ function telaLogin() {
       <label class="fld"><span>E-mail</span><input type="email" id="l-email" required autocomplete="username"></label>
       <label class="fld"><span>Senha</span><input type="password" id="l-senha" required autocomplete="current-password"></label>
       <button class="btn btn-primary btn-full" type="submit">Entrar</button>
+      <p class="login-links"><button class="btn-link" type="button" id="l-alterar">Alterar minha senha</button></p>
       ${MODO === 'demo' ? `<p class="hint">Modo demonstração (dados ficam só neste navegador): use qualquer e-mail e a senha <b>${SENHA_DEMO}</b>.</p>` : ''}
     </form>
   </div>`;
@@ -1102,7 +1136,36 @@ function telaLogin() {
       mostrarApp();
     } catch (err) { falha(err); }
   };
+  olhos($('#f-login'));
+  $('#l-alterar').onclick = () => modalAlterarSenha($('#l-email').value);
   setTimeout(() => $('#l-email') && $('#l-email').focus(), 50);
+}
+
+// Troca de senha pela tela de login: não exige estar logado, mas pede a senha atual.
+function modalAlterarSenha(email) {
+  abrirModal({
+    titulo: 'Alterar minha senha', largura: '420px',
+    corpo: `<form id="f-alt" autocomplete="off">
+      <label class="fld"><span>E-mail</span><input type="email" id="a-email" required value="${esc(email || '')}" autocomplete="username"></label>
+      <label class="fld"><span>Senha atual</span><input type="password" id="a-atual" required autocomplete="current-password"></label>
+      <label class="fld"><span>Nova senha</span><input type="password" id="a-nova" required autocomplete="new-password"></label>
+      <label class="fld"><span>Repita a nova senha</span><input type="password" id="a-nova2" required autocomplete="new-password"></label>
+      <p class="muted sm">Mínimo de 8 caracteres, com letras e números. Esqueceu a senha atual? Peça a um administrador para redefinir.</p>
+      <button type="submit" hidden></button></form>`,
+    acoes: [{ label: 'Voltar' }, { label: 'Alterar senha', cls: 'btn-primary', onClick: () => $('#f-alt').requestSubmit() }]
+  });
+  olhos($('#f-alt'));
+  $('#f-alt').onsubmit = async e => {
+    e.preventDefault();
+    if ($('#a-nova').value !== $('#a-nova2').value) { toast('As novas senhas não conferem.', 'erro'); return; }
+    try {
+      await api('alterarSenhaLogin', { email: $('#a-email').value, atual: $('#a-atual').value, nova: $('#a-nova').value });
+      const em = $('#a-email').value;
+      fecharModal();
+      if ($('#l-email')) { $('#l-email').value = em; $('#l-senha').value = ''; $('#l-senha').focus(); }
+      toast('Senha alterada. Entre com a nova senha.');
+    } catch (err) { falha(err); }
+  };
 }
 
 // ============================== TROCA OBRIGATÓRIA DE SENHA ==============================
@@ -1126,6 +1189,7 @@ function telaTrocarSenha(atual) {
       <button class="btn btn-ghost btn-full" type="button" id="t-sair">Sair</button>
     </form>
   </div>`;
+  olhos($('#f-troca'));
   $('#t-sair').onclick = async () => { try { await api('logout', {}, { silencioso: true }); } catch (e) {} encerrarSessao(); };
   $('#f-troca').onsubmit = async e => {
     e.preventDefault();
@@ -1153,6 +1217,7 @@ function mostrarApp() {
     <nav class="nav" id="nav">
       <button data-tela="docs">${ic('doc')}<span>Documentos</span></button>
       <button data-tela="modelos">${ic('grid')}<span>Modelos</span></button>
+      <button data-tela="voluntarios">${ic('users')}<span>Voluntários</span></button>
       <button data-tela="config">${ic('gear')}<span>Configurações</span></button>
     </nav>
     <div class="usuario"><span title="${esc(S.usuario.email)}">${esc(S.usuario.nome || S.usuario.email)}</span>
@@ -1169,7 +1234,7 @@ function irPara(t) {
   S.ed = null; S.tela = t;
   document.body.classList.remove('com-editor');
   $$('#nav [data-tela]').forEach(b => b.classList.toggle('ativo', b.dataset.tela === t));
-  if (t === 'modelos') telaModelos(); else if (t === 'config') telaConfig(); else telaDocs();
+  if (t === 'modelos') telaModelos(); else if (t === 'config') telaConfig(); else if (t === 'voluntarios') telaVoluntarios().catch(falha); else telaDocs();
   window.scrollTo(0, 0);
 }
 
@@ -1205,7 +1270,7 @@ function telaDocs() {
         <td>${esc(d.data || '—')}</td>
         <td>${d.total ? `<div class="prog"><i style="width:${Math.round(100 * d.assinados / d.total)}%"></i></div><span class="sm">${d.assinados}/${d.total}</span>` : '<span class="muted sm">—</span>'}</td>
         <td>${bdg(d.status)}</td>
-        <td class="dir"><button class="btn-icon" data-imp="${esc(d.id)}" title="Imprimir">${ic('print')}</button></td></tr>`).join('')}</tbody>
+        <td class="dir"><button class="btn-icon" data-imp="${esc(d.id)}" title="Imprimir">${ic('print')}</button>${podeAdmin() ? `<button class="btn-icon" data-del="${esc(d.id)}" title="Excluir documento" aria-label="Excluir documento ${esc(d.id)}">${ic('trash')}</button>` : ''}</td></tr>`).join('')}</tbody>
     </table></div>` : `<div class="vazio">${ic('doc')}<p>${S.docs.length ? 'Nenhum documento com esses filtros.' : 'Nenhum documento emitido ainda. Comece por <b>Nova PT</b> ou <b>Nova APR</b>.'}</p></div>`}
   </section>`;
   $('#b-nova-pt').onclick = () => novaPT().catch(falha);
@@ -1213,10 +1278,23 @@ function telaDocs() {
   $$('.chip[data-st]').forEach(b => b.onclick = () => { S.f.status = b.dataset.st; telaDocs(); });
   $('#f-tipo').onchange = e => { S.f.tipo = e.target.value; telaDocs(); };
   let t; $('#f-busca').oninput = e => { clearTimeout(t); t = setTimeout(() => { S.f.busca = e.target.value; telaDocs(); const i = $('#f-busca'); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }, 250); };
-  $$('tr[data-id]').forEach(tr => tr.onclick = e => { if (e.target.closest('[data-imp]')) return; abrirDoc(tr.dataset.id).catch(falha); });
+  $$('tr[data-id]').forEach(tr => tr.onclick = e => { if (e.target.closest('[data-imp],[data-del]')) return; abrirDoc(tr.dataset.id).catch(falha); });
+  $$('[data-del]').forEach(b => b.onclick = () => excluirDoc(b.dataset.del).catch(falha));
   $$('[data-imp]').forEach(b => b.onclick = async () => {
     try { const d = await api('documento', { id: b.dataset.imp }); await imprimir({ c: d.conteudo, assin: d.assinantes, meta: d.doc }, true); } catch (e) { falha(e); }
   });
+}
+
+// Exclui da lista (o registro continua na planilha, com a situação "Excluído" e o motivo no histórico).
+async function excluirDoc(id) {
+  const d = S.docs.filter(x => x.id === id)[0] || { id };
+  const motivo = await pedirTexto('Excluir documento ' + id,
+    `Motivo da exclusão de ${d.titulo ? d.titulo + ' (' + id + ')' : id}. O documento sai da lista e os links de assinatura deixam de funcionar; o registro continua na planilha como "Excluído".`, 'Excluir');
+  if (!motivo) return;
+  await api('cancelarDocumento', { id, motivo, excluir: true });
+  await carregar();
+  telaDocs();
+  toast('Documento ' + id + ' excluído da lista.');
 }
 
 async function abrirDoc(id) {
@@ -1903,6 +1981,327 @@ async function novoModeloAPR() {
   toast('Edite título, número, atividades e medidas direto no papel e salve.');
 }
 
+// ============================== VOLUNTÁRIOS (ASO / NR 35) ==============================
+// Consulta de quem pode trabalhar em altura: ASO dentro da validade, resultado "Apto" para altura e curso NR 35 em dia (reciclagem de 2 anos).
+const parseBR = s => { const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(String(s || '').trim()); return m ? new Date(+m[3], +m[2] - 1, +m[1]) : null; };
+const fmtBR = d => `${pad2(d.getDate())}/${pad2(d.getMonth() + 1)}/${d.getFullYear()}`;
+function situacaoVol(v) {
+  const h = new Date(); h.setHours(0, 0, 0, 0);
+  const val = parseBR(v.validade), nr = parseBR(v.nr35Data);
+  if (nr) nr.setFullYear(nr.getFullYear() + 2);
+  const aso = !!val && val >= h, altura = norm(v.altura) === 'apto', nrOk = !!nr && nr >= h;
+  return { aso, altura, nr, nrOk, sit: aso && altura && nrOk ? 'apto' : aso && altura ? 'nr35' : 'inapto' };
+}
+const ROT_SIT = { apto: ['Apto para altura', 'b-ok'], nr35: ['Falta NR 35 válida', 'b-warn'], inapto: ['Não apto', 'b-err'] };
+
+async function telaVoluntarios() {
+  if (!S.vol) S.vol = await api('voluntarios');
+  const f = S.fv, adm = podeAdmin();
+  const todos = S.vol.map(v => Object.assign({ s: situacaoVol(v) }, v)).sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
+  const cont = { apto: 0, nr35: 0, inapto: 0 }; todos.forEach(v => { cont[v.s.sit]++; });
+  const casas = [...new Set(todos.map(v => v.casa).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+  const lista = todos.filter(v => (f.sit === 'todos' || v.s.sit === f.sit) && (!f.casa || v.casa === f.casa) &&
+    (!f.busca || norm([v.nome, v.codigo, v.casa].join(' ')).includes(norm(f.busca))));
+  $('#conteudo').innerHTML = `
+  <section class="pagina">
+    <div class="pg-topo">
+      <div><h2>Voluntários – trabalho em altura</h2><p class="muted">Quem está com ASO ativo, apto para altura e com o curso NR 35 em dia (validade de 2 anos).</p></div>
+      <div class="acoes"><button class="btn btn-ghost" id="v-csv">${ic('down')} Exportar lista</button>${adm ? `<button class="btn btn-ghost" id="v-imp">${ic('up')} Importar lista</button><button class="btn btn-primary" id="v-novo">${ic('plus')} Novo voluntário</button>` : ''}</div>
+    </div>
+    <div class="vol-resumo">
+      <div><b>${cont.apto}</b><span>aptos para trabalho em altura</span></div>
+      <div><b>${cont.nr35}</b><span>com ASO apto, sem NR 35 válida</span></div>
+      <div><b>${cont.inapto}</b><span>não aptos / ASO vencido</span></div>
+      <div><b>${todos.length}</b><span>voluntários na lista</span></div>
+    </div>
+    <div class="chips">
+      ${[['todos', 'Todos', todos.length], ['apto', 'Aptos para altura', cont.apto], ['nr35', 'Falta NR 35', cont.nr35], ['inapto', 'Não aptos', cont.inapto]]
+        .map(([k, t, n]) => `<button class="chip ${f.sit === k ? 'ativo' : ''}" data-sit="${k}">${t} <b>${n}</b></button>`).join('')}
+    </div>
+    <div class="filtros">
+      <label class="busca">${ic('search')}<input id="v-busca" placeholder="Buscar por nome, código ou casa de oração…" value="${esc(f.busca)}"></label>
+      <select id="v-casa">${opcoes(casas, f.casa, 'Todas as casas de oração')}</select>
+    </div>
+    ${lista.length ? `<div class="tabela-wrap"><table class="tab">
+      <thead><tr><th>Voluntário</th><th>Casa de oração</th><th>ASO</th><th>Altura</th><th>NR 35</th><th>Situação</th>${adm ? '<th></th>' : ''}</tr></thead>
+      <tbody>${lista.map(v => `<tr>
+        <td><b>${esc(v.nome)}</b><div class="muted sm">${v.codigo ? 'Cód. ' + esc(v.codigo) : 'Sem código'}${v.restricoes ? ' · ' + esc(v.restricoes) : ''}</div></td>
+        <td>${esc(v.casa || '—')}</td>
+        <td>${v.s.aso ? '<span class="bdg b-ok">Ativo</span>' : '<span class="bdg b-err">Vencido</span>'}<div class="muted sm">até ${esc(v.validade || '—')}</div></td>
+        <td>${bdg2(v.s.altura, v.altura)}</td>
+        <td>${v.s.nr ? `${v.s.nrOk ? '<span class="bdg b-ok">Em dia</span>' : '<span class="bdg b-err">Vencida</span>'}<div class="muted sm">até ${fmtBR(v.s.nr)}</div>` : '<span class="bdg b-mute">Não informado</span>'}</td>
+        <td><span class="bdg ${ROT_SIT[v.s.sit][1]}">${ROT_SIT[v.s.sit][0]}</span></td>
+        ${adm ? `<td class="dir"><button class="btn-icon" data-edit="${esc(v.id)}" title="Editar">${ic('pen')}</button></td>` : ''}</tr>`).join('')}</tbody>
+    </table></div>` : `<div class="vazio">${ic('users')}<p>Nenhum voluntário com esses filtros.</p></div>`}
+    <p class="muted sm" style="margin-top:10px">Lista base: exames de 28/03/2026 (ASO). A data de conclusão do NR 35 não veio na lista; ${adm ? 'informe-a pelo lápis de cada voluntário.' : 'peça a um administrador para informá-la.'}</p>
+  </section>`;
+  $$('.chip[data-sit]').forEach(b => b.onclick = () => { S.fv.sit = b.dataset.sit; telaVoluntarios(); });
+  $('#v-casa').onchange = e => { S.fv.casa = e.target.value; telaVoluntarios(); };
+  let t; $('#v-busca').oninput = e => { clearTimeout(t); t = setTimeout(() => { S.fv.busca = e.target.value; telaVoluntarios().then(() => { const i = $('#v-busca'); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }); }, 250); };
+  $('#v-csv').onclick = () => exportarVoluntarios(lista);
+  if (adm) {
+    $('#v-novo').onclick = () => editarVoluntario(null);
+    $('#v-imp').onclick = () => importarVoluntarios();
+    $$('[data-edit]').forEach(b => b.onclick = () => editarVoluntario(b.dataset.edit));
+  }
+}
+const bdg2 = (ok, txt) => `<span class="bdg ${ok ? 'b-ok' : 'b-err'}">${esc(txt || (ok ? 'Apto' : '—'))}</span>`;
+
+function editarVoluntario(id) {
+  const v = (id && S.vol.filter(x => x.id === id)[0]) || { altura: 'Apto', confinado: 'Apto' };
+  abrirModal({
+    titulo: id ? 'Editar voluntário' : 'Novo voluntário', largura: '640px',
+    corpo: `<div class="grade2">
+      <label class="fld col2"><span>Nome</span><input id="ve-nome" value="${esc(v.nome || '')}" autofocus></label>
+      <label class="fld"><span>Código do voluntário</span><input id="ve-codigo" value="${esc(v.codigo || '')}"></label>
+      <label class="fld"><span>Casa de oração</span><input id="ve-casa" value="${esc(v.casa || '')}"></label>
+      <label class="fld"><span>Data do exame (ASO)</span><input id="ve-exame" placeholder="dd/mm/aaaa" value="${esc(v.dataExame || '')}"></label>
+      <label class="fld"><span>Validade do ASO</span><input id="ve-validade" placeholder="dd/mm/aaaa" value="${esc(v.validade || '')}"></label>
+      <label class="fld"><span>Trabalho em altura</span><select id="ve-altura">${opcoes(['Apto', 'Não apto'], v.altura)}</select></label>
+      <label class="fld"><span>Espaço confinado</span><select id="ve-conf">${opcoes(['Apto', 'Não apto'], v.confinado)}</select></label>
+      <label class="fld"><span>Curso NR 35 – data de conclusão</span><input id="ve-nr35" placeholder="dd/mm/aaaa" value="${esc(v.nr35Data || '')}"></label>
+      <label class="fld"><span>Restrições</span><input id="ve-restr" value="${esc(v.restricoes || '')}"></label></div>
+      <p class="muted sm">O NR 35 vale 2 anos a partir da data de conclusão. Deixe em branco se o voluntário ainda não fez o curso.</p>`,
+    acoes: [{ label: 'Voltar' }, { label: 'Salvar', cls: 'btn-primary', onClick: async () => {
+      try {
+        S.vol = await api('salvarVoluntario', { id: id || '', nome: $('#ve-nome').value, codigo: $('#ve-codigo').value, casa: $('#ve-casa').value,
+          dataExame: $('#ve-exame').value, validade: $('#ve-validade').value, altura: $('#ve-altura').value, confinado: $('#ve-conf').value,
+          nr35Data: $('#ve-nr35').value, restricoes: $('#ve-restr').value });
+        fecharModal(); telaVoluntarios(); toast('Voluntário salvo.');
+      } catch (e) { falha(e); }
+    } }]
+  });
+}
+
+function exportarVoluntarios(lista) {
+  const cab = ['Nome', 'Código', 'Casa de oração', 'Data do exame', 'Validade do ASO', 'ASO', 'Trabalho em altura', 'Espaço confinado', 'NR 35 – conclusão', 'NR 35 – validade', 'Situação', 'Restrições'];
+  const lin = lista.map(v => [v.nome, v.codigo, v.casa, v.dataExame, v.validade, v.s.aso ? 'Ativo' : 'Vencido', v.altura, v.confinado, v.nr35Data, v.s.nr ? fmtBR(v.s.nr) : '', ROT_SIT[v.s.sit][0], v.restricoes]);
+  const csv = [cab].concat(lin).map(r => r.map(c => '"' + String(c ?? '').replace(/"/g, '""') + '"').join(';')).join('\r\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8' }));
+  a.download = 'voluntarios-altura-' + new Date().toISOString().slice(0, 10) + '.csv';
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+// ---------- Importação de lista (Excel / PDF) ----------
+// A leitura é feita no navegador (bibliotecas carregadas só quando o botão é usado); o servidor recebe apenas as linhas já extraídas.
+const LIBS = {
+  xlsx: ['https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js', () => window.XLSX],
+  pdf: ['https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js', () => window.pdfjsLib]
+};
+async function carregarLib(k) {
+  const [src, pronto] = LIBS[k];
+  if (!pronto()) {
+    await new Promise((ok, err) => {
+      const s = document.createElement('script'); s.src = src; s.onload = ok;
+      s.onerror = () => err(new Error('Não foi possível carregar a biblioteca de leitura de ' + (k === 'pdf' ? 'PDF' : 'Excel') + '. Verifique a conexão e tente de novo.'));
+      document.head.appendChild(s);
+    });
+  }
+  if (k === 'pdf') pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+}
+
+const CAMPOS_VOL = ['nome', 'codigo', 'casa', 'dataExame', 'validade', 'altura', 'confinado', 'restricoes', 'nr35Data'];
+const ROT_CAMPO = { nome: 'nome', codigo: 'código', casa: 'casa de oração', dataExame: 'data do exame', validade: 'validade do ASO', altura: 'altura', confinado: 'espaço confinado', restricoes: 'restrições', nr35Data: 'NR 35' };
+
+function normData(v) {
+  v = String(v == null ? '' : v).trim();
+  let m = /^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{2,4})/.exec(v);
+  if (m) { const y = m[3].length === 2 ? '20' + m[3] : m[3]; return `${pad2(+m[1])}/${pad2(+m[2])}/${y}`; }
+  m = /^(\d{4})-(\d{2})-(\d{2})/.exec(v);
+  return m ? `${m[3]}/${m[2]}/${m[1]}` : '';
+}
+function normApto(v) { const t = norm(v); if (!t) return ''; return /nao|inapto|impedido|restri/.test(t) ? 'Não apto' : /apto/.test(t) ? 'Apto' : String(v).trim(); }
+
+// Descobre quais colunas são quais pelo texto do cabeçalho.
+function mapaCabecalho(cells) {
+  const m = {};
+  cells.forEach((h, i) => {
+    const t = norm(h); if (!t) return;
+    const nr = /nr.?-?\s?35|curso|treinamento|capacit/.test(t);
+    let k = null;
+    if (nr && /validade|vencimento|vence/.test(t)) k = 'nr35Validade';
+    else if (nr) k = 'nr35Data';
+    else if (/codigo|^cod\b|matricula/.test(t)) k = 'codigo';
+    else if (/^nome/.test(t) || t === 'voluntario') k = 'nome';
+    else if (/casa|igreja|local/.test(t)) k = 'casa';
+    else if (/data.*(exame|aso)|^exame|^aso$/.test(t)) k = 'dataExame';
+    else if (/validade|vencimento/.test(t)) k = 'validade';
+    else if (/altura/.test(t)) k = 'altura';
+    else if (/confinado/.test(t)) k = 'confinado';
+    else if (/restri|observ/.test(t)) k = 'restricoes';
+    if (k && !(k in m)) m[k] = i;
+  });
+  return m;
+}
+
+// rows: matriz de células (texto). Devolve { lista, avisos }.
+function extrairVol(rows, pdf) {
+  const lista = [], avisos = [];
+  let h = -1, mapa = null;
+  for (let i = 0; i < Math.min(rows.length, 40); i++) {
+    const m = mapaCabecalho(rows[i]);
+    if ('nome' in m && Object.keys(m).length >= 2) { h = i; mapa = m; break; }
+  }
+  if (mapa) {
+    rows.slice(h + 1).forEach(r => {
+      const nome = String(r[mapa.nome] || '').trim();
+      if (!nome || !/[a-zà-ú]/i.test(nome)) return;
+      const o = { nome };
+      if ('codigo' in mapa) o.codigo = String(r[mapa.codigo] || '').trim();
+      if ('casa' in mapa) o.casa = String(r[mapa.casa] || '').trim();
+      if ('dataExame' in mapa) o.dataExame = normData(r[mapa.dataExame]);
+      if ('validade' in mapa) o.validade = normData(r[mapa.validade]);
+      if ('altura' in mapa) o.altura = normApto(r[mapa.altura]);
+      if ('confinado' in mapa) o.confinado = normApto(r[mapa.confinado]);
+      if ('restricoes' in mapa) o.restricoes = String(r[mapa.restricoes] || '').trim();
+      if ('nr35Data' in mapa) o.nr35Data = normData(r[mapa.nr35Data]);
+      else if ('nr35Validade' in mapa) { const d = parseBR(normData(r[mapa.nr35Validade])); if (d) { d.setFullYear(d.getFullYear() - 2); o.nr35Data = fmtBR(d); } }
+      lista.push(o);
+    });
+    const reconhecidos = Object.keys(mapa).map(k => k === 'nr35Validade' ? 'NR 35 (validade)' : ROT_CAMPO[k]);
+    avisos.push('Colunas reconhecidas: ' + reconhecidos.join(', ') + '.');
+    return { lista, avisos };
+  }
+  if (!pdf) throw new Error('Não encontrei a coluna "Nome" no arquivo. A primeira linha da tabela precisa ter os títulos das colunas (Nome, Código, Casa de oração, Validade, NR 35…).');
+  // PDF sem cabeçalho reconhecível: linhas "NOME  data  [data]"
+  rows.forEach(r => {
+    const t = r.join(' ').replace(/\s+/g, ' ').trim();
+    const datas = (t.match(/\d{1,2}[\/.-]\d{1,2}[\/.-]\d{2,4}/g) || []).map(normData);
+    const nome = (t.match(/^(?:\d+\s+)?([A-Za-zÀ-ÿ'.\- ]{5,}?)(?=\s+\d|\s*$)/) || [])[1];
+    if (!nome || nome.trim().split(' ').length < 2 || !datas.length) return;
+    const o = { nome: nome.trim() };
+    if (datas.length === 1) o.nr35Data = datas[0]; else { o.dataExame = datas[0]; o.validade = datas[1]; }
+    lista.push(o);
+  });
+  if (lista.length) avisos.push('O PDF não tem títulos de coluna: considerei nome + datas. Com uma data, ela foi lida como conclusão do NR 35; com duas, como data do exame e validade do ASO. Confira a prévia.');
+  return { lista, avisos };
+}
+
+function celulasPlanilha(ws) {
+  const rg = XLSX.utils.decode_range(ws['!ref'] || 'A1');
+  const rows = [];
+  for (let r = rg.s.r; r <= rg.e.r; r++) {
+    const linha = [];
+    for (let c = rg.s.c; c <= rg.e.c; c++) {
+      const cel = ws[XLSX.utils.encode_cell({ r, c })];
+      let v = '';
+      if (cel) {
+        if (cel.t === 'n' && cel.z && XLSX.SSF.is_date(cel.z)) { const d = XLSX.SSF.parse_date_code(cel.v); v = d ? `${pad2(d.d)}/${pad2(d.m)}/${d.y}` : String(cel.w || cel.v); }
+        else v = String(cel.w != null ? cel.w : (cel.v != null ? cel.v : ''));
+      }
+      linha.push(v.trim());
+    }
+    rows.push(linha);
+  }
+  return rows;
+}
+
+async function lerPlanilhaVol(arq) {
+  await carregarLib('xlsx');
+  const wb = XLSX.read(await arq.arrayBuffer(), { type: 'array' });
+  let ultimo = null;
+  for (const nome of wb.SheetNames) {
+    try { const r = extrairVol(celulasPlanilha(wb.Sheets[nome]), false); if (r.lista.length) return r; } catch (e) { ultimo = e; }
+  }
+  throw ultimo || new Error('Nenhum voluntário encontrado na planilha.');
+}
+
+// Agrupa os pedaços de texto do PDF por linha (posição vertical) e por coluna (lacunas horizontais).
+function linhasPdf(items) {
+  const lin = [];
+  items.filter(i => i.str && i.str.trim()).forEach(i => {
+    const y = i.transform[5]; let l = lin.filter(x => Math.abs(x.y - y) < 3)[0];
+    if (!l) { l = { y, it: [] }; lin.push(l); }
+    l.it.push({ s: i.str, x: i.transform[4], w: i.width || 0 });
+  });
+  lin.sort((a, b) => b.y - a.y);
+  return lin.map(l => {
+    l.it.sort((a, b) => a.x - b.x);
+    const cels = []; let u = null;
+    l.it.forEach(t => {
+      if (u && t.x - (u.x + u.w) < 9) { u.s += (t.x - (u.x + u.w) > 1 ? ' ' : '') + t.s; u.w = t.x + t.w - u.x; }
+      else { u = { s: t.s, x: t.x, w: t.w }; cels.push(u); }
+    });
+    return cels.map(c => c.s.trim());
+  });
+}
+
+async function lerPdfVol(arq) {
+  await carregarLib('pdf');
+  const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(await arq.arrayBuffer()) }).promise;
+  let rows = [];
+  for (let p = 1; p <= pdf.numPages; p++) { const tc = await (await pdf.getPage(p)).getTextContent(); rows = rows.concat(linhasPdf(tc.items)); }
+  if (!rows.length) throw new Error('Não encontrei texto no PDF (parece um PDF escaneado, só imagem). Use a planilha Excel ou digite os dados.');
+  return extrairVol(rows, true);
+}
+
+// Aplica a lista sobre a atual (mesma regra do servidor): atualiza só campos presentes no arquivo, inclui quem não existe.
+function mesclarVol(atual, entrada) {
+  const lista = atual.map(v => Object.assign({}, v));
+  const porCodigo = {}, porNome = {};
+  let max = 0;
+  lista.forEach(v => { if (v.codigo) porCodigo[v.codigo] = v; porNome[norm(v.nome)] = v; max = Math.max(max, Number(v.id) || 0); });
+  const novos = [], atualizados = [];
+  entrada.forEach(e => {
+    const d = {}; CAMPOS_VOL.forEach(k => { const x = String(e[k] == null ? '' : e[k]).trim(); if (x) d[k] = x; });
+    if (!d.nome) return;
+    const v = (d.codigo && porCodigo[d.codigo]) || porNome[norm(d.nome)];
+    if (v) {
+      const mudou = CAMPOS_VOL.filter(k => d[k] !== undefined && d[k] !== (v[k] || ''));
+      if (mudou.length) { Object.assign(v, d); atualizados.push({ nome: v.nome, mudou: mudou.map(k => ROT_CAMPO[k]) }); }
+    } else {
+      max++;
+      const n = Object.assign({ id: String(max), codigo: '', casa: '', dataExame: '', validade: '', altura: '', confinado: '', restricoes: '', nr35Data: '' }, d);
+      lista.push(n); porNome[norm(n.nome)] = n; if (n.codigo) porCodigo[n.codigo] = n; novos.push({ nome: n.nome });
+    }
+  });
+  return { lista, novos, atualizados, iguais: entrada.length - novos.length - atualizados.length };
+}
+
+function importarVoluntarios() {
+  let lido = null;
+  abrirModal({
+    titulo: 'Importar lista de voluntários', largura: '760px',
+    corpo: `<p class="muted sm">Envie uma planilha <b>Excel</b> (.xlsx, .xls, .csv) ou um <b>PDF</b> com texto. A primeira linha da tabela deve ter os títulos das colunas:
+      <i>Nome, Código, Casa de oração, Data do exame, Validade, Trabalho em altura, Espaço confinado, Restrições, NR 35</i> (só <i>Nome</i> é obrigatório; para o NR 35 vale a data de conclusão ou a validade).
+      Quem já está na lista (mesmo código ou nome) é atualizado apenas nos campos presentes no arquivo; os demais são incluídos. Nada é apagado.</p>
+      <label class="btn">${ic('up')} Escolher arquivo<input type="file" id="imp-arq" hidden accept=".xlsx,.xls,.csv,.pdf,application/pdf"></label>
+      <span class="muted sm" id="imp-nome" style="margin-left:8px"></span>
+      <div id="imp-prev" style="margin-top:14px"></div>`,
+    acoes: [{ label: 'Fechar' }, { label: 'Importar', cls: 'btn-primary', id: 'imp-ok', onClick: async () => {
+      if (!lido || !lido.length) return;
+      try {
+        const r = await api('importarVoluntarios', { lista: lido });
+        S.vol = r.lista; fecharModal(); telaVoluntarios();
+        toast(`Importação concluída: ${r.novos} incluído(s), ${r.atualizados} atualizado(s).`);
+      } catch (e) { falha(e); }
+    } }]
+  });
+  $('#imp-ok').disabled = true;
+  $('#imp-arq').onchange = async e => {
+    const arq = e.target.files[0]; if (!arq) return;
+    $('#imp-nome').textContent = arq.name; $('#imp-ok').disabled = true; lido = null;
+    $('#imp-prev').innerHTML = '<p class="muted sm">Lendo o arquivo…</p>';
+    try {
+      const ext = (arq.name.split('.').pop() || '').toLowerCase();
+      if (!/^(xlsx|xls|csv|pdf)$/.test(ext)) throw new Error('Formato não suportado. Envie .xlsx, .xls, .csv ou .pdf.');
+      const r = ext === 'pdf' ? await lerPdfVol(arq) : await lerPlanilhaVol(arq);
+      if (!r.lista.length) throw new Error('Não encontrei nenhum voluntário nesse arquivo.');
+      const m = mesclarVol(S.vol || [], r.lista);
+      lido = r.lista;
+      const linhas = []
+        .concat(m.novos.map(x => `<tr><td>${esc(x.nome)}</td><td><span class="bdg b-ok">Novo</span></td><td class="muted sm">—</td></tr>`))
+        .concat(m.atualizados.map(x => `<tr><td>${esc(x.nome)}</td><td><span class="bdg b-warn">Atualiza</span></td><td class="sm">${esc(x.mudou.join(', '))}</td></tr>`));
+      $('#imp-prev').innerHTML = `${r.avisos.map(a => `<p class="hint" style="margin:0 0 8px!important">${esc(a)}</p>`).join('')}
+        <p class="txt"><b>${r.lista.length}</b> linha(s) lida(s): <b>${m.novos.length}</b> nova(s), <b>${m.atualizados.length}</b> com alteração, ${m.iguais} sem mudança.</p>
+        ${linhas.length ? `<div class="tabela-wrap" style="max-height:280px;overflow:auto"><table class="tab"><thead><tr><th>Voluntário</th><th>Ação</th><th>Campos alterados</th></tr></thead><tbody>${linhas.join('')}</tbody></table></div>` : ''}`;
+      $('#imp-ok').disabled = !(m.novos.length || m.atualizados.length);
+      if ($('#imp-ok').disabled) $('#imp-prev').insertAdjacentHTML('beforeend', '<p class="muted sm">Nada para importar: a lista já está igual ao arquivo.</p>');
+    } catch (err) { $('#imp-prev').innerHTML = ''; falha(err); }
+  };
+}
+
 // ============================== CONFIGURAÇÕES ==============================
 function telaConfig() {
   const adm = podeAdmin();
@@ -1939,6 +2338,7 @@ function telaConfig() {
       <p class="sm muted">Modo: ${MODO === 'gas' ? 'Google Apps Script + Google Sheets' : MODO === 'http' ? 'API externa' : 'Demonstração (dados apenas neste navegador)'}</p>
       ${MODO === 'demo' ? `<button class="btn btn-ghost" id="c-reset-demo">Apagar dados da demonstração</button>` : ''}</div>
   </section>`;
+  olhos($('#s-atual').closest('.bloco'));
   $$('[data-img]').forEach(inp => inp.onchange = () => enviarImagem(inp.dataset.img, inp.files[0]).catch(falha));
   $$('[data-rest]').forEach(b => b.onclick = async () => { try { S.imagens = await api('salvarImagem', { id: b.dataset.rest, img: '' }); DOCIMG.imagens = S.imagens; telaConfig(); toast('Imagem padrão restaurada.'); } catch (e) { falha(e); } });
   if ($('#c-msg-salvar')) {
@@ -2235,12 +2635,41 @@ const Demo = (() => {
     salvarPdf() { throw new Error('Salvar no Drive só funciona com o sistema publicado no Google Apps Script.'); },
     salvarImagem(p) { if (p.img) db.imagens[p.id] = p.img; else delete db.imagens[p.id]; salvar(); return db.imagens; },
     salvarConfig(p) { Object.assign(db.config, p); salvar(); return Object.assign({ msgWhats: MSG_WHATS_PADRAO }, db.config); },
+    alterarSenhaLogin(p) {
+      const email = String(p.email || '').trim().toLowerCase();
+      db.senhas = db.senhas || {};
+      if (!email || String(p.atual) !== (db.senhas[email] || SENHA_DEMO)) throw new Error('E-mail ou senha atual inválidos.');
+      const nova = String(p.nova || '');
+      if (nova.length < 8 || !/[A-Za-z]/.test(nova) || !/\d/.test(nova)) throw new Error('A nova senha deve ter pelo menos 8 caracteres, com letras e números.');
+      if (nova === SENHA_DEMO) throw new Error('A nova senha não pode ser a senha inicial.');
+      if (nova === String(p.atual)) throw new Error('A nova senha deve ser diferente da atual.');
+      db.senhas[email] = nova; salvar();
+      return true;
+    },
+    voluntarios() { if (!db.vol) { db.vol = JSON.parse(document.getElementById('seed-voluntarios').textContent); salvar(); } return db.vol; },
+    salvarVoluntario(p) {
+      const lista = A.voluntarios();
+      const nome = String(p.nome || '').trim();
+      if (!nome) throw new Error('Informe o nome do voluntário.');
+      ['dataExame', 'validade', 'nr35Data'].forEach(k => { if (p[k] && !/^\d{2}\/\d{2}\/\d{4}$/.test(String(p[k]).trim())) throw new Error('Datas devem estar no formato dd/mm/aaaa.'); });
+      const campos = ['nome', 'codigo', 'casa', 'dataExame', 'validade', 'altura', 'confinado', 'restricoes', 'nr35Data'];
+      let v = p.id && lista.filter(x => x.id === p.id)[0];
+      if (!v) { v = { id: String(lista.reduce((m, x) => Math.max(m, Number(x.id) || 0), 0) + 1) }; lista.push(v); }
+      campos.forEach(k => { v[k] = String(p[k] || '').trim(); });
+      salvar(); return lista;
+    },
+    importarVoluntarios(p) {
+      const m = mesclarVol(A.voluntarios(), p.lista || []);
+      if (!(p.lista || []).length) throw new Error('Nenhum voluntário encontrado no arquivo.');
+      db.vol = m.lista; salvar();
+      return { lista: db.vol, novos: m.novos.length, atualizados: m.atualizados.length };
+    },
     usuarios() { return [{ id: 'admin@demo', nome: 'Administrador (demo)', perfil: 'Administrador', ativo: true }]; },
     salvarUsuario() { throw new Error('Usuários só podem ser gerenciados no sistema publicado.'); },
     redefinirSenha() { throw new Error('Usuários só podem ser gerenciados no sistema publicado.'); }
   };
-  const PUB = { login: 1, paraAssinar: 1, assinar: 1 };
-  const SO_ADMIN = { salvarModelo: 1, ativarModelo: 1, restaurarModelo: 1, cancelarDocumento: 1, salvarImagem: 1, salvarConfig: 1, usuarios: 1 };
+  const PUB = { login: 1, paraAssinar: 1, assinar: 1, alterarSenhaLogin: 1 };
+  const SO_ADMIN = { salvarModelo: 1, ativarModelo: 1, restaurarModelo: 1, cancelarDocumento: 1, salvarImagem: 1, salvarConfig: 1, usuarios: 1, salvarVoluntario: 1, importarVoluntarios: 1 };
   return {
     api(action, p, token) {
       try {

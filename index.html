@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Assinatura eletrônica · PT e APR</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -184,6 +184,7 @@ body.com-editor{overflow:hidden}
 .pw .olho:hover{background:var(--mute-bg);color:var(--txt)}
 .pw .olho .ic{width:19px;height:19px}
 .login-links{margin-top:12px;font-size:13px}
+.btn-sm{padding:6px 10px;font-size:12.5px}
 .btn-zap{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:8px;background:#1FA855;color:#fff;font-weight:700;font-size:12.5px;padding:7px 11px;cursor:pointer}
 .btn-zap:hover{background:#178a45} .btn-zap .ic{width:16px;height:16px}
 .conf-pres{margin-bottom:14px}
@@ -2105,7 +2106,7 @@ async function telaVoluntarios() {
   <section class="pagina">
     <div class="pg-topo">
       <div><h2>Voluntários – trabalho em altura</h2><p class="muted">Quem está com ASO ativo, apto para altura e com o curso NR 35 em dia (validade de 2 anos).</p></div>
-      <div class="acoes"><button class="btn btn-ghost" id="v-csv">${ic('down')} Exportar lista</button>${adm ? `<button class="btn btn-ghost" id="v-imp">${ic('up')} Importar lista</button><button class="btn btn-primary" id="v-novo">${ic('plus')} Novo voluntário</button>` : ''}</div>
+      <div class="acoes"><button class="btn btn-ghost" id="v-csv">${ic('down')} Exportar lista</button>${adm ? `<button class="btn btn-ghost" id="v-imp">${ic('up')} Importar lista</button><button class="btn btn-ghost" id="v-anexos">${ic('pdf')} Anexar atestados</button><input type="file" id="v-anexos-f" accept="application/pdf" multiple hidden><button class="btn btn-primary" id="v-novo">${ic('plus')} Novo voluntário</button>` : ''}</div>
     </div>
     <div class="vol-resumo">
       <div><b>${cont.apto}</b><span>aptos para trabalho em altura</span></div>
@@ -2130,7 +2131,7 @@ async function telaVoluntarios() {
       <select id="v-casa">${opcoes(casas, f.casa, 'Todas as casas de oração')}</select>
     </div>
     ${lista.length ? `<div class="tabela-wrap"><table class="tab tab-livre tab-cartoes">
-      <thead><tr><th>Voluntário</th><th>Casa de oração</th><th>ASO</th><th>Altura</th><th>NR 35</th><th>Situação</th><th>WhatsApp</th>${adm ? '<th></th>' : ''}</tr></thead>
+      <thead><tr><th>Voluntário</th><th>Casa de oração</th><th>ASO</th><th>Altura</th><th>NR 35</th><th>Situação</th><th>Atestado</th><th>WhatsApp</th>${adm ? '<th></th>' : ''}</tr></thead>
       <tbody>${lista.map(v => `<tr>
         <td><b>${esc(v.nome)}</b><div class="muted sm">${v.codigo ? 'Cód. ' + esc(v.codigo) : 'Sem código'}${v.restricoes ? ' · ' + esc(v.restricoes) : ''}</div></td>
         <td data-l="Casa">${esc(v.casa || '—')}</td>
@@ -2138,6 +2139,7 @@ async function telaVoluntarios() {
         <td data-l="Altura">${bdg2(v.s.altura, v.altura)}</td>
         <td data-l="NR 35">${v.s.nr ? `${v.s.nrOk ? '<span class="bdg b-ok">Em dia</span>' : '<span class="bdg b-err">Vencida</span>'}<div class="muted sm">até ${fmtBR(v.s.nr)}</div>` : '<span class="bdg b-mute">Não informado</span>'}</td>
         <td data-l="Situação"><span class="bdg ${ROT_SIT[v.s.sit][1]}">${ROT_SIT[v.s.sit][0]}</span></td>
+        <td data-l="Atestado">${v.temAnexo ? `<button type="button" class="btn btn-ghost btn-sm" data-aso="${esc(v.id)}" title="Abrir o atestado (ASO) em PDF">${ic('pdf')} Ver ASO</button>` : '<span class="muted sm">Sem anexo</span>'}</td>
         <td data-l="WhatsApp">${celulaZap(v)}</td>
         ${adm ? `<td class="dir"><button class="btn-icon" data-edit="${esc(v.id)}" title="Editar">${ic('pen')}</button></td>` : ''}</tr>`).join('')}</tbody>
     </table></div>` : `<div class="vazio">${ic('users')}<p>Nenhum voluntário com esses filtros.</p></div>`}
@@ -2150,7 +2152,10 @@ async function telaVoluntarios() {
   ['cp-data', 'cp-local', 'cp-msg'].forEach(id => $('#' + id).oninput = () => { CP.data = $('#cp-data').value; CP.local = $('#cp-local').value; CP.msg = $('#cp-msg').value === MSG_CONFIRMA_PADRAO ? '' : $('#cp-msg').value; salvarCP(); });
   $('#cp-pad').onclick = () => { $('#cp-msg').value = MSG_CONFIRMA_PADRAO; CP.msg = ''; salvarCP(); };
   $$('[data-zap]').forEach(b => b.onclick = () => abrirZap(b.dataset.zap));
+  $$('[data-aso]').forEach(b => b.onclick = () => abrirAtestado(b.dataset.aso));
   if (adm) {
+    $('#v-anexos').onclick = () => $('#v-anexos-f').click();
+    $('#v-anexos-f').onchange = e => anexarEmLote([...e.target.files]);
     $('#v-novo').onclick = () => editarVoluntario(null);
     $('#v-imp').onclick = () => importarVoluntarios();
     $$('[data-edit]').forEach(b => b.onclick = () => editarVoluntario(b.dataset.edit));
@@ -2210,7 +2215,13 @@ function editarVoluntario(id) {
       <label class="fld"><span>Curso NR 35 – data de conclusão</span><input id="ve-nr35" placeholder="dd/mm/aaaa" value="${esc(v.nr35Data || '')}"></label>
       <label class="fld"><span>Restrições</span><input id="ve-restr" value="${esc(v.restricoes || '')}"></label>
       <label class="fld"><span>Telefone / WhatsApp (com DDD)</span><input id="ve-fone" type="tel" inputmode="tel" placeholder="(11) 91234-5678" value="${esc(v.telefone ? fmtFone(normFone(v.telefone)) : '')}"></label></div>
-      <p class="muted sm">O NR 35 vale 2 anos a partir da data de conclusão. Deixe em branco se o voluntário ainda não fez o curso.</p>`,
+      <p class="muted sm">O NR 35 vale 2 anos a partir da data de conclusão. Deixe em branco se o voluntário ainda não fez o curso.</p>
+      <div class="bloco" style="margin-top:12px"><h3 style="margin:0 0 6px">Atestado de saúde ocupacional (ASO)</h3>
+        ${id ? `<p class="muted sm" id="ve-aso-st">${v.temAnexo ? 'PDF anexado a este cadastro.' : 'Nenhum PDF anexado.'}</p>
+        <div class="acoes"><button type="button" class="btn btn-ghost" id="ve-aso-ver" ${v.temAnexo ? '' : 'hidden'}>${ic('pdf')} Ver</button>
+        <label class="btn btn-ghost" style="cursor:pointer">${ic('up')} <span id="ve-aso-rot">${v.temAnexo ? 'Substituir PDF' : 'Anexar PDF'}</span><input type="file" id="ve-aso-f" accept="application/pdf" hidden></label>
+        <button type="button" class="btn btn-ghost" id="ve-aso-rem" ${v.temAnexo ? '' : 'hidden'}>${ic('x')} Remover</button></div>`
+        : '<p class="muted sm">Salve o voluntário primeiro; depois abra o lápis de novo para anexar o PDF do atestado.</p>'}</div>`,
     acoes: [{ label: 'Voltar' }, { label: 'Salvar', cls: 'btn-primary', onClick: async () => {
       try {
         S.vol = await api('salvarVoluntario', { id: id || '', nome: $('#ve-nome').value, codigo: $('#ve-codigo').value, casa: $('#ve-casa').value,
@@ -2220,6 +2231,51 @@ function editarVoluntario(id) {
       } catch (e) { falha(e); }
     } }]
   });
+  if (id) ligarAnexoModal(id);
+}
+
+// ---------- Atestado (ASO) em PDF anexado ao cadastro ----------
+const lerB64 = arq => new Promise((ok, no) => { const fr = new FileReader(); fr.onload = () => ok(String(fr.result).split(',')[1] || ''); fr.onerror = () => no(new Error('Não foi possível ler o arquivo.')); fr.readAsDataURL(arq); });
+function marcarAnexo(id, tem) { const v = S.vol.filter(x => x.id === id)[0]; if (v) v.temAnexo = tem; }
+
+async function abrirAtestado(id) {
+  const w = window.open('', '_blank');   // abre já no clique, para o navegador não bloquear
+  try {
+    const r = await api('atestado', { id });
+    const bin = atob(r.base64), u8 = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+    const url = URL.createObjectURL(new Blob([u8], { type: 'application/pdf' }));
+    if (w) w.location = url; else window.location = url;
+    setTimeout(() => URL.revokeObjectURL(url), 120000);
+  } catch (e) { if (w) w.close(); falha(e); }
+}
+
+function ligarAnexoModal(id) {
+  const atualizar = tem => { $('#ve-aso-st').textContent = tem ? 'PDF anexado a este cadastro.' : 'Nenhum PDF anexado.';
+    $('#ve-aso-ver').hidden = !tem; $('#ve-aso-rem').hidden = !tem; $('#ve-aso-rot').textContent = tem ? 'Substituir PDF' : 'Anexar PDF'; };
+  $('#ve-aso-ver').onclick = () => abrirAtestado(id);
+  $('#ve-aso-rem').onclick = async () => { if (!confirm('Remover o PDF do atestado deste voluntário?')) return;
+    try { await api('removerAtestado', { id }); marcarAnexo(id, false); atualizar(false); toast('Atestado removido.'); } catch (e) { falha(e); } };
+  $('#ve-aso-f').onchange = async e => {
+    const arq = e.target.files[0]; if (!arq) return;
+    try { await api('anexarAtestado', { id, base64: await lerB64(arq) }); marcarAnexo(id, true); atualizar(true); toast('Atestado anexado.'); } catch (er) { falha(er); }
+    e.target.value = '';
+  };
+}
+
+// Vários PDFs de uma vez: o nome de cada arquivo começa com o Nº de controle do voluntário (ex.: "18 - NOME.pdf").
+async function anexarEmLote(arqs) {
+  $('#v-anexos-f').value = '';
+  if (!arqs.length) return;
+  let ok = 0; const sem = [], erro = [];
+  for (let i = 0; i < arqs.length; i++) {
+    const a = arqs[i], m = a.name.match(/^\s*(\d+)/), v = m && S.vol.filter(x => x.id === String(Number(m[1])))[0];
+    if (!v) { sem.push(a.name); continue; }
+    toast(`Anexando ${i + 1} de ${arqs.length}: ${v.nome}…`, 'aviso');
+    try { await api('anexarAtestado', { id: v.id, base64: await lerB64(a) }); v.temAnexo = true; ok++; } catch (e) { erro.push(v.nome + ' (' + (e.message || e) + ')'); }
+  }
+  telaVoluntarios();
+  toast(`${ok} atestado(s) anexado(s).` + (sem.length ? ` ${sem.length} sem Nº no nome do arquivo.` : '') + (erro.length ? ` Falhas: ${erro.join('; ')}` : ''), erro.length || sem.length ? 'aviso' : 'ok');
 }
 
 function exportarVoluntarios(lista) {
@@ -2824,6 +2880,22 @@ const Demo = (() => {
       campos.forEach(k => { v[k] = k === 'telefone' ? normFone(p[k]) : String(p[k] || '').trim(); });
       salvar(); return lista;
     },
+    anexarAtestado(p) {
+      const v = A.voluntarios().filter(x => x.id === String(p.id))[0]; if (!v) throw new Error('Voluntário não encontrado.');
+      if (!p.base64) throw new Error('Arquivo vazio.');
+      if (p.base64.length > 6 * 1024 * 1024 * 4 / 3) throw new Error('O PDF passa de 6 MB. Reduza o arquivo e tente de novo.');
+      db.aso = db.aso || {}; db.aso[v.id] = p.base64; v.temAnexo = true; salvar();
+      return { id: v.id, temAnexo: true };
+    },
+    atestado(p) {
+      const b = (db.aso || {})[String(p.id)]; if (!b) throw new Error('Este voluntário não tem atestado anexado.');
+      return { nome: 'ASO ' + p.id + '.pdf', base64: b };
+    },
+    removerAtestado(p) {
+      const v = A.voluntarios().filter(x => x.id === String(p.id))[0]; if (!v) throw new Error('Voluntário não encontrado.');
+      if (db.aso) delete db.aso[v.id]; v.temAnexo = false; salvar();
+      return { id: v.id, temAnexo: false };
+    },
     importarVoluntarios(p) {
       const m = mesclarVol(A.voluntarios(), p.lista || []);
       if (!(p.lista || []).length) throw new Error('Nenhum voluntário encontrado no arquivo.');
@@ -2835,7 +2907,7 @@ const Demo = (() => {
     redefinirSenha() { throw new Error('Usuários só podem ser gerenciados no sistema publicado.'); }
   };
   const PUB = { login: 1, paraAssinar: 1, assinar: 1, alterarSenhaLogin: 1 };
-  const SO_ADMIN = { salvarModelo: 1, ativarModelo: 1, restaurarModelo: 1, cancelarDocumento: 1, salvarImagem: 1, salvarConfig: 1, usuarios: 1, salvarVoluntario: 1, importarVoluntarios: 1 };
+  const SO_ADMIN = { salvarModelo: 1, ativarModelo: 1, restaurarModelo: 1, cancelarDocumento: 1, salvarImagem: 1, salvarConfig: 1, usuarios: 1, salvarVoluntario: 1, importarVoluntarios: 1, anexarAtestado: 1, removerAtestado: 1 };
   return {
     api(action, p, token) {
       try {
